@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/MDSDComponentMetamodel/src-gen" creationIcons="false"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/MDSDComponentMetamodel/src-gen" creationIcons="false"
     editDirectory="/MDSDComponentMetamodel.edit/src-gen" editorDirectory="/MDSDComponentMetamodel.editor/src-gen"
     modelPluginID="MDSDComponentMetamodel" modelName="MDSDComponentMetamodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0"
     copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>MDSDComponentMetamodel.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
-  <genPackages prefix="MDSDComponentMetamodel" disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#/"/>
+  <genPackages prefix="MDSDComponentMetamodel" disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#/">
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Repository">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Repository/components"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Repository/interfaces"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Component/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/providedInterfaces"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/providedServices"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/requiredInterfaces"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/behaviorDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Interface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Interface/name"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Interface/signatures"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Signature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Signature/name"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Signature/parameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Signature/returnType"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Parameter/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Parameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Type"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Service">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Service/?"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Action"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//InternalAction"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//ExternalCall"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Loop"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Branch"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//AssemblyContext">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//AssemblyContext/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/component"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Assembly">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Assembly/assemblycontext"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//System">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//System/assembly"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//System/repository"/>
+    </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//CompositeComponent"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Container"/>
+  </genPackages>
 </genmodel:GenModel>
