@@ -8,7 +8,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_QnayoCTTEfCexKEGshhAVQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Qq_rECTTEfCexKEGshhAVQ" name="MDSDComponentMetamodel" repPath="#_QpeoICTTEfCexKEGshhAVQ" changeId="1746544627708">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Qq_rECTTEfCexKEGshhAVQ" name="MDSDComponentMetamodel" repPath="#_QpeoICTTEfCexKEGshhAVQ" changeId="1746544949207">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="MDSDComponentMetamodel.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -2011,7 +2011,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_LEtB9CqCEfCcWfwaWpR0Nw" name="[0..1] assemblyConnectors" sourceNode="_6T7ZACWvEfC-I7KiENzbkQ" targetNode="_QCvqICp3EfCcWfwaWpR0Nw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_LEtB9CqCEfCcWfwaWpR0Nw" name="[0..*] assemblyConnectors" sourceNode="_6T7ZACWvEfC-I7KiENzbkQ" targetNode="_QCvqICp3EfCcWfwaWpR0Nw">
       <target xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//CompositeComponent/assemblyConnectors"/>
       <semanticElements xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//CompositeComponent/assemblyConnectors"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_MKEurCqCEfCcWfwaWpR0Nw" description="_MPdgkCWnEfC-I7KiENzbkQ" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
