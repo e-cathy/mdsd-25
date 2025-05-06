@@ -70,10 +70,14 @@
         eType="#//CompositeComponent" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="System">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblycontexts" upperBound="-1"
-        eType="#//AssemblyContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
         upperBound="-1" eType="#//Interface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assembly" lowerBound="1"
+        eType="#//Assembly" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allocation" lowerBound="1"
+        eType="#//Allocation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="environment" lowerBound="1"
+        eType="#//Environment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeComponent" eSuperTypes="#//Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContexts" lowerBound="2"
@@ -108,13 +112,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentSystem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
-        eType="#//Repository" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assembly" lowerBound="1"
-        eType="#//Assembly" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="allocation" lowerBound="1"
-        eType="#//Allocation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="environment" lowerBound="1"
-        eType="#//Environment" containment="true"/>
+        upperBound="-1" eType="#//Repository" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="system" upperBound="-1"
+        eType="#//System" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssemblyConnector">
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedRole" lowerBound="1"
