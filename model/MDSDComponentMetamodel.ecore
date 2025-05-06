@@ -4,16 +4,18 @@
     nsPrefix="MDSDComponentMetamodel">
   <eClassifiers xsi:type="ecore:EClass" name="Repository">
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
-        eType="#//Component" containment="true"/>
+        eType="#//BasicComponent" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" upperBound="-1"
         eType="#//Interface" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
+        eType="#//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Component">
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterfaces" upperBound="-1"
         eType="#//Interface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedServices" upperBound="-1"
-        eType="#//Service"/>
+        eType="#//Service" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredInterfaces" upperBound="-1"
         eType="#//Interface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorDescription" upperBound="-1"
@@ -59,15 +61,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
         eType="#//Component"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedRoles" upperBound="-1"
-        eType="#//Role"/>
+        eType="#//Role" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredRoles" upperBound="-1"
-        eType="#//Role"/>
+        eType="#//Role" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assembly">
     <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContexts" upperBound="-1"
         eType="#//AssemblyContext" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compositeComponents" upperBound="-1"
         eType="#//CompositeComponent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delegationConnectors" upperBound="-1"
+        eType="#//DelegationConnector" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyConnectors" upperBound="-1"
+        eType="#//AssemblyConnector" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="System">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
@@ -84,6 +90,8 @@
         upperBound="-1" eType="#//AssemblyContext" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyConnectors" eType="#//AssemblyConnector"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delegationConnectors" upperBound="-1"
+        eType="#//DelegationConnector" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Container">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -149,4 +157,5 @@
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicComponent" eSuperTypes="#//Component"/>
 </ecore:EPackage>

@@ -24,11 +24,12 @@
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Repository">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Repository/components"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Repository/interfaces"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Repository/types"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Component">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Component/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/providedInterfaces"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/providedServices"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/providedServices"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/requiredInterfaces"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Component/behaviorDescription"/>
     </genClasses>
@@ -63,12 +64,14 @@
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//AssemblyContext">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//AssemblyContext/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/component"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/providedRoles"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/requiredRoles"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/providedRoles"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/requiredRoles"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Assembly">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Assembly/assemblyContexts"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Assembly/compositeComponents"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Assembly/delegationConnectors"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Assembly/assemblyConnectors"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//System">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//System/interfaces"/>
@@ -79,6 +82,7 @@
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//CompositeComponent">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//CompositeComponent/assemblyContexts"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//CompositeComponent/assemblyConnectors"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//CompositeComponent/delegationConnectors"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Container">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Container/name"/>
@@ -117,5 +121,6 @@
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//ComplexType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//ComplexType/type"/>
     </genClasses>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//BasicComponent"/>
   </genPackages>
 </genmodel:GenModel>
