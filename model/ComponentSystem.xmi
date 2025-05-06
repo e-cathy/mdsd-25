@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MDSDComponentMetamodel:ComponentSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:MDSDComponentMetamodel="http://www.example.org/MDSDComponentMetamodel"
+    xsi:schemaLocation="http://www.example.org/MDSDComponentMetamodel MDSDComponentMetamodel.ecore">
+  <repository>
+    <components
+        name="component"
+        providedInterfaces="//@repository.0/@interfaces.0"/>
+    <interfaces
+        name="right"/>
+    <interfaces
+        name="false"/>
+  </repository>
+  <system interfaces="//@repository.0/@interfaces.0">
+    <assembly>
+      <assemblyContexts
+          name="context"
+          component="//@repository.0/@components.0">
+        <providedRoles
+            interface="//@repository.0/@interfaces.0"/>
+      </assemblyContexts>
+    </assembly>
+    <allocation/>
+    <environment/>
+  </system>
+</MDSDComponentMetamodel:ComponentSystem>

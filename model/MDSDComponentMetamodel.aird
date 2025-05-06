@@ -3,6 +3,7 @@
   <viewpoint:DAnalysis uid="_NH2UcCTTEfCexKEGshhAVQ" selectedViews="_QmoIcCTTEfCexKEGshhAVQ _QnayoCTTEfCexKEGshhAVQ _QnedACTTEfCexKEGshhAVQ" version="15.4.1.202403191723">
     <semanticResources>MDSDComponentMetamodel.ecore</semanticResources>
     <semanticResources>MDSDComponentMetamodel.genmodel</semanticResources>
+    <semanticResources>ComponentSystem.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_QmoIcCTTEfCexKEGshhAVQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Review']"/>
     </ownedViews>
