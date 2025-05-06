@@ -96,7 +96,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Container">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Role"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Role">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
+        eType="#//Interface"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Link">
     <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="2"
         upperBound="-1" eType="#//Container"/>

@@ -87,7 +87,9 @@
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Container">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Container/name"/>
     </genClasses>
-    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Role"/>
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Role">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Role/interface"/>
+    </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Link">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Link/containers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Link/name"/>
