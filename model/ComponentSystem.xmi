@@ -8,64 +8,22 @@
   <repository>
     <components
         name="component"
-        providedInterfaces="//@repository.0/@interfaces.0"
-        requiredInterfaces="//@repository.0/@interfaces.1"/>
+        providedInterfaces="//@repository.0/@interfaces.0"/>
     <interfaces
-        name="provide"/>
+        name="right"/>
     <interfaces
-        name="require"/>
+        name="false"/>
   </repository>
   <system interfaces="//@repository.0/@interfaces.0">
     <assembly>
       <assemblyContexts
-          name="context not in a cc"
-          component="//@repository.0/@components.0"
-          allocationContext="//@system.0/@allocation/@allocationContexts.0">
+          name="context"
+          component="//@repository.0/@components.0">
         <providedRoles
-            interface="//@repository.0/@interfaces.0"
-            name="provide"/>
+            interface="//@repository.0/@interfaces.0"/>
       </assemblyContexts>
-      <assemblyContexts
-          name="ac for cc"
-          component="//@system.0/@assembly/@compositeComponents.0"
-          allocationContext="//@system.0/@allocation/@allocationContexts.1">
-        <requiredRoles
-            interface="//@repository.0/@interfaces.1"
-            name="required"/>
-      </assemblyContexts>
-      <compositeComponents
-          name="component"
-          requiredInterfaces="//@repository.0/@interfaces.1">
-        <assemblyContexts
-            name="context of composite component"
-            component="//@repository.0/@components.0">
-          <requiredRoles
-              interface="//@repository.0/@interfaces.1"
-              name="require"/>
-        </assemblyContexts>
-        <assemblyContexts
-            name="other context"
-            component="//@repository.0/@components.0"/>
-      </compositeComponents>
-      <assemblyConnectors
-          providedRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"
-          requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"/>
     </assembly>
-    <allocation>
-      <allocationContexts
-          container="//@system.0/@environment/@containers.0"
-          assemblyContext="//@system.0/@assembly/@assemblyContexts.0"
-          name="allCont1"/>
-      <allocationContexts
-          container="//@system.0/@environment/@containers.1"
-          assemblyContext="//@system.0/@assembly/@assemblyContexts.1"
-          name="allCont2"/>
-    </allocation>
-    <environment>
-      <containers
-          name="container1"/>
-      <containers
-          name="container2"/>
-    </environment>
+    <allocation/>
+    <environment/>
   </system>
 </MDSDComponentMetamodel:ComponentSystem>
