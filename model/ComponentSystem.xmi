@@ -21,6 +21,7 @@
           component="//@repository.0/@components.0">
         <providedRoles
             interface="//@repository.0/@interfaces.0"/>
+        <providedRoles/>
       </assemblyContexts>
     </assembly>
     <allocation/>

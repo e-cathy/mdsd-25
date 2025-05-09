@@ -122,9 +122,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="assembly" lowerBound="1"
           eType="#//SystemDependant/Assembly" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="allocation" lowerBound="1"
-          eType="#//SystemDependant/Deployment/Allocation" containment="true"/>
+          eType="#//SystemDependant/Allocation" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="environment" lowerBound="1"
-          eType="#//SystemDependant/Deployment/Environment" containment="true"/>
+          eType="#//SystemDependant/Environment" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Role">
       <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
@@ -163,34 +163,32 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiredRoles" upperBound="-1"
           eType="#//SystemDependant/Role" containment="true"/>
     </eClassifiers>
-    <eSubpackages name="Deployment" nsURI="Deployment" nsPrefix="Deployment">
-      <eClassifiers xsi:type="ecore:EClass" name="Allocation">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContexts"
-            upperBound="-1" eType="#//SystemDependant/Deployment/AllocationContext"
-            containment="true"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Container">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Environment">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
-            eType="#//SystemDependant/Deployment/Link" containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="containers" upperBound="-1"
-            eType="#//SystemDependant/Deployment/Container" containment="true"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Link">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="2"
-            upperBound="-1" eType="#//SystemDependant/Deployment/Container"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="AllocationContext">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContext" lowerBound="1"
-            eType="#//SystemDependant/AssemblyContext"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
-            eType="#//SystemDependant/Deployment/Container"/>
-      </eClassifiers>
-    </eSubpackages>
+    <eClassifiers xsi:type="ecore:EClass" name="Environment">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+          eType="#//SystemDependant/Link" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containers" upperBound="-1"
+          eType="#//SystemDependant/Container" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Container">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Link">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="2"
+          upperBound="-1" eType="#//SystemDependant/Container"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Allocation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContexts" upperBound="-1"
+          eType="#//SystemDependant/AllocationContext" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AllocationContext">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContext" lowerBound="1"
+          eType="#//SystemDependant/AssemblyContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
+          eType="#//SystemDependant/Container"/>
+    </eClassifiers>
+    <eSubpackages name="Deployment" nsURI="Deployment" nsPrefix="Deployment"/>
   </eSubpackages>
 </ecore:EPackage>
