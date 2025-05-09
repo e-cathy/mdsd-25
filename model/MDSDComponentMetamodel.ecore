@@ -76,9 +76,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
         eType="#//Component"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedRoles" upperBound="-1"
-        eType="#//Role" containment="true"/>
+        eType="#//Role" containment="true" eOpposite="#//Role/providedAssemblyContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredRoles" upperBound="-1"
-        eType="#//Role" containment="true"/>
+        eType="#//Role" containment="true" eOpposite="#//Role/requiredAssemblyContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContext" eType="#//AllocationContext"
+        eOpposite="#//AllocationContext/assemblyContext"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assembly">
     <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContexts" upperBound="-1"
@@ -91,6 +93,12 @@
         eType="#//AssemblyConnector" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="System">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="noAllocatedAssemblyContextsInCompositeComponents"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="noAllocatedAssemblyContextsInCompositeComponents" value="&#xA;&#x9;&#x9;self.allocation.allocationContexts->forAll(ac | &#xA;&#x9;&#x9;&#x9;self.assembly.compositeComponents->forAll(cc | &#xA;&#x9;&#x9;&#x9;&#x9;cc.assemblyContexts->excludes(ac.assemblyContext)&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
         upperBound="-1" eType="#//Interface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assembly" lowerBound="1"
@@ -110,25 +118,33 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Container">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+        eType="#//Link" eOpposite="#//Link/containers"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
         eType="#//Interface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providedAssemblyContext"
+        eType="#//AssemblyContext" eOpposite="#//AssemblyContext/providedRoles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredAssemblyContext"
+        eType="#//AssemblyContext" eOpposite="#//AssemblyContext/requiredRoles"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Link">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="2"
-        upperBound="-1" eType="#//Container"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="2"
+        upperBound="-1" eType="#//Container" eOpposite="#//Container/links"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Allocation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContexts" upperBound="-1"
         eType="#//AllocationContext" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AllocationContext">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContext" lowerBound="1"
-        eType="#//AssemblyContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
         eType="#//Container"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContext" lowerBound="1"
+        eType="#//AssemblyContext" eOpposite="#//AssemblyContext/allocationContext"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Environment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
@@ -143,6 +159,12 @@
         eType="#//System" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssemblyConnector">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="connectedRolesAreInSameContainerOrLinkedContainers"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="connectedRolesAreInSameContainerOrLinkedContainers" value="&#xA;&#x9;&#x9;if self.providedRole.providedAssemblyContext.allocationContext &lt;> null and &#xA;&#x9;&#x9;&#x9;self.requiredRole.requiredAssemblyContext.allocationContext &lt;> null&#xA;&#x9;&#x9;then&#xA;&#x9;&#x9;&#x9;let provCont : Container = self.providedRole.providedAssemblyContext.allocationContext.container in&#xA;&#x9;&#x9;&#x9;let reqCont : Container = self.requiredRole.requiredAssemblyContext.allocationContext.container in&#xA;&#x9;&#x9;&#x9;provCont = reqCont or&#xA;&#x9;&#x9;&#x9;provCont.links->exists(l | l->includes(reqCont))&#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;endif"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedRole" lowerBound="1"
         eType="#//Role"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredRole" lowerBound="1"

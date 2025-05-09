@@ -66,6 +66,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/component"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/providedRoles"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/requiredRoles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AssemblyContext/allocationContext"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Assembly">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Assembly/assemblyContexts"/>
@@ -86,20 +87,25 @@
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Container">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Container/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Container/links"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Role">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Role/interface"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Role/providedAssemblyContext"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Role/requiredAssemblyContext"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Role/name"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Link">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Link/containers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//Link/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Link/containers"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Allocation">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Allocation/allocationContexts"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//AllocationContext">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AllocationContext/assemblyContext"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AllocationContext/container"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//AllocationContext/assemblyContext"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//AllocationContext/name"/>
     </genClasses>
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//Environment">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//Environment/links"/>
