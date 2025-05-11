@@ -5,11 +5,6 @@
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
-  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentSystem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
         upperBound="-1" eType="#//SystemIndependant/Repository" containment="true"/>
@@ -35,12 +30,6 @@
           eType="#//SystemIndependant/Interface" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
           eType="#//SystemIndependant/Type" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DelegationConnector">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1"
-          eType="#//SystemDependant/Role"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
-          eType="#//SystemIndependant/Interface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexType" eSuperTypes="#//SystemIndependant/Type">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1">
@@ -108,15 +97,32 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="SystemDependant" nsURI="SystemDependant" nsPrefix="SystemDependant">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeComponent" eSuperTypes="#//SystemIndependant/Component">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="delegationConnectors"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="delegationConnectors" value="self.delegationConnectors -> forAll(dc | &#xA;            (self.providedInterfaces -> includes(dc.delegatedInterface) and self.assemblyContexts->exists(ac | &#xA;                ac.providedRoles -> includes(dc.role)) &#xA;                or &#xA;                (self.requiredInterfaces -> includes(dc.delegatedInterface) and self.assemblyContexts -> exists(ac | &#xA;                    ac.requiredRoles -> includes(dc.role)&#xA;                ))&#xA;            )&#xA;        )"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContexts" lowerBound="2"
           upperBound="-1" eType="#//SystemDependant/AssemblyContext" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyConnectors" upperBound="-1"
           eType="#//SystemDependant/AssemblyConnector" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="delegationConnectors"
-          upperBound="-1" eType="#//SystemIndependant/DelegationConnector" containment="true"/>
+          upperBound="-1" eType="#//SystemDependant/DelegationConnector" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="System">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="delegationConnectors"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="delegationConnectors" value="self.assembly.delegationConnectors -> forAll(dc | &#xA;            (self.interfaces -> includes(dc.delegatedInterface) and self.assembly.assemblyContexts->exists(ac | &#xA;                ac.providedRoles -> includes(dc.role)) &#xA;            ))"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
           upperBound="-1" eType="#//SystemIndependant/Interface"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assembly" lowerBound="1"
@@ -139,10 +145,10 @@
           eType="#//SystemDependant/AssemblyContext" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="compositeComponents"
           upperBound="-1" eType="#//SystemDependant/CompositeComponent" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="delegationConnectors"
-          upperBound="-1" eType="#//SystemIndependant/DelegationConnector" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyConnectors" upperBound="-1"
           eType="#//SystemDependant/AssemblyConnector" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegationConnectors"
+          upperBound="-1" eType="#//SystemDependant/DelegationConnector" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AssemblyConnector">
       <eStructuralFeatures xsi:type="ecore:EReference" name="providedRole" lowerBound="1"
@@ -196,6 +202,12 @@
           eType="#//SystemDependant/Container"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContext" lowerBound="1"
           eType="#//SystemDependant/AssemblyContext" eOpposite="#//SystemDependant/AssemblyContext/allocationContext"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DelegationConnector">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1"
+          eType="#//SystemDependant/Role"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegatedInterface" lowerBound="1"
+          eType="#//SystemIndependant/Interface"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
