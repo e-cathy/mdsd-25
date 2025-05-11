@@ -104,12 +104,14 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeComponent" eSuperTypes="#//SystemIndependant/Component">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="delegationConnectors delegationConnectorsForProvidedInterfacesOfCompositeComponentsExist"/>
+        <details key="constraints" value="delegationConnectorsAreWellFormed delegationConnectorsForProvidedInterfacesOfCompositeComponentsExist composedAssemblyContextsAreNotAllocated noCircularDependencyInAssemblyContextHierarchy"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="delegationConnectors" value="self.delegationConnectors -> forAll(dc | &#xA;            &#x9;(self.providedInterfaces -> includes(dc.delegatedInterface) and self.assemblyContexts->exists(ac | &#xA;                &#x9;ac.providedRoles -> includes(dc.role)))&#xA;                &#x9;or &#xA;                &#x9;(self.requiredInterfaces -> includes(dc.delegatedInterface) and self.assemblyContexts -> exists(ac | &#xA;                    &#x9;ac.requiredRoles -> includes(dc.role)))&#xA;            )"/>
+        <details key="delegationConnectorsAreWellFormed" value="self.delegationConnectors -> forAll(dc | &#xA;            &#x9;(self.providedInterfaces -> includes(dc.delegatedInterface) and self.assemblyContexts->exists(ac | &#xA;                &#x9;ac.providedRoles -> includes(dc.role)))&#xA;                &#x9;or &#xA;                &#x9;(self.requiredInterfaces -> includes(dc.delegatedInterface) and self.assemblyContexts -> exists(ac | &#xA;                    &#x9;ac.requiredRoles -> includes(dc.role)))&#xA;            )"/>
         <details key="delegationConnectorsForProvidedInterfacesOfCompositeComponentsExist"
             value="self.providedInterfaces -> forAll(i |&#xA;        &#x9;&#x9;self.delegationConnectors -> exists(dc | dc.delegatedInterface = i)&#xA;        &#x9;)"/>
+        <details key="composedAssemblyContextsAreNotAllocated" value="self.assemblyContexts -> forAll(a | a.allocationContext = null)"/>
+        <details key="noCircularDependencyInAssemblyContextHierarchy" value="self.assemblyContexts -> forAll(a | a.component &lt;> self)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContexts" lowerBound="2"
           upperBound="-1" eType="#//SystemDependant/AssemblyContext" containment="true"/>
@@ -120,10 +122,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="System">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="delegationConnectors delegationConnectorsForProvidedInterfacesOfSystemExist"/>
+        <details key="constraints" value="delegationConnectorsAreWellFormed delegationConnectorsForProvidedInterfacesOfSystemExist"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="delegationConnectors" value="self.assembly.delegationConnectors -> forAll(dc | &#xA;            &#x9;(self.interfaces -> includes(dc.delegatedInterface) and self.assembly.assemblyContexts->exists(ac | &#xA;                &#x9;ac.providedRoles -> includes(dc.role)))&#xA;            )"/>
+        <details key="delegationConnectorsAreWellFormed" value="self.assembly.delegationConnectors -> forAll(dc | &#xA;            &#x9;(self.interfaces -> includes(dc.delegatedInterface) and self.assembly.assemblyContexts->exists(ac | &#xA;                &#x9;ac.providedRoles -> includes(dc.role)))&#xA;            )"/>
         <details key="delegationConnectorsForProvidedInterfacesOfSystemExist" value="self.interfaces -> forAll(i |&#xA;        &#x9;&#x9;self.assembly.delegationConnectors -> exists(dc | dc.delegatedInterface = i)&#xA;        &#x9;)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
@@ -154,6 +156,13 @@
           upperBound="-1" eType="#//SystemDependant/DelegationConnector" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AssemblyConnector">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="providedOrRequiredMatches connectedRolesAreInSameContainerOrLinkedContainers"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="providedOrRequiredMatches" value="self.providedRole.providedAssemblyContext &lt;> null and self.requiredRole.requiredAssemblyContext &lt;> null"/>
+        <details key="connectedRolesAreInSameContainerOrLinkedContainers" value="&#xA;&#x9;&#x9;&#x9;&#x9;(self.providedRole.providedAssemblyContext.allocationContext &lt;> null and self.requiredRole.requiredAssemblyContext.allocationContext &lt;> null) implies&#xA;&#x9;&#x9;&#x9;&#x9;(let providedContainer = self.providedRole.providedAssemblyContext.allocationContext.container in (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let requiredContainer = self.requiredRole.requiredAssemblyContext.allocationContext.container in (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;providedContainer = requiredContainer or providedContainer.links -> exists(l | l.containers -> includes(requiredContainer))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;))"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="providedRole" lowerBound="1"
           eType="#//SystemDependant/Role"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiredRole" lowerBound="1"
