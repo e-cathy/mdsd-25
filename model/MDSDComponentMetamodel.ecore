@@ -129,6 +129,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="Role">
       <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
           eType="#//SystemIndependant/Interface"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providedAssemblyContext"
+          eType="#//SystemDependant/AssemblyContext" eOpposite="#//SystemDependant/AssemblyContext/providedRoles"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiredAssemblyContext"
+          eType="#//SystemDependant/AssemblyContext" eOpposite="#//SystemDependant/AssemblyContext/requiredRoles"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Assembly">
       <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContexts" upperBound="-1"
@@ -159,9 +163,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
           eType="#//SystemIndependant/Component"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="providedRoles" upperBound="-1"
-          eType="#//SystemDependant/Role" containment="true"/>
+          eType="#//SystemDependant/Role" containment="true" eOpposite="#//SystemDependant/Role/providedAssemblyContext"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiredRoles" upperBound="-1"
-          eType="#//SystemDependant/Role" containment="true"/>
+          eType="#//SystemDependant/Role" containment="true" eOpposite="#//SystemDependant/Role/requiredAssemblyContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContext" eType="#//SystemDependant/AllocationContext"
+          eOpposite="#//SystemDependant/AllocationContext/assemblyContext"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Allocation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContexts" upperBound="-1"
@@ -170,6 +176,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="Container">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+          eType="#//SystemDependant/Link" eOpposite="#//SystemDependant/Link/containers"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Environment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
@@ -178,16 +186,16 @@
           eType="#//SystemDependant/Container" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Link">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="2"
-          upperBound="-1" eType="#//SystemDependant/Container"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="2"
+          upperBound="-1" eType="#//SystemDependant/Container" eOpposite="#//SystemDependant/Container/links"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AllocationContext">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContext" lowerBound="1"
-          eType="#//SystemDependant/AssemblyContext"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
           eType="#//SystemDependant/Container"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyContext" lowerBound="1"
+          eType="#//SystemDependant/AssemblyContext" eOpposite="#//SystemDependant/AssemblyContext/allocationContext"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
