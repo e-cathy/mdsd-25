@@ -1,10 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/MDSDComponentMetamodel/src-gen" creationIcons="false"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/MDSDComponentMetamodel/src-gen" creationIcons="false"
     editDirectory="/MDSDComponentMetamodel.edit/src-gen" editorDirectory="/MDSDComponentMetamodel.editor/src-gen"
     modelPluginID="MDSDComponentMetamodel" modelName="MDSDComponentMetamodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0"
     copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>MDSDComponentMetamodel.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="MDSDComponentMetamodel" disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#/">
+    <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//ComponentSystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/repository"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/system"/>
+    </genClasses>
+    <nestedGenPackages prefix="SystemIndependant" disposableProviderFactory="true"
+        ecorePackage="MDSDComponentMetamodel.ecore#//SystemIndependant">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum">
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Boolean"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Char"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Date"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Double"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Float"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/List"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Int"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Long"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Map"/>
+        <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/String"/>
+      </genEnums>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Service">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Service/correspondingSignature"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Type"/>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Parameter">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Parameter/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Parameter/type"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Repository">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Repository/components"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Repository/interfaces"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Repository/types"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/ComplexType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/ComplexType/type"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/ExternalCall"/>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Signature">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Signature/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Signature/parameters"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Signature/returnType"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/InternalAction"/>
+      <genClasses image="false" ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Action"/>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Branch">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Branch/actions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Branch/condition"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Interface">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Interface/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Interface/signatures"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Component">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Component/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Component/providedInterfaces"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Component/providedServices"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Component/requiredInterfaces"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Component/behaviorDescription"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleType/type"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/BasicComponent"/>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Loop">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Loop/actions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Loop/condition"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SystemDependant" disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#//SystemDependant">
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/CompositeComponent">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/CompositeComponent/assemblyContexts"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/CompositeComponent/assemblyConnectors"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/CompositeComponent/delegationConnectors"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/System">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/System/interfaces"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/System/assembly"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/System/allocation"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/System/environment"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Role">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Role/interface"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Role/providedAssemblyContext"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Role/requiredAssemblyContext"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Assembly">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Assembly/assemblyContexts"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Assembly/compositeComponents"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Assembly/assemblyConnectors"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Assembly/delegationConnectors"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyConnector">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyConnector/providedRole"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyConnector/requiredRole"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/component"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/providedRoles"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/requiredRoles"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/allocationContext"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Allocation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Allocation/allocationContexts"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Container">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemDependant/Container/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Container/links"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Environment">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Environment/links"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Environment/containers"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Link">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemDependant/Link/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Link/containers"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/AllocationContext">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AllocationContext/container"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AllocationContext/assemblyContext"/>
+      </genClasses>
+      <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/DelegationConnector">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/DelegationConnector/role"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/DelegationConnector/delegatedInterface"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
 </genmodel:GenModel>
