@@ -136,11 +136,11 @@
             requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"/>
         <delegationConnectors
             name="d1"
-            role="//@system.0/@assembly/@assemblyContexts.1/@providedRoles.0"
+            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.1/@providedRoles.0"
             delegatedInterface="//@repository.0/@interfaces.0"/>
         <delegationConnectors
             name="d2"
-            role="//@system.0/@assembly/@assemblyContexts.1/@requiredRoles.0"
+            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"
             delegatedInterface="//@repository.0/@interfaces.3"/>
       </compositeComponents>
       <compositeComponents
@@ -187,7 +187,7 @@
             requiredRole="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.0/@requiredRoles.0"/>
         <delegationConnectors
             name="d3"
-            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@providedRoles.0"
+            role="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.0/@providedRoles.0"
             delegatedInterface="//@repository.0/@interfaces.1"/>
         <delegationConnectors
             name="d4"
