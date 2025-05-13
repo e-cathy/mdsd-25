@@ -13,6 +13,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/repository"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/system"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="MDSDComponentMetamodel.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//NamedElement/name"/>
+    </genClasses>
     <nestedGenPackages prefix="SystemIndependant" disposableProviderFactory="true"
         ecorePackage="MDSDComponentMetamodel.ecore#//SystemIndependant">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum">
@@ -33,7 +36,6 @@
       </genClasses>
       <genClasses image="false" ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Type"/>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Parameter">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Parameter/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Parameter/type"/>
       </genClasses>
@@ -47,7 +49,6 @@
       </genClasses>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/ExternalCall"/>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Signature">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Signature/name"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Signature/parameters"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Signature/returnType"/>
@@ -59,11 +60,9 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Branch/condition"/>
       </genClasses>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Interface">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Interface/name"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Interface/signatures"/>
       </genClasses>
       <genClasses image="false" ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/Component">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Component/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Component/providedInterfaces"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Component/providedServices"/>
@@ -112,7 +111,6 @@
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyConnector/requiredRole"/>
       </genClasses>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/component"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/AssemblyContext/providedRoles"/>
@@ -124,7 +122,6 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Allocation/allocationContexts"/>
       </genClasses>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Container">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemDependant/Container/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Container/links"/>
       </genClasses>
@@ -133,7 +130,6 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Environment/containers"/>
       </genClasses>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/Link">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemDependant/Link/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/Link/containers"/>
       </genClasses>
