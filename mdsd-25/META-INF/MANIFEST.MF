@@ -1,7 +1,24 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: MDSDComponentMetamodel
-Bundle-SymbolicName: MDSDComponentMetamodel; singleton:=true
+Bundle-Name: %pluginName
+Bundle-SymbolicName: MDSDComponentMetamodel;singleton:=true
+Automatic-Module-Name: MDSDComponentMetamodel
 Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: MDSDComponentMetamodel,
+ MDSDComponentMetamodel.SystemDependant,
+ MDSDComponentMetamodel.SystemDependant.impl,
+ MDSDComponentMetamodel.SystemDependant.util,
+ MDSDComponentMetamodel.SystemIndependant,
+ MDSDComponentMetamodel.SystemIndependant.impl,
+ MDSDComponentMetamodel.SystemIndependant.util,
+ MDSDComponentMetamodel.impl,
+ MDSDComponentMetamodel.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.ocl.pivot;visibility:=reexport,
+ org.eclipse.ocl.examples.codegen;visibility:=reexport,
  org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
