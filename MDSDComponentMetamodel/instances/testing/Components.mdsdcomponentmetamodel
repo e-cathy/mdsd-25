@@ -92,57 +92,27 @@
             interface="//@repository.0/@interfaces.3"/>
       </assemblyContexts>
       <assemblyContexts
-          name="Application Server"
+          name="Composite Component"
           component="//@system.0/@assembly/@compositeComponents.0"
           allocationContext="//@system.0/@allocation/@allocationContexts.1">
         <providedRoles
-            name="rHTTP Appser"
-            interface="//@repository.0/@interfaces.0"/>
+            name="rMediaStore CompComp"
+            interface="//@repository.0/@interfaces.1"/>
         <requiredRoles
-            name="rAudioDB Appser"
+            name="rAudioDB CompComp"
             interface="//@repository.0/@interfaces.3"/>
       </assemblyContexts>
-      <compositeComponents
-          name="Application Server"
-          providedInterfaces="//@repository.0/@interfaces.0"
-          requiredInterfaces="//@repository.0/@interfaces.3">
-        <assemblyContexts
-            name="Composite Component"
-            component="//@system.0/@assembly/@compositeComponents.1">
-          <providedRoles
-              name="rMediaStore CompComp"
-              interface="//@repository.0/@interfaces.1"/>
-          <requiredRoles
-              name="rAudioDB CompComp"
-              interface="//@repository.0/@interfaces.3"/>
-        </assemblyContexts>
-        <assemblyContexts
-            name="WebGUI"
-            component="//@repository.0/@components.0">
-          <providedRoles
-              name="rHTTP WebGUI"
-              interface="//@repository.0/@interfaces.0"/>
-          <requiredRoles
-              name="rMediaStore WebGUI"
-              interface="//@repository.0/@interfaces.1"/>
-        </assemblyContexts>
-        <assemblyConnectors
-            name="c1"
-            providedRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@providedRoles.0"
-            requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.1/@requiredRoles.0"/>
-        <assemblyConnectors
-            name="c3"
-            providedRole="//@system.0/@assembly/@assemblyContexts.0/@providedRoles.0"
-            requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"/>
-        <delegationConnectors
-            name="d1"
-            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.1/@providedRoles.0"
-            delegatedInterface="//@repository.0/@interfaces.0"/>
-        <delegationConnectors
-            name="d2"
-            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"
-            delegatedInterface="//@repository.0/@interfaces.3"/>
-      </compositeComponents>
+      <assemblyContexts
+          name="WebGUI"
+          component="//@repository.0/@components.0"
+          allocationContext="//@system.0/@allocation/@allocationContexts.2">
+        <providedRoles
+            name="rHTTP WebGUI"
+            interface="//@repository.0/@interfaces.0"/>
+        <requiredRoles
+            name="rMediaStore WebGUI"
+            interface="//@repository.0/@interfaces.1"/>
+      </assemblyContexts>
       <compositeComponents
           name="Composite Component"
           providedInterfaces="//@repository.0/@interfaces.1"
@@ -178,25 +148,33 @@
               interface="//@repository.0/@interfaces.3"/>
         </assemblyContexts>
         <assemblyConnectors
-            name="c4"
-            providedRole="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.2/@providedRoles.0"
-            requiredRole="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.0/@requiredRoles.1"/>
+            name="c3"
+            providedRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.2/@providedRoles.0"
+            requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.1"/>
         <assemblyConnectors
-            name="c2"
-            providedRole="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.1/@providedRoles.0"
-            requiredRole="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.0/@requiredRoles.0"/>
+            name="c4"
+            providedRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.1/@providedRoles.0"
+            requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"/>
         <delegationConnectors
-            name="d3"
-            role="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.0/@providedRoles.0"
+            name="d2"
+            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@providedRoles.0"
             delegatedInterface="//@repository.0/@interfaces.1"/>
         <delegationConnectors
-            name="d4"
-            role="//@system.0/@assembly/@compositeComponents.1/@assemblyContexts.2/@requiredRoles.0"
+            name="d3"
+            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.2/@requiredRoles.0"
             delegatedInterface="//@repository.0/@interfaces.3"/>
       </compositeComponents>
+      <assemblyConnectors
+          name="c1"
+          providedRole="//@system.0/@assembly/@assemblyContexts.1/@providedRoles.0"
+          requiredRole="//@system.0/@assembly/@assemblyContexts.2/@requiredRoles.0"/>
+      <assemblyConnectors
+          name="c2"
+          providedRole="//@system.0/@assembly/@assemblyContexts.0/@providedRoles.0"
+          requiredRole="//@system.0/@assembly/@assemblyContexts.1/@requiredRoles.0"/>
       <delegationConnectors
-          name="rHTTP System"
-          role="//@system.0/@assembly/@assemblyContexts.1/@providedRoles.0"
+          name="d1"
+          role="//@system.0/@assembly/@assemblyContexts.2/@providedRoles.0"
           delegatedInterface="//@repository.0/@interfaces.0"/>
     </assembly>
     <allocation>
@@ -208,6 +186,10 @@
           name="a2"
           container="//@system.0/@environment/@containers.0"
           assemblyContext="//@system.0/@assembly/@assemblyContexts.1"/>
+      <allocationContexts
+          name="a3"
+          container="//@system.0/@environment/@containers.0"
+          assemblyContext="//@system.0/@assembly/@assemblyContexts.2"/>
     </allocation>
     <environment>
       <links
