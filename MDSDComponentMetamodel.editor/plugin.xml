@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated MDSDComponentMetamodel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="MDSDComponentMetamodel.presentation.MDSDComponentMetamodelModelWizardID"
+            name="%_UI_MDSDComponentMetamodelModelWizard_label"
+            class="MDSDComponentMetamodel.presentation.MDSDComponentMetamodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MDSDComponentMetamodelModelFile.gif">
+         <description>%_UI_MDSDComponentMetamodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated MDSDComponentMetamodel -->
+      <editor
+            id="MDSDComponentMetamodel.presentation.MDSDComponentMetamodelEditorID"
+            name="%_UI_MDSDComponentMetamodelEditor_label"
+            icon="icons/full/obj16/MDSDComponentMetamodelModelFile.gif"
+            extensions="mdsdcomponentmetamodel"
+            class="MDSDComponentMetamodel.presentation.MDSDComponentMetamodelEditor"
+            contributorClass="MDSDComponentMetamodel.presentation.MDSDComponentMetamodelActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated MDSDComponentMetamodel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="MDSDComponentMetamodel.SystemIndependant.presentation.SystemIndependantModelWizardID"
+            name="%_UI_SystemIndependantModelWizard_label"
+            class="MDSDComponentMetamodel.SystemIndependant.presentation.SystemIndependantModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SystemIndependantModelFile.gif">
+         <description>%_UI_SystemIndependantModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated MDSDComponentMetamodel -->
+      <editor
+            id="MDSDComponentMetamodel.SystemIndependant.presentation.SystemIndependantEditorID"
+            name="%_UI_SystemIndependantEditor_label"
+            icon="icons/full/obj16/SystemIndependantModelFile.gif"
+            extensions="systemindependant"
+            class="MDSDComponentMetamodel.SystemIndependant.presentation.SystemIndependantEditor"
+            contributorClass="MDSDComponentMetamodel.SystemIndependant.presentation.SystemIndependantActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated MDSDComponentMetamodel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="MDSDComponentMetamodel.SystemDependant.presentation.SystemDependantModelWizardID"
+            name="%_UI_SystemDependantModelWizard_label"
+            class="MDSDComponentMetamodel.SystemDependant.presentation.SystemDependantModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SystemDependantModelFile.gif">
+         <description>%_UI_SystemDependantModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated MDSDComponentMetamodel -->
+      <editor
+            id="MDSDComponentMetamodel.SystemDependant.presentation.SystemDependantEditorID"
+            name="%_UI_SystemDependantEditor_label"
+            icon="icons/full/obj16/SystemDependantModelFile.gif"
+            extensions="systemdependant"
+            class="MDSDComponentMetamodel.SystemDependant.presentation.SystemDependantEditor"
+            contributorClass="MDSDComponentMetamodel.SystemDependant.presentation.SystemDependantActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
