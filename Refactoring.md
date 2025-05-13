@@ -1,6 +1,6 @@
 # Exercise 1b: Refactoring and design decisions
 
-Refactoring steps to increase metamodel quality and initial design decisions:
+Initial design decisions and refactoring steps to increase the metamodel quality:
 
 1. **Model void as empty return type**
 To be able to use the same abstract class Type for parameters and return type of signatures, a return 
