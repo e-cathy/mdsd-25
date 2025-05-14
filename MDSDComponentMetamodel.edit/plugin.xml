@@ -22,7 +22,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated MDSDComponentMetamodel -->
       <factory
-            uri="SystemIndependant"
+            uri="http://www.example.org/SystemIndependant"
             class="MDSDComponentMetamodel.SystemIndependant.provider.SystemIndependantItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -35,7 +35,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated MDSDComponentMetamodel -->
       <factory
-            uri="SystemDependant"
+            uri="http://www.example.org/SystemDependant"
             class="MDSDComponentMetamodel.SystemDependant.provider.SystemDependantItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

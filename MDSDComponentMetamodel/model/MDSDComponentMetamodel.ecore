@@ -14,7 +14,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eSubpackages name="SystemIndependant" nsURI="SystemIndependant" nsPrefix="SystemIndependant">
+  <eSubpackages name="SystemIndependant" nsURI="http://www.example.org/SystemIndependant"
+      nsPrefix="SystemIndependant">
     <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="correspondingSignature"
           lowerBound="1" eType="#//SystemIndependant/Signature"/>
@@ -91,7 +92,8 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="SystemDependant" nsURI="SystemDependant" nsPrefix="SystemDependant">
+  <eSubpackages name="SystemDependant" nsURI="http://www.example.org/SystemDependant"
+      nsPrefix="SystemDependant">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>

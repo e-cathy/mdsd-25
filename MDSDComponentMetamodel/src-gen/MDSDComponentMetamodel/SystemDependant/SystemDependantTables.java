@@ -60,24 +60,24 @@ public class SystemDependantTables extends AbstractTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-	public static final /*@NonInvalid*/ NsURIPackageId PACKid_SystemDependant = IdManager.getNsURIPackageId("SystemDependant", null, SystemDependantPackage.eINSTANCE);
-	public static final /*@NonInvalid*/ NsURIPackageId PACKid_SystemIndependant = IdManager.getNsURIPackageId("SystemIndependant", null, SystemIndependantPackage.eINSTANCE);
 	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_MDSDComponentMetamodel = IdManager.getNsURIPackageId("http://www.example.org/MDSDComponentMetamodel", null, MDSDComponentMetamodelPackage.eINSTANCE);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Allocation = SystemDependantTables.PACKid_SystemDependant.getClassId("Allocation", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_AllocationContext = SystemDependantTables.PACKid_SystemDependant.getClassId("AllocationContext", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Assembly = SystemDependantTables.PACKid_SystemDependant.getClassId("Assembly", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyConnector = SystemDependantTables.PACKid_SystemDependant.getClassId("AssemblyConnector", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyContext = SystemDependantTables.PACKid_SystemDependant.getClassId("AssemblyContext", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Component = SystemDependantTables.PACKid_SystemIndependant.getClassId("Component", 0);
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemDependant = IdManager.getNsURIPackageId("http://www.example.org/SystemDependant", null, SystemDependantPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemIndependant = IdManager.getNsURIPackageId("http://www.example.org/SystemIndependant", null, SystemIndependantPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Allocation = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("Allocation", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_AllocationContext = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("AllocationContext", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Assembly = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("Assembly", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyConnector = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("AssemblyConnector", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyContext = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("AssemblyContext", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Component = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Component", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_ComponentSystem = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_MDSDComponentMetamodel.getClassId("ComponentSystem", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_CompositeComponent = SystemDependantTables.PACKid_SystemDependant.getClassId("CompositeComponent", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Container = SystemDependantTables.PACKid_SystemDependant.getClassId("Container", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_DelegationConnector = SystemDependantTables.PACKid_SystemDependant.getClassId("DelegationConnector", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Environment = SystemDependantTables.PACKid_SystemDependant.getClassId("Environment", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Interface = SystemDependantTables.PACKid_SystemIndependant.getClassId("Interface", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Link = SystemDependantTables.PACKid_SystemDependant.getClassId("Link", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Role = SystemDependantTables.PACKid_SystemDependant.getClassId("Role", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_System = SystemDependantTables.PACKid_SystemDependant.getClassId("System", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_CompositeComponent = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("CompositeComponent", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Container = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("Container", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_DelegationConnector = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("DelegationConnector", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Environment = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("Environment", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Interface = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Interface", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Link = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("Link", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Role = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("Role", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_System = SystemDependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("System", 0);
 	public static final /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AllocationContext = TypeId.BAG.getSpecializedId(SystemDependantTables.CLSSid_AllocationContext, false, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AssemblyConnector = TypeId.BAG.getSpecializedId(SystemDependantTables.CLSSid_AssemblyConnector, false, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);

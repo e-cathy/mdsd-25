@@ -43,7 +43,7 @@ public interface SystemDependantPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "SystemDependant";
+	String eNS_URI = "http://www.example.org/SystemDependant";
 
 	/**
 	 * The package namespace name.

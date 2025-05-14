@@ -41,7 +41,7 @@ public interface SystemIndependantPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "SystemIndependant";
+	String eNS_URI = "http://www.example.org/SystemIndependant";
 
 	/**
 	 * The package namespace name.
