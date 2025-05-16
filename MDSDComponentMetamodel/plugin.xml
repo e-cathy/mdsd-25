@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MDSDComponentMetamodel -->
       <package
-            uri="SystemIndependant"
+            uri="http://www.example.org/SystemIndependant"
             class="MDSDComponentMetamodel.SystemIndependant.SystemIndependantPackage"
             genModel="model/MDSDComponentMetamodel.genmodel"/>
    </extension>
@@ -25,7 +25,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MDSDComponentMetamodel -->
       <package
-            uri="SystemDependant"
+            uri="http://www.example.org/SystemDependant"
             class="MDSDComponentMetamodel.SystemDependant.SystemDependantPackage"
             genModel="model/MDSDComponentMetamodel.genmodel"/>
    </extension>

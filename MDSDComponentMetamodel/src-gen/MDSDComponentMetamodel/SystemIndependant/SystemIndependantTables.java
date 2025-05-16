@@ -65,29 +65,29 @@ public class SystemIndependantTables extends AbstractTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-	public static final /*@NonInvalid*/ NsURIPackageId PACKid_SystemDependant = IdManager.getNsURIPackageId("SystemDependant", null, SystemDependantPackage.eINSTANCE);
-	public static final /*@NonInvalid*/ NsURIPackageId PACKid_SystemIndependant = IdManager.getNsURIPackageId("SystemIndependant", null, SystemIndependantPackage.eINSTANCE);
 	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
 	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_MDSDComponentMetamodel = IdManager.getNsURIPackageId("http://www.example.org/MDSDComponentMetamodel", null, MDSDComponentMetamodelPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemDependant = IdManager.getNsURIPackageId("http://www.example.org/SystemDependant", null, SystemDependantPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemIndependant = IdManager.getNsURIPackageId("http://www.example.org/SystemIndependant", null, SystemIndependantPackage.eINSTANCE);
 	public static final /*@NonInvalid*/ WildcardId WILDid_ = IdManager.getWildcardId();
-	public static final /*@NonInvalid*/ ClassId CLSSid_Action = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Action", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyContext = SystemIndependantTables.PACKid_SystemDependant.getClassId("AssemblyContext", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_BasicComponent = SystemIndependantTables.PACKid_SystemIndependant.getClassId("BasicComponent", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Branch = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Branch", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Component = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Component", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Action = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Action", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyContext = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("AssemblyContext", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_BasicComponent = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("BasicComponent", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Branch = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Branch", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Component = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Component", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_ComponentSystem = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_MDSDComponentMetamodel.getClassId("ComponentSystem", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_DelegationConnector = SystemIndependantTables.PACKid_SystemDependant.getClassId("DelegationConnector", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Interface = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Interface", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Loop = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Loop", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Parameter = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Parameter", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Repository = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Repository", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Role = SystemIndependantTables.PACKid_SystemDependant.getClassId("Role", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Service = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Service", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Signature = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Signature", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_System = SystemIndependantTables.PACKid_SystemDependant.getClassId("System", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Type = SystemIndependantTables.PACKid_SystemIndependant.getClassId("Type", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_DelegationConnector = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("DelegationConnector", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Interface = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Interface", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Loop = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Loop", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Parameter = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Parameter", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Repository = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Repository", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Role = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("Role", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Service = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Service", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Signature = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Signature", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_System = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("System", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Type = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Type", 0);
 	public static final /*@NonInvalid*/ DataTypeId DATAid_EJavaClass = SystemIndependantTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EJavaClass", 1);
-	public static final /*@NonInvalid*/ EnumerationId ENUMid_SimpleTypeEnum = SystemIndependantTables.PACKid_SystemIndependant.getEnumerationId("SimpleTypeEnum");
+	public static final /*@NonInvalid*/ EnumerationId ENUMid_SimpleTypeEnum = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getEnumerationId("SimpleTypeEnum");
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AssemblyContext = TypeId.BAG.getSpecializedId(SystemIndependantTables.CLSSid_AssemblyContext, false, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Component = TypeId.BAG.getSpecializedId(SystemIndependantTables.CLSSid_Component, false, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DelegationConnector = TypeId.BAG.getSpecializedId(SystemIndependantTables.CLSSid_DelegationConnector, false, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);

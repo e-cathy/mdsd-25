@@ -332,7 +332,7 @@ public class AssemblyConnectorImpl extends NamedElementImpl implements AssemblyC
 									.getProvidedAssemblyContext();
 							if (providedAssemblyContext == null) {
 								throw new InvalidValueException(
-										"Null source for \'\'SystemDependant\'::AssemblyContext::allocationContext\'");
+										"Null source for \'\'http://www.example.org/SystemDependant\'::AssemblyContext::allocationContext\'");
 							}
 							final /*@Thrown*/ AllocationContext allocationContext = providedAssemblyContext
 									.getAllocationContext();
@@ -363,7 +363,7 @@ public class AssemblyConnectorImpl extends NamedElementImpl implements AssemblyC
 										.getRequiredAssemblyContext();
 								if (requiredAssemblyContext == null) {
 									throw new InvalidValueException(
-											"Null source for \'\'SystemDependant\'::AssemblyContext::allocationContext\'");
+											"Null source for \'\'http://www.example.org/SystemDependant\'::AssemblyContext::allocationContext\'");
 								}
 								final /*@Thrown*/ AllocationContext allocationContext_0 = requiredAssemblyContext
 										.getAllocationContext();
@@ -410,13 +410,13 @@ public class AssemblyConnectorImpl extends NamedElementImpl implements AssemblyC
 										.getProvidedAssemblyContext();
 								if (providedAssemblyContext_0 == null) {
 									throw new InvalidValueException(
-											"Null source for \'\'SystemDependant\'::AssemblyContext::allocationContext\'");
+											"Null source for \'\'http://www.example.org/SystemDependant\'::AssemblyContext::allocationContext\'");
 								}
 								final /*@Thrown*/ AllocationContext allocationContext_1 = providedAssemblyContext_0
 										.getAllocationContext();
 								if (allocationContext_1 == null) {
 									throw new InvalidValueException(
-											"Null source for \'\'SystemDependant\'::AllocationContext::container\'");
+											"Null source for \'\'http://www.example.org/SystemDependant\'::AllocationContext::container\'");
 								}
 								final /*@Thrown*/ MDSDComponentMetamodel.SystemDependant.Container providedContainer = allocationContext_1
 										.getContainer();
@@ -431,13 +431,13 @@ public class AssemblyConnectorImpl extends NamedElementImpl implements AssemblyC
 										.getRequiredAssemblyContext();
 								if (requiredAssemblyContext_0 == null) {
 									throw new InvalidValueException(
-											"Null source for \'\'SystemDependant\'::AssemblyContext::allocationContext\'");
+											"Null source for \'\'http://www.example.org/SystemDependant\'::AssemblyContext::allocationContext\'");
 								}
 								final /*@Thrown*/ AllocationContext allocationContext_2 = requiredAssemblyContext_0
 										.getAllocationContext();
 								if (allocationContext_2 == null) {
 									throw new InvalidValueException(
-											"Null source for \'\'SystemDependant\'::AllocationContext::container\'");
+											"Null source for \'\'http://www.example.org/SystemDependant\'::AllocationContext::container\'");
 								}
 								final /*@Thrown*/ MDSDComponentMetamodel.SystemDependant.Container requiredContainer = allocationContext_2
 										.getContainer();

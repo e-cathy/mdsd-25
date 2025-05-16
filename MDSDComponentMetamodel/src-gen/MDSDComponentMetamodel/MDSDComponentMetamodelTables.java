@@ -56,10 +56,10 @@ public class MDSDComponentMetamodelTables extends AbstractTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-	public static final /*@NonInvalid*/ NsURIPackageId PACKid_SystemDependant = IdManager.getNsURIPackageId("SystemDependant", null, SystemDependantPackage.eINSTANCE);
-	public static final /*@NonInvalid*/ NsURIPackageId PACKid_SystemIndependant = IdManager.getNsURIPackageId("SystemIndependant", null, SystemIndependantPackage.eINSTANCE);
-	public static final /*@NonInvalid*/ ClassId CLSSid_Repository = MDSDComponentMetamodelTables.PACKid_SystemIndependant.getClassId("Repository", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_System = MDSDComponentMetamodelTables.PACKid_SystemDependant.getClassId("System", 0);
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemDependant = IdManager.getNsURIPackageId("http://www.example.org/SystemDependant", null, SystemDependantPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemIndependant = IdManager.getNsURIPackageId("http://www.example.org/SystemIndependant", null, SystemIndependantPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Repository = MDSDComponentMetamodelTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Repository", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_System = MDSDComponentMetamodelTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("System", 0);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Repository = TypeId.ORDERED_SET.getSpecializedId(MDSDComponentMetamodelTables.CLSSid_Repository, true, ValueUtil.ONE_VALUE, ValueUtil.UNLIMITED_VALUE);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_System = TypeId.ORDERED_SET.getSpecializedId(MDSDComponentMetamodelTables.CLSSid_System, true, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);
 
