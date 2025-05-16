@@ -87,21 +87,28 @@ Service returns SystemIndependant::Service:
 		'correspondingSignature' correspondingSignature=[SystemIndependant::Signature|EString]
 	'}';
 
-Signature returns SystemIndependant::Signature:
+/*Signature returns SystemIndependant::Signature:
 	{SystemIndependant::Signature}
 	'Signature'
 	name=EString
 	'{'
 		('returnType' returnType=[SystemIndependant::Type|EString])?
 		('parameters' '{' parameters+=Parameter ( "," parameters+=Parameter)* '}' )?
-	'}';
+	'}';*/
+	
+Signature returns SystemIndependant::Signature:
+	{SystemIndependant::Signature}
+	((returnType=[SystemIndependant::Type|EString]) | ('void')) name=EString '('(parameters+=Parameter ( "," parameters+=Parameter)*)?')';
 
-Parameter returns SystemIndependant::Parameter:
+/*Parameter returns SystemIndependant::Parameter:
 	'Parameter'
 	name=EString
 	'{'
 		'type' type=[SystemIndependant::Type|EString]
-	'}';
+	'}';*/
+	
+Parameter returns SystemIndependant::Parameter:
+	type=[SystemIndependant::Type|EString] name=EString;
 
 ExternalCall returns SystemIndependant::ExternalCall:
 	{SystemIndependant::ExternalCall}
@@ -197,14 +204,24 @@ CompositeComponent returns SystemDependant::CompositeComponent:
 		('delegationConnectors' '{' delegationConnectors+=DelegationConnector ( "," delegationConnectors+=DelegationConnector)* '}' )?
 	'}';
 
-AssemblyConnector returns SystemDependant::AssemblyConnector:
+/*AssemblyConnector returns SystemDependant::AssemblyConnector:
 	'AssemblyConnector'
 	name=EString
 	'{'
 		'providedRole' providedRole=[SystemDependant::Role|EString]
 		'requiredRole' requiredRole=[SystemDependant::Role|EString]
-	'}';
+	'}';*/
+	
+AssemblyConnector returns SystemDependant::AssemblyConnector:
+	requiredRole=[SystemDependant::Role|EString] '->' providedRole=[SystemDependant::Role|EString];
 
+/*DelegationConnector returns SystemDependant::DelegationConnector:
+	'DelegationConnector'
+	name=EString
+	'{'
+		'role' role=[SystemDependant::Role|EString]
+		'delegatedInterface' delegatedInterface=[SystemIndependant::Interface|EString]
+	'}';*/
 DelegationConnector returns SystemDependant::DelegationConnector:
 	'DelegationConnector'
 	name=EString
