@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDependant:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SystemDependant="SystemDependant" xmlns:SystemIndependant="SystemIndependant">
+  <interfaces href="My.systemindependant#//@interfaces.3"/>
+  <interfaces href="My.systemindependant#//@interfaces.0"/>
+  <interfaces href="My.systemindependant#//@interfaces.1"/>
+  <interfaces href="My.systemindependant#//@interfaces.2"/>
+  <assembly>
+    <assemblyContexts name="PoolingAudioDB" allocationContext="//@allocation/@allocationContexts.0">
+      <component xsi:type="SystemIndependant:BasicComponent" href="My.systemindependant#//@components.4"/>
+      <requiredRoles>
+        <interface href="My.systemindependant#//@interfaces.3"/>
+      </requiredRoles>
+    </assemblyContexts>
+    <assemblyContexts name="Application Server" component="//@assembly/@compositeComponents.0" allocationContext="//@allocation/@allocationContexts.1">
+      <providedRoles>
+        <interface href="My.systemindependant#//@interfaces.0"/>
+      </providedRoles>
+      <requiredRoles>
+        <interface href="My.systemindependant#//@interfaces.3"/>
+      </requiredRoles>
+    </assemblyContexts>
+    <compositeComponents name="Application Server">
+      <providedInterfaces href="My.systemindependant#//@interfaces.0"/>
+      <requiredInterfaces href="My.systemindependant#//@interfaces.3"/>
+      <assemblyContexts name="Composite Component" component="//@assembly/@compositeComponents.1">
+        <providedRoles>
+          <interface href="My.systemindependant#//@interfaces.1"/>
+        </providedRoles>
+        <requiredRoles>
+          <interface href="My.systemindependant#//@interfaces.3"/>
+        </requiredRoles>
+      </assemblyContexts>
+      <assemblyContexts name="WebGUI">
+        <component xsi:type="SystemIndependant:BasicComponent" href="My.systemindependant#//@components.0"/>
+        <providedRoles>
+          <interface href="My.systemindependant#//@interfaces.1"/>
+        </providedRoles>
+        <requiredRoles>
+          <interface href="My.systemindependant#//@interfaces.0"/>
+        </requiredRoles>
+      </assemblyContexts>
+      <assemblyConnectors providedRole="//@assembly/@assemblyContexts.1/@requiredRoles.0" requiredRole="//@assembly/@compositeComponents.1/@assemblyContexts.1/@requiredRoles.0"/>
+      <assemblyConnectors providedRole="//@assembly/@compositeComponents.1/@assemblyContexts.2/@providedRoles.0" requiredRole="//@assembly/@compositeComponents.0/@assemblyContexts.1/@requiredRoles.0"/>
+      <delegationConnectors role="//@assembly/@compositeComponents.1/@assemblyContexts.1/@requiredRoles.0">
+        <delegatedInterface href="My.systemindependant#//@interfaces.0"/>
+      </delegationConnectors>
+      <delegationConnectors role="//@assembly/@compositeComponents.1/@assemblyContexts.0/@requiredRoles.0">
+        <delegatedInterface href="My.systemindependant#//@interfaces.1"/>
+      </delegationConnectors>
+      <delegationConnectors role="//@assembly/@compositeComponents.0/@assemblyContexts.1/@requiredRoles.0">
+        <delegatedInterface href="My.systemindependant#//@interfaces.3"/>
+      </delegationConnectors>
+    </compositeComponents>
+    <compositeComponents name="Composite Component">
+      <providedInterfaces href="My.systemindependant#//@interfaces.3"/>
+      <requiredInterfaces href="My.systemindependant#//@interfaces.1"/>
+      <assemblyContexts name="MediaManager">
+        <component xsi:type="SystemIndependant:BasicComponent" href="My.systemindependant#//@components.1"/>
+        <providedRoles>
+          <interface href="My.systemindependant#//@interfaces.3"/>
+        </providedRoles>
+        <requiredRoles>
+          <interface href="My.systemindependant#//@interfaces.1"/>
+        </requiredRoles>
+      </assemblyContexts>
+      <assemblyContexts name="DigitalWatermarking">
+        <component xsi:type="SystemIndependant:BasicComponent" href="My.systemindependant#//@components.3"/>
+        <requiredRoles>
+          <interface href="My.systemindependant#//@interfaces.2"/>
+        </requiredRoles>
+      </assemblyContexts>
+      <assemblyContexts name="DBCache">
+        <component xsi:type="SystemIndependant:BasicComponent" href="My.systemindependant#//@components.2"/>
+        <providedRoles>
+          <interface href="My.systemindependant#//@interfaces.3"/>
+        </providedRoles>
+        <requiredRoles>
+          <interface href="My.systemindependant#//@interfaces.3"/>
+        </requiredRoles>
+      </assemblyContexts>
+      <assemblyConnectors providedRole="//@assembly/@assemblyContexts.0/@requiredRoles.0" requiredRole="//@assembly/@compositeComponents.0/@assemblyContexts.1/@requiredRoles.0"/>
+      <assemblyConnectors providedRole="//@assembly/@compositeComponents.0/@assemblyContexts.1/@providedRoles.0" requiredRole="//@assembly/@compositeComponents.1/@assemblyContexts.0/@requiredRoles.0"/>
+    </compositeComponents>
+    <delegationConnectors role="//@assembly/@compositeComponents.1/@assemblyContexts.0/@providedRoles.0">
+      <delegatedInterface href="My.systemindependant#//@interfaces.3"/>
+    </delegationConnectors>
+  </assembly>
+  <allocation>
+    <allocationContexts container="//@environment/@containers.1" assemblyContext="//@assembly/@assemblyContexts.0"/>
+    <allocationContexts container="//@environment/@containers.0" assemblyContext="//@assembly/@assemblyContexts.1"/>
+  </allocation>
+  <environment>
+    <links name="Link" containers="//@environment/@containers.0 //@environment/@containers.1"/>
+    <containers name="Application Server" links="//@environment/@links.0"/>
+    <containers name="Database Server" links="//@environment/@links.0"/>
+  </environment>
+</SystemDependant:System>

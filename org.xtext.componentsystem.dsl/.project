@@ -3,9 +3,6 @@
 	<name>org.xtext.componentsystem.dsl</name>
 	<comment></comment>
 	<projects>
-		<project>MDSDComponentMetamodel</project>
-		<project>MDSDComponentMetamodel.edit</project>
-		<project>MDSDComponentMetamodel.editor</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

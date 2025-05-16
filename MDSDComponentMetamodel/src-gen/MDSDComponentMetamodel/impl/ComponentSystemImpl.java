@@ -29,32 +29,32 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link MDSDComponentMetamodel.impl.ComponentSystemImpl#getRepositories <em>Repositories</em>}</li>
- *   <li>{@link MDSDComponentMetamodel.impl.ComponentSystemImpl#getSystems <em>Systems</em>}</li>
+ *   <li>{@link MDSDComponentMetamodel.impl.ComponentSystemImpl#getRepository <em>Repository</em>}</li>
+ *   <li>{@link MDSDComponentMetamodel.impl.ComponentSystemImpl#getSystem <em>System</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements ComponentSystem {
 	/**
-	 * The cached value of the '{@link #getRepositories() <em>Repositories</em>}' containment reference list.
+	 * The cached value of the '{@link #getRepository() <em>Repository</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRepositories()
+	 * @see #getRepository()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Repository> repositories;
+	protected EList<Repository> repository;
 
 	/**
-	 * The cached value of the '{@link #getSystems() <em>Systems</em>}' containment reference list.
+	 * The cached value of the '{@link #getSystem() <em>System</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSystems()
+	 * @see #getSystem()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MDSDComponentMetamodel.SystemDependant.System> systems;
+	protected EList<MDSDComponentMetamodel.SystemDependant.System> system;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,12 +81,12 @@ public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public EList<Repository> getRepositories() {
-		if (repositories == null) {
-			repositories = new EObjectContainmentEList<Repository>(Repository.class, this,
-					MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORIES);
+	public EList<Repository> getRepository() {
+		if (repository == null) {
+			repository = new EObjectContainmentEList<Repository>(Repository.class, this,
+					MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORY);
 		}
-		return repositories;
+		return repository;
 	}
 
 	/**
@@ -95,13 +95,13 @@ public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public EList<MDSDComponentMetamodel.SystemDependant.System> getSystems() {
-		if (systems == null) {
-			systems = new EObjectContainmentEList<MDSDComponentMetamodel.SystemDependant.System>(
+	public EList<MDSDComponentMetamodel.SystemDependant.System> getSystem() {
+		if (system == null) {
+			system = new EObjectContainmentEList<MDSDComponentMetamodel.SystemDependant.System>(
 					MDSDComponentMetamodel.SystemDependant.System.class, this,
-					MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEMS);
+					MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEM);
 		}
-		return systems;
+		return system;
 	}
 
 	/**
@@ -112,10 +112,10 @@ public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORIES:
-			return ((InternalEList<?>) getRepositories()).basicRemove(otherEnd, msgs);
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEMS:
-			return ((InternalEList<?>) getSystems()).basicRemove(otherEnd, msgs);
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORY:
+			return ((InternalEList<?>) getRepository()).basicRemove(otherEnd, msgs);
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEM:
+			return ((InternalEList<?>) getSystem()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -128,10 +128,10 @@ public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORIES:
-			return getRepositories();
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEMS:
-			return getSystems();
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORY:
+			return getRepository();
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEM:
+			return getSystem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -145,13 +145,13 @@ public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORIES:
-			getRepositories().clear();
-			getRepositories().addAll((Collection<? extends Repository>) newValue);
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORY:
+			getRepository().clear();
+			getRepository().addAll((Collection<? extends Repository>) newValue);
 			return;
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEMS:
-			getSystems().clear();
-			getSystems().addAll((Collection<? extends MDSDComponentMetamodel.SystemDependant.System>) newValue);
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEM:
+			getSystem().clear();
+			getSystem().addAll((Collection<? extends MDSDComponentMetamodel.SystemDependant.System>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -165,11 +165,11 @@ public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORIES:
-			getRepositories().clear();
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORY:
+			getRepository().clear();
 			return;
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEMS:
-			getSystems().clear();
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEM:
+			getSystem().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -183,10 +183,10 @@ public class ComponentSystemImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORIES:
-			return repositories != null && !repositories.isEmpty();
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEMS:
-			return systems != null && !systems.isEmpty();
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORY:
+			return repository != null && !repository.isEmpty();
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEM:
+			return system != null && !system.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

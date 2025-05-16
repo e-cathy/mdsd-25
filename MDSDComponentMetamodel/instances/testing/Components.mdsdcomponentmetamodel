@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MDSDComponentMetamodel:ComponentSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:MDSDComponentMetamodel="http://www.example.org/MDSDComponentMetamodel">
+  <repository>
+    <components
+        name="WebGUI"
+        providedInterfaces="//@repository.0/@interfaces.0"
+        requiredInterfaces="//@repository.0/@interfaces.1">
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.0/@signatures.1"/>
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.1/@signatures.0"/>
+    </components>
+    <components
+        name="MediaManager"
+        providedInterfaces="//@repository.0/@interfaces.1"
+        requiredInterfaces="//@repository.0/@interfaces.2 //@repository.0/@interfaces.3">
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.1/@signatures.0"/>
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.1/@signatures.1"/>
+    </components>
+    <components
+        name="DBCache"
+        providedInterfaces="//@repository.0/@interfaces.3"
+        requiredInterfaces="//@repository.0/@interfaces.3">
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.3/@signatures.0"/>
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.3/@signatures.1"/>
+    </components>
+    <components
+        name="DigitalWatermarking"
+        providedInterfaces="//@repository.0/@interfaces.2">
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.2/@signatures.0"/>
+    </components>
+    <components
+        name="PoolingAudioDB"
+        providedInterfaces="//@repository.0/@interfaces.3">
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.3/@signatures.0"/>
+      <providedServices
+          name="s"
+          correspondingSignature="//@repository.0/@interfaces.3/@signatures.1"/>
+    </components>
+    <interfaces
+        name="HTTP">
+      <signatures
+          name="HTTPDownload()"/>
+      <signatures
+          name="HTTPUpload()"/>
+    </interfaces>
+    <interfaces
+        name="MediaStore">
+      <signatures
+          name="download()"/>
+      <signatures
+          name="upload()"/>
+    </interfaces>
+    <interfaces
+        name="Sound">
+      <signatures
+          name="watermark()"/>
+    </interfaces>
+    <interfaces
+        name="AudioDB">
+      <signatures
+          name="queryDB()"/>
+      <signatures
+          name="addFile()"/>
+    </interfaces>
+  </repository>
+  <system interfaces="//@repository.0/@interfaces.0">
+    <assembly>
+      <assemblyContexts
+          name="PoolingAudioDB"
+          component="//@repository.0/@components.4"
+          allocationContext="//@system.0/@allocation/@allocationContexts.0">
+        <providedRoles
+            name="rAudioDB PA"
+            interface="//@repository.0/@interfaces.3"/>
+      </assemblyContexts>
+      <assemblyContexts
+          name="Composite Component"
+          component="//@system.0/@assembly/@compositeComponents.0"
+          allocationContext="//@system.0/@allocation/@allocationContexts.1">
+        <providedRoles
+            name="rMediaStore CompComp"
+            interface="//@repository.0/@interfaces.1"/>
+        <requiredRoles
+            name="rAudioDB CompComp"
+            interface="//@repository.0/@interfaces.3"/>
+      </assemblyContexts>
+      <assemblyContexts
+          name="WebGUI"
+          component="//@repository.0/@components.0"
+          allocationContext="//@system.0/@allocation/@allocationContexts.2">
+        <providedRoles
+            name="rHTTP WebGUI"
+            interface="//@repository.0/@interfaces.0"/>
+        <requiredRoles
+            name="rMediaStore WebGUI"
+            interface="//@repository.0/@interfaces.1"/>
+      </assemblyContexts>
+      <compositeComponents
+          name="Composite Component"
+          providedInterfaces="//@repository.0/@interfaces.1"
+          requiredInterfaces="//@repository.0/@interfaces.3">
+        <assemblyContexts
+            name="MediaManager"
+            component="//@repository.0/@components.1">
+          <providedRoles
+              name="rMediaStore MedMan"
+              interface="//@repository.0/@interfaces.1"/>
+          <requiredRoles
+              name="rSound MedMan"
+              interface="//@repository.0/@interfaces.2"/>
+          <requiredRoles
+              name="rAudioDB MedMan"
+              interface="//@repository.0/@interfaces.3"/>
+        </assemblyContexts>
+        <assemblyContexts
+            name="DigitalWatermarking"
+            component="//@repository.0/@components.3">
+          <providedRoles
+              name="rSound Water"
+              interface="//@repository.0/@interfaces.2"/>
+        </assemblyContexts>
+        <assemblyContexts
+            name="DBCache"
+            component="//@repository.0/@components.2">
+          <providedRoles
+              name="rAudioDB DBCache-p"
+              interface="//@repository.0/@interfaces.3"/>
+          <requiredRoles
+              name="rAudioDB DBCache-r"
+              interface="//@repository.0/@interfaces.3"/>
+        </assemblyContexts>
+        <assemblyConnectors
+            name="c3"
+            providedRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.2/@providedRoles.0"
+            requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.1"/>
+        <assemblyConnectors
+            name="c4"
+            providedRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.1/@providedRoles.0"
+            requiredRole="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@requiredRoles.0"/>
+        <delegationConnectors
+            name="d2"
+            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.0/@providedRoles.0"
+            delegatedInterface="//@repository.0/@interfaces.1"/>
+        <delegationConnectors
+            name="d3"
+            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.2/@requiredRoles.0"
+            delegatedInterface="//@repository.0/@interfaces.3"/>
+      </compositeComponents>
+      <assemblyConnectors
+          name="c1"
+          providedRole="//@system.0/@assembly/@assemblyContexts.1/@providedRoles.0"
+          requiredRole="//@system.0/@assembly/@assemblyContexts.2/@requiredRoles.0"/>
+      <assemblyConnectors
+          name="c2"
+          providedRole="//@system.0/@assembly/@assemblyContexts.0/@providedRoles.0"
+          requiredRole="//@system.0/@assembly/@assemblyContexts.1/@requiredRoles.0"/>
+      <delegationConnectors
+          name="d1"
+          role="//@system.0/@assembly/@assemblyContexts.2/@providedRoles.0"
+          delegatedInterface="//@repository.0/@interfaces.0"/>
+    </assembly>
+    <allocation>
+      <allocationContexts
+          name="a1"
+          container="//@system.0/@environment/@containers.1"
+          assemblyContext="//@system.0/@assembly/@assemblyContexts.0"/>
+      <allocationContexts
+          name="a2"
+          container="//@system.0/@environment/@containers.0"
+          assemblyContext="//@system.0/@assembly/@assemblyContexts.1"/>
+      <allocationContexts
+          name="a3"
+          container="//@system.0/@environment/@containers.0"
+          assemblyContext="//@system.0/@assembly/@assemblyContexts.2"/>
+    </allocation>
+    <environment>
+      <links
+          name="Link"
+          containers="//@system.0/@environment/@containers.0 //@system.0/@environment/@containers.1"/>
+      <containers
+          name="Application Server"
+          links="//@system.0/@environment/@links.0"/>
+      <containers
+          name="Database Server"
+          links="//@system.0/@environment/@links.0"/>
+    </environment>
+  </system>
+</MDSDComponentMetamodel:ComponentSystem>

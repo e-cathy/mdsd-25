@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link MDSDComponentMetamodel.ComponentSystem#getRepositories <em>Repositories</em>}</li>
- *   <li>{@link MDSDComponentMetamodel.ComponentSystem#getSystems <em>Systems</em>}</li>
+ *   <li>{@link MDSDComponentMetamodel.ComponentSystem#getRepository <em>Repository</em>}</li>
+ *   <li>{@link MDSDComponentMetamodel.ComponentSystem#getSystem <em>System</em>}</li>
  * </ul>
  *
  * @see MDSDComponentMetamodel.MDSDComponentMetamodelPackage#getComponentSystem()
@@ -27,27 +27,27 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ComponentSystem extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Repositories</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Repository</b></em>' containment reference list.
 	 * The list contents are of type {@link MDSDComponentMetamodel.SystemIndependant.Repository}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Repositories</em>' containment reference list.
-	 * @see MDSDComponentMetamodel.MDSDComponentMetamodelPackage#getComponentSystem_Repositories()
+	 * @return the value of the '<em>Repository</em>' containment reference list.
+	 * @see MDSDComponentMetamodel.MDSDComponentMetamodelPackage#getComponentSystem_Repository()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Repository> getRepositories();
+	EList<Repository> getRepository();
 
 	/**
-	 * Returns the value of the '<em><b>Systems</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>System</b></em>' containment reference list.
 	 * The list contents are of type {@link MDSDComponentMetamodel.SystemDependant.System}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Systems</em>' containment reference list.
-	 * @see MDSDComponentMetamodel.MDSDComponentMetamodelPackage#getComponentSystem_Systems()
+	 * @return the value of the '<em>System</em>' containment reference list.
+	 * @see MDSDComponentMetamodel.MDSDComponentMetamodelPackage#getComponentSystem_System()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<MDSDComponentMetamodel.SystemDependant.System> getSystems();
+	EList<MDSDComponentMetamodel.SystemDependant.System> getSystem();
 
 } // ComponentSystem

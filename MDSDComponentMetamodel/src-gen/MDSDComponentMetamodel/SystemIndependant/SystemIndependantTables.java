@@ -381,7 +381,7 @@ public class SystemIndependantTables extends AbstractTables
 		public static final ExecutorProperty _Repository__components = new EcoreExecutorProperty(SystemIndependantPackage.Literals.REPOSITORY__COMPONENTS, Types._Repository, 0);
 		public static final ExecutorProperty _Repository__interfaces = new EcoreExecutorProperty(SystemIndependantPackage.Literals.REPOSITORY__INTERFACES, Types._Repository, 1);
 		public static final ExecutorProperty _Repository__types = new EcoreExecutorProperty(SystemIndependantPackage.Literals.REPOSITORY__TYPES, Types._Repository, 2);
-		public static final ExecutorProperty _Repository__ComponentSystem__repositories = new ExecutorPropertyWithImplementation("ComponentSystem", Types._Repository, 3, new EcoreLibraryOppositeProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORIES));
+		public static final ExecutorProperty _Repository__ComponentSystem__repository = new ExecutorPropertyWithImplementation("ComponentSystem", Types._Repository, 3, new EcoreLibraryOppositeProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORY));
 
 		public static final ExecutorProperty _Service__correspondingSignature = new EcoreExecutorProperty(SystemIndependantPackage.Literals.SERVICE__CORRESPONDING_SIGNATURE, Types._Service, 0);
 		public static final ExecutorProperty _Service__Component__providedServices = new ExecutorPropertyWithImplementation("Component", Types._Service, 1, new EcoreLibraryOppositeProperty(SystemIndependantPackage.Literals.COMPONENT__PROVIDED_SERVICES));

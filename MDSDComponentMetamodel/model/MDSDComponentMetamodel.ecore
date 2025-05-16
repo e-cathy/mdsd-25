@@ -6,9 +6,9 @@
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentSystem">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="repositories" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
         upperBound="-1" eType="#//SystemIndependant/Repository" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="systems" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="system" upperBound="-1"
         eType="#//SystemDependant/System" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">

@@ -199,8 +199,8 @@ public class MDSDComponentMetamodelTables extends AbstractTables
 			Operations.init();
 		}
 
-		public static final ExecutorProperty _ComponentSystem__repositories = new EcoreExecutorProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORIES, Types._ComponentSystem, 0);
-		public static final ExecutorProperty _ComponentSystem__systems = new EcoreExecutorProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEMS, Types._ComponentSystem, 1);
+		public static final ExecutorProperty _ComponentSystem__repository = new EcoreExecutorProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORY, Types._ComponentSystem, 0);
+		public static final ExecutorProperty _ComponentSystem__system = new EcoreExecutorProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEM, Types._ComponentSystem, 1);
 
 		public static final ExecutorProperty _NamedElement__name = new EcoreExecutorProperty(MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME, Types._NamedElement, 0);
 		static {
@@ -362,8 +362,8 @@ public class MDSDComponentMetamodelTables extends AbstractTables
 		private static final ExecutorProperty /*@NonNull*/ [] _ComponentSystem = {
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
-			MDSDComponentMetamodelTables.Properties._ComponentSystem__repositories,
-			MDSDComponentMetamodelTables.Properties._ComponentSystem__systems
+			MDSDComponentMetamodelTables.Properties._ComponentSystem__repository,
+			MDSDComponentMetamodelTables.Properties._ComponentSystem__system
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _NamedElement = {

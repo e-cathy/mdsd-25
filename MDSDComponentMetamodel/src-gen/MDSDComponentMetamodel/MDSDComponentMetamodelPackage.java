@@ -67,22 +67,22 @@ public interface MDSDComponentMetamodelPackage extends EPackage {
 	int COMPONENT_SYSTEM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Repositories</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Repository</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SYSTEM__REPOSITORIES = 0;
+	int COMPONENT_SYSTEM__REPOSITORY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Systems</b></em>' containment reference list.
+	 * The feature id for the '<em><b>System</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SYSTEM__SYSTEMS = 1;
+	int COMPONENT_SYSTEM__SYSTEM = 1;
 
 	/**
 	 * The number of structural features of the '<em>Component System</em>' class.
@@ -150,26 +150,26 @@ public interface MDSDComponentMetamodelPackage extends EPackage {
 	EClass getComponentSystem();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link MDSDComponentMetamodel.ComponentSystem#getRepositories <em>Repositories</em>}'.
+	 * Returns the meta object for the containment reference list '{@link MDSDComponentMetamodel.ComponentSystem#getRepository <em>Repository</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Repositories</em>'.
-	 * @see MDSDComponentMetamodel.ComponentSystem#getRepositories()
+	 * @return the meta object for the containment reference list '<em>Repository</em>'.
+	 * @see MDSDComponentMetamodel.ComponentSystem#getRepository()
 	 * @see #getComponentSystem()
 	 * @generated
 	 */
-	EReference getComponentSystem_Repositories();
+	EReference getComponentSystem_Repository();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link MDSDComponentMetamodel.ComponentSystem#getSystems <em>Systems</em>}'.
+	 * Returns the meta object for the containment reference list '{@link MDSDComponentMetamodel.ComponentSystem#getSystem <em>System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Systems</em>'.
-	 * @see MDSDComponentMetamodel.ComponentSystem#getSystems()
+	 * @return the meta object for the containment reference list '<em>System</em>'.
+	 * @see MDSDComponentMetamodel.ComponentSystem#getSystem()
 	 * @see #getComponentSystem()
 	 * @generated
 	 */
-	EReference getComponentSystem_Systems();
+	EReference getComponentSystem_System();
 
 	/**
 	 * Returns the meta object for class '{@link MDSDComponentMetamodel.NamedElement <em>Named Element</em>}'.
@@ -226,20 +226,20 @@ public interface MDSDComponentMetamodelPackage extends EPackage {
 		EClass COMPONENT_SYSTEM = eINSTANCE.getComponentSystem();
 
 		/**
-		 * The meta object literal for the '<em><b>Repositories</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Repository</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_SYSTEM__REPOSITORIES = eINSTANCE.getComponentSystem_Repositories();
+		EReference COMPONENT_SYSTEM__REPOSITORY = eINSTANCE.getComponentSystem_Repository();
 
 		/**
-		 * The meta object literal for the '<em><b>Systems</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>System</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_SYSTEM__SYSTEMS = eINSTANCE.getComponentSystem_Systems();
+		EReference COMPONENT_SYSTEM__SYSTEM = eINSTANCE.getComponentSystem_System();
 
 		/**
 		 * The meta object literal for the '{@link MDSDComponentMetamodel.impl.NamedElementImpl <em>Named Element</em>}' class.

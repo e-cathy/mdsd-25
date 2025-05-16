@@ -138,7 +138,7 @@ public class MDSDComponentMetamodelPackageImpl extends EPackageImpl implements M
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentSystem_Repositories() {
+	public EReference getComponentSystem_Repository() {
 		return (EReference) componentSystemEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -148,7 +148,7 @@ public class MDSDComponentMetamodelPackageImpl extends EPackageImpl implements M
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentSystem_Systems() {
+	public EReference getComponentSystem_System() {
 		return (EReference) componentSystemEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -203,8 +203,8 @@ public class MDSDComponentMetamodelPackageImpl extends EPackageImpl implements M
 
 		// Create classes and their features
 		componentSystemEClass = createEClass(COMPONENT_SYSTEM);
-		createEReference(componentSystemEClass, COMPONENT_SYSTEM__REPOSITORIES);
-		createEReference(componentSystemEClass, COMPONENT_SYSTEM__SYSTEMS);
+		createEReference(componentSystemEClass, COMPONENT_SYSTEM__REPOSITORY);
+		createEReference(componentSystemEClass, COMPONENT_SYSTEM__SYSTEM);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
@@ -253,12 +253,12 @@ public class MDSDComponentMetamodelPackageImpl extends EPackageImpl implements M
 		// Initialize classes, features, and operations; add parameters
 		initEClass(componentSystemEClass, ComponentSystem.class, "ComponentSystem", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComponentSystem_Repositories(), theSystemIndependantPackage.getRepository(), null,
-				"repositories", null, 1, -1, ComponentSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentSystem_Systems(), theSystemDependantPackage.getSystem(), null, "systems", null, 0,
-				-1, ComponentSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+		initEReference(getComponentSystem_Repository(), theSystemIndependantPackage.getRepository(), null, "repository",
+				null, 1, -1, ComponentSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentSystem_System(), theSystemDependantPackage.getSystem(), null, "system", null, 0, -1,
+				ComponentSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

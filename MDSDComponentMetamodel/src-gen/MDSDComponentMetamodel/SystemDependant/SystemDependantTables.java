@@ -357,7 +357,7 @@ public class SystemDependantTables extends AbstractTables
 		public static final ExecutorProperty _System__assembly = new EcoreExecutorProperty(SystemDependantPackage.Literals.SYSTEM__ASSEMBLY, Types._System, 1);
 		public static final ExecutorProperty _System__environment = new EcoreExecutorProperty(SystemDependantPackage.Literals.SYSTEM__ENVIRONMENT, Types._System, 2);
 		public static final ExecutorProperty _System__interfaces = new EcoreExecutorProperty(SystemDependantPackage.Literals.SYSTEM__INTERFACES, Types._System, 3);
-		public static final ExecutorProperty _System__ComponentSystem__systems = new ExecutorPropertyWithImplementation("ComponentSystem", Types._System, 4, new EcoreLibraryOppositeProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEMS));
+		public static final ExecutorProperty _System__ComponentSystem__system = new ExecutorPropertyWithImplementation("ComponentSystem", Types._System, 4, new EcoreLibraryOppositeProperty(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEM));
 		static {
 			Init.initEnd();
 		}

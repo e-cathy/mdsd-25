@@ -3,8 +3,6 @@
 	<name>org.xtext.componentsystem.dsl.ui</name>
 	<comment></comment>
 	<projects>
-		<project>MDSDComponentMetamodel</project>
-		<project>org.xtext.componentsystem.dsl</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
