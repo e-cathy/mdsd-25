@@ -16,10 +16,10 @@ class DslFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(ComponentSystem componentSystem, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (repository : componentSystem.repository) {
+		for (repository : componentSystem.repositories) {
 			repository.format
 		}
-		for (system : componentSystem.system) {
+		for (system : componentSystem.systems) {
 			system.format
 		}
 	}

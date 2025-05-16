@@ -9,7 +9,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_QnayoCTTEfCexKEGshhAVQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Qq_rECTTEfCexKEGshhAVQ" name="MDSDComponentMetamodel" repPath="#_QpeoICTTEfCexKEGshhAVQ" changeId="1747126227447">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Qq_rECTTEfCexKEGshhAVQ" name="MDSDComponentMetamodel" repPath="#_QpeoICTTEfCexKEGshhAVQ" changeId="1747390175842">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="MDSDComponentMetamodel.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -1373,9 +1373,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="__7U6oCp2EfCcWfwaWpR0Nw" name="[1..*] repository" sourceNode="_3ec08Cp2EfCcWfwaWpR0Nw" targetNode="_FuOoMCWnEfC-I7KiENzbkQ">
-      <target xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/repository"/>
-      <semanticElements xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/repository"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="__7U6oCp2EfCcWfwaWpR0Nw" name="[1..*] repositories" sourceNode="_3ec08Cp2EfCcWfwaWpR0Nw" targetNode="_FuOoMCWnEfC-I7KiENzbkQ">
+      <target xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/repositories"/>
+      <semanticElements xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/repositories"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_BHnupip3EfCcWfwaWpR0Nw" description="_vcYAviWvEfC-I7KiENzbkQ" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_BHnuqCp3EfCcWfwaWpR0Nw" showIcon="false">
           <labelFormat>bold</labelFormat>
@@ -1462,9 +1462,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_FLen3CqGEfCG3KBLMGYRqw" name="[0..*] system" sourceNode="_3ec08Cp2EfCcWfwaWpR0Nw" targetNode="_bkmk8CWvEfC-I7KiENzbkQ">
-      <target xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/system"/>
-      <semanticElements xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/system"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_FLen3CqGEfCG3KBLMGYRqw" name="[0..*] systems" sourceNode="_3ec08Cp2EfCcWfwaWpR0Nw" targetNode="_bkmk8CWvEfC-I7KiENzbkQ">
+      <target xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/systems"/>
+      <semanticElements xmi:type="ecore:EReference" href="MDSDComponentMetamodel.ecore#//ComponentSystem/systems"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_HRVhFiqGEfCG3KBLMGYRqw" description="_MPdgkCWnEfC-I7KiENzbkQ" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_HRVhGCqGEfCG3KBLMGYRqw" showIcon="false"/>
         <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_HRVhFyqGEfCG3KBLMGYRqw" labelSize="6" showIcon="false" labelColor="39,76,114"/>

@@ -188,22 +188,19 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AssemblyConnector returns AssemblyConnector
 	 *
 	 * Constraint:
-	 *     (name=EString providedRole=[Role|EString] requiredRole=[Role|EString])
+	 *     (requiredRole=[Role|EString] providedRole=[Role|EString])
 	 * </pre>
 	 */
 	protected void sequence_AssemblyConnector(ISerializationContext context, AssemblyConnector semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
-			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE));
+			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleRoleEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE, false));
-		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleRoleEStringParserRuleCall_6_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE, false));
+		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleRoleEStringParserRuleCall_0_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE, false));
+		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleRoleEStringParserRuleCall_2_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE, false));
 		feeder.finish();
 	}
 	
@@ -313,7 +310,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ComponentSystem returns ComponentSystem
 	 *
 	 * Constraint:
-	 *     (repository+=Repository repository+=Repository* (system+=System system+=System*)?)
+	 *     (repositories+=Repository repositories+=Repository* (systems+=System systems+=System*)?)
 	 * </pre>
 	 */
 	protected void sequence_ComponentSystem(ISerializationContext context, ComponentSystem semanticObject) {
@@ -490,19 +487,19 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (name=EString type=[Type|EString])
+	 *     (type=[Type|EString] name=EString)
 	 * </pre>
 	 */
 	protected void sequence_Parameter(ISerializationContext context, MDSDComponentMetamodel.SystemIndependant.Parameter semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
 			if (transientValues.isValueTransient(semanticObject, SystemIndependantPackage.Literals.PARAMETER__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemIndependantPackage.Literals.PARAMETER__TYPE));
+			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getParameterAccess().getTypeTypeEStringParserRuleCall_0_0_1(), semanticObject.eGet(SystemIndependantPackage.Literals.PARAMETER__TYPE, false));
 		feeder.accept(grammarAccess.getParameterAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getParameterAccess().getTypeTypeEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemIndependantPackage.Literals.PARAMETER__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -573,7 +570,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Signature returns Signature
 	 *
 	 * Constraint:
-	 *     (name=EString returnType=[Type|EString]? (parameters+=Parameter parameters+=Parameter*)?)
+	 *     (returnType=[Type|EString]? name=EString (parameters+=Parameter parameters+=Parameter*)?)
 	 * </pre>
 	 */
 	protected void sequence_Signature(ISerializationContext context, Signature semanticObject) {

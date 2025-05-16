@@ -26,12 +26,12 @@ public class DslFormatter extends AbstractFormatter2 {
   private DslGrammarAccess _dslGrammarAccess;
 
   protected void _format(final ComponentSystem componentSystem, @Extension final IFormattableDocument document) {
-    EList<Repository> _repository = componentSystem.getRepository();
-    for (final Repository repository : _repository) {
+    EList<Repository> _repositories = componentSystem.getRepositories();
+    for (final Repository repository : _repositories) {
       document.<Repository>format(repository);
     }
-    EList<MDSDComponentMetamodel.SystemDependant.System> _system = componentSystem.getSystem();
-    for (final MDSDComponentMetamodel.SystemDependant.System system : _system) {
+    EList<MDSDComponentMetamodel.SystemDependant.System> _systems = componentSystem.getSystems();
+    for (final MDSDComponentMetamodel.SystemDependant.System system : _systems) {
       document.<MDSDComponentMetamodel.SystemDependant.System>format(system);
     }
   }
