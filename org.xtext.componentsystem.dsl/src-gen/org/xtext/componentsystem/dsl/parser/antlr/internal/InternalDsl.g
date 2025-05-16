@@ -3060,9 +3060,9 @@ ruleAssemblyConnector returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='->'
+		otherlv_1='-(o-'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getAssemblyConnectorAccess().getHyphenMinusGreaterThanSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getAssemblyConnectorAccess().getOKeyword_1());
 		}
 		(
 			(
@@ -3099,36 +3099,25 @@ ruleDelegationConnector returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='DelegationConnector'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getDelegationConnectorAccess().getDelegationConnectorKeyword_0());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getNameEStringParserRuleCall_1_0());
-				}
-				lv_name_1_0=ruleEString
-				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDelegationConnectorRule());
+						$current = createModelElement(grammarAccess.getDelegationConnectorRule());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_1_0,
-						"org.xtext.componentsystem.dsl.Dsl.EString");
+				}
+				{
+					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_0_0());
+				}
+				ruleEString
+				{
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_1='-->'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getDelegationConnectorAccess().getLeftCurlyBracketKeyword_2());
-		}
-		otherlv_3='role'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getDelegationConnectorAccess().getRoleKeyword_3());
+			newLeafNode(otherlv_1, grammarAccess.getDelegationConnectorAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_1());
 		}
 		(
 			(
@@ -3138,7 +3127,7 @@ ruleDelegationConnector returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_4_0());
+					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_2_0());
 				}
 				ruleEString
 				{
@@ -3146,30 +3135,6 @@ ruleDelegationConnector returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_5='delegatedInterface'
-		{
-			newLeafNode(otherlv_5, grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceKeyword_5());
-		}
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getDelegationConnectorRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_6_0());
-				}
-				ruleEString
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_7='}'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getDelegationConnectorAccess().getRightCurlyBracketKeyword_7());
-		}
 	)
 ;
 

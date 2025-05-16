@@ -9856,9 +9856,9 @@ rule__AssemblyConnector__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAssemblyConnectorAccess().getHyphenMinusGreaterThanSignKeyword_1()); }
-	'->'
-	{ after(grammarAccess.getAssemblyConnectorAccess().getHyphenMinusGreaterThanSignKeyword_1()); }
+	{ before(grammarAccess.getAssemblyConnectorAccess().getOKeyword_1()); }
+	'-(o-'
+	{ after(grammarAccess.getAssemblyConnectorAccess().getOKeyword_1()); }
 )
 ;
 finally {
@@ -9910,9 +9910,9 @@ rule__DelegationConnector__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDelegationConnectorAccess().getDelegationConnectorKeyword_0()); }
-	'DelegationConnector'
-	{ after(grammarAccess.getDelegationConnectorAccess().getDelegationConnectorKeyword_0()); }
+	{ before(grammarAccess.getDelegationConnectorAccess().getRoleAssignment_0()); }
+	(rule__DelegationConnector__RoleAssignment_0)
+	{ after(grammarAccess.getDelegationConnectorAccess().getRoleAssignment_0()); }
 )
 ;
 finally {
@@ -9937,9 +9937,9 @@ rule__DelegationConnector__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDelegationConnectorAccess().getNameAssignment_1()); }
-	(rule__DelegationConnector__NameAssignment_1)
-	{ after(grammarAccess.getDelegationConnectorAccess().getNameAssignment_1()); }
+	{ before(grammarAccess.getDelegationConnectorAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_1()); }
+	'-->'
+	{ after(grammarAccess.getDelegationConnectorAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_1()); }
 )
 ;
 finally {
@@ -9952,7 +9952,6 @@ rule__DelegationConnector__Group__2
 	}
 :
 	rule__DelegationConnector__Group__2__Impl
-	rule__DelegationConnector__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -9964,143 +9963,9 @@ rule__DelegationConnector__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDelegationConnectorAccess().getLeftCurlyBracketKeyword_2()); }
-	'{'
-	{ after(grammarAccess.getDelegationConnectorAccess().getLeftCurlyBracketKeyword_2()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__3
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__DelegationConnector__Group__3__Impl
-	rule__DelegationConnector__Group__4
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__3__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getDelegationConnectorAccess().getRoleKeyword_3()); }
-	'role'
-	{ after(grammarAccess.getDelegationConnectorAccess().getRoleKeyword_3()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__4
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__DelegationConnector__Group__4__Impl
-	rule__DelegationConnector__Group__5
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__4__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getDelegationConnectorAccess().getRoleAssignment_4()); }
-	(rule__DelegationConnector__RoleAssignment_4)
-	{ after(grammarAccess.getDelegationConnectorAccess().getRoleAssignment_4()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__5
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__DelegationConnector__Group__5__Impl
-	rule__DelegationConnector__Group__6
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__5__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceKeyword_5()); }
-	'delegatedInterface'
-	{ after(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceKeyword_5()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__6
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__DelegationConnector__Group__6__Impl
-	rule__DelegationConnector__Group__7
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__6__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceAssignment_6()); }
-	(rule__DelegationConnector__DelegatedInterfaceAssignment_6)
-	{ after(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceAssignment_6()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__7
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__DelegationConnector__Group__7__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__Group__7__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getDelegationConnectorAccess().getRightCurlyBracketKeyword_7()); }
-	'}'
-	{ after(grammarAccess.getDelegationConnectorAccess().getRightCurlyBracketKeyword_7()); }
+	{ before(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceAssignment_2()); }
+	(rule__DelegationConnector__DelegatedInterfaceAssignment_2)
+	{ after(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceAssignment_2()); }
 )
 ;
 finally {
@@ -12507,53 +12372,38 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DelegationConnector__NameAssignment_1
+rule__DelegationConnector__RoleAssignment_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getDelegationConnectorAccess().getNameEStringParserRuleCall_1_0()); }
-		ruleEString
-		{ after(grammarAccess.getDelegationConnectorAccess().getNameEStringParserRuleCall_1_0()); }
+		{ before(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_0_0()); }
+		(
+			{ before(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_0_0_1()); }
+			ruleEString
+			{ after(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_0_0_1()); }
+		)
+		{ after(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_0_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DelegationConnector__RoleAssignment_4
+rule__DelegationConnector__DelegatedInterfaceAssignment_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_4_0()); }
+		{ before(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_2_0()); }
 		(
-			{ before(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_4_0_1()); }
+			{ before(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_2_0_1()); }
 			ruleEString
-			{ after(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_4_0_1()); }
+			{ after(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_2_0_1()); }
 		)
-		{ after(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_4_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DelegationConnector__DelegatedInterfaceAssignment_6
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_6_0()); }
-		(
-			{ before(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_6_0_1()); }
-			ruleEString
-			{ after(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_6_0_1()); }
-		)
-		{ after(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_6_0()); }
+		{ after(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_2_0()); }
 	)
 ;
 finally {

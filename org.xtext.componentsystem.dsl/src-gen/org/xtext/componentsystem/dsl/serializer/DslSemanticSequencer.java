@@ -362,22 +362,19 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DelegationConnector returns DelegationConnector
 	 *
 	 * Constraint:
-	 *     (name=EString role=[Role|EString] delegatedInterface=[Interface|EString])
+	 *     (role=[Role|EString] delegatedInterface=[Interface|EString])
 	 * </pre>
 	 */
 	protected void sequence_DelegationConnector(ISerializationContext context, DelegationConnector semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDelegationConnectorAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE, false));
-		feeder.accept(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_6_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE, false));
+		feeder.accept(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_0_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE, false));
+		feeder.accept(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_2_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE, false));
 		feeder.finish();
 	}
 	
