@@ -801,26 +801,16 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		private final Keyword cServiceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cCorrespondingSignatureKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cCorrespondingSignatureAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cCorrespondingSignatureSignatureCrossReference_4_0 = (CrossReference)cCorrespondingSignatureAssignment_4.eContents().get(0);
-		private final RuleCall cCorrespondingSignatureSignatureEStringParserRuleCall_4_0_1 = (RuleCall)cCorrespondingSignatureSignatureCrossReference_4_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cForKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cCorrespondingSignatureAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cCorrespondingSignatureSignatureCrossReference_3_0 = (CrossReference)cCorrespondingSignatureAssignment_3.eContents().get(0);
+		private final RuleCall cCorrespondingSignatureSignatureEStringParserRuleCall_3_0_1 = (RuleCall)cCorrespondingSignatureSignatureCrossReference_3_0.eContents().get(1);
 		
 		//Service returns SystemIndependant::Service:
-		//    'Service'
-		//    name=EString
-		//    '{'
-		//        'correspondingSignature' correspondingSignature=[SystemIndependant::Signature|EString]
-		//    '}';
+		//    'Service' name=EString 'for' correspondingSignature=[SystemIndependant::Signature|EString];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Service'
-		//name=EString
-		//'{'
-		//    'correspondingSignature' correspondingSignature=[SystemIndependant::Signature|EString]
-		//'}'
+		//'Service' name=EString 'for' correspondingSignature=[SystemIndependant::Signature|EString]
 		public Group getGroup() { return cGroup; }
 		
 		//'Service'
@@ -832,23 +822,17 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		//EString
 		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-		
-		//'correspondingSignature'
-		public Keyword getCorrespondingSignatureKeyword_3() { return cCorrespondingSignatureKeyword_3; }
+		//'for'
+		public Keyword getForKeyword_2() { return cForKeyword_2; }
 		
 		//correspondingSignature=[SystemIndependant::Signature|EString]
-		public Assignment getCorrespondingSignatureAssignment_4() { return cCorrespondingSignatureAssignment_4; }
+		public Assignment getCorrespondingSignatureAssignment_3() { return cCorrespondingSignatureAssignment_3; }
 		
 		//[SystemIndependant::Signature|EString]
-		public CrossReference getCorrespondingSignatureSignatureCrossReference_4_0() { return cCorrespondingSignatureSignatureCrossReference_4_0; }
+		public CrossReference getCorrespondingSignatureSignatureCrossReference_3_0() { return cCorrespondingSignatureSignatureCrossReference_3_0; }
 		
 		//EString
-		public RuleCall getCorrespondingSignatureSignatureEStringParserRuleCall_4_0_1() { return cCorrespondingSignatureSignatureEStringParserRuleCall_4_0_1; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public RuleCall getCorrespondingSignatureSignatureEStringParserRuleCall_3_0_1() { return cCorrespondingSignatureSignatureEStringParserRuleCall_3_0_1; }
 	}
 	public class SignatureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.componentsystem.dsl.Dsl.Signature");
@@ -2223,80 +2207,104 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	public class AssemblyConnectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.componentsystem.dsl.Dsl.AssemblyConnector");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cRequiredRoleAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cRequiredRoleRoleCrossReference_0_0 = (CrossReference)cRequiredRoleAssignment_0.eContents().get(0);
-		private final RuleCall cRequiredRoleRoleEStringParserRuleCall_0_0_1 = (RuleCall)cRequiredRoleRoleCrossReference_0_0.eContents().get(1);
-		private final Keyword cOKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cProvidedRoleAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cProvidedRoleRoleCrossReference_2_0 = (CrossReference)cProvidedRoleAssignment_2.eContents().get(0);
-		private final RuleCall cProvidedRoleRoleEStringParserRuleCall_2_0_1 = (RuleCall)cProvidedRoleRoleCrossReference_2_0.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameEStringParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRequiredRoleAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cRequiredRoleRoleCrossReference_2_0 = (CrossReference)cRequiredRoleAssignment_2.eContents().get(0);
+		private final RuleCall cRequiredRoleRoleEStringParserRuleCall_2_0_1 = (RuleCall)cRequiredRoleRoleCrossReference_2_0.eContents().get(1);
+		private final Keyword cOKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cProvidedRoleAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cProvidedRoleRoleCrossReference_4_0 = (CrossReference)cProvidedRoleAssignment_4.eContents().get(0);
+		private final RuleCall cProvidedRoleRoleEStringParserRuleCall_4_0_1 = (RuleCall)cProvidedRoleRoleCrossReference_4_0.eContents().get(1);
 		
 		//AssemblyConnector returns SystemDependant::AssemblyConnector:
-		//    requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString];
+		//    name=EString ':' requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString]
+		//name=EString ':' requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString]
 		public Group getGroup() { return cGroup; }
 		
-		//requiredRole=[SystemDependant::Role|EString]
-		public Assignment getRequiredRoleAssignment_0() { return cRequiredRoleAssignment_0; }
-		
-		//[SystemDependant::Role|EString]
-		public CrossReference getRequiredRoleRoleCrossReference_0_0() { return cRequiredRoleRoleCrossReference_0_0; }
+		//name=EString
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
 		//EString
-		public RuleCall getRequiredRoleRoleEStringParserRuleCall_0_0_1() { return cRequiredRoleRoleEStringParserRuleCall_0_0_1; }
+		public RuleCall getNameEStringParserRuleCall_0_0() { return cNameEStringParserRuleCall_0_0; }
+		
+		//':'
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		
+		//requiredRole=[SystemDependant::Role|EString]
+		public Assignment getRequiredRoleAssignment_2() { return cRequiredRoleAssignment_2; }
+		
+		//[SystemDependant::Role|EString]
+		public CrossReference getRequiredRoleRoleCrossReference_2_0() { return cRequiredRoleRoleCrossReference_2_0; }
+		
+		//EString
+		public RuleCall getRequiredRoleRoleEStringParserRuleCall_2_0_1() { return cRequiredRoleRoleEStringParserRuleCall_2_0_1; }
 		
 		//'-(o-'
-		public Keyword getOKeyword_1() { return cOKeyword_1; }
+		public Keyword getOKeyword_3() { return cOKeyword_3; }
 		
 		//providedRole=[SystemDependant::Role|EString]
-		public Assignment getProvidedRoleAssignment_2() { return cProvidedRoleAssignment_2; }
+		public Assignment getProvidedRoleAssignment_4() { return cProvidedRoleAssignment_4; }
 		
 		//[SystemDependant::Role|EString]
-		public CrossReference getProvidedRoleRoleCrossReference_2_0() { return cProvidedRoleRoleCrossReference_2_0; }
+		public CrossReference getProvidedRoleRoleCrossReference_4_0() { return cProvidedRoleRoleCrossReference_4_0; }
 		
 		//EString
-		public RuleCall getProvidedRoleRoleEStringParserRuleCall_2_0_1() { return cProvidedRoleRoleEStringParserRuleCall_2_0_1; }
+		public RuleCall getProvidedRoleRoleEStringParserRuleCall_4_0_1() { return cProvidedRoleRoleEStringParserRuleCall_4_0_1; }
 	}
 	public class DelegationConnectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.componentsystem.dsl.Dsl.DelegationConnector");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cRoleAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cRoleRoleCrossReference_0_0 = (CrossReference)cRoleAssignment_0.eContents().get(0);
-		private final RuleCall cRoleRoleEStringParserRuleCall_0_0_1 = (RuleCall)cRoleRoleCrossReference_0_0.eContents().get(1);
-		private final Keyword cHyphenMinusHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cDelegatedInterfaceAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cDelegatedInterfaceInterfaceCrossReference_2_0 = (CrossReference)cDelegatedInterfaceAssignment_2.eContents().get(0);
-		private final RuleCall cDelegatedInterfaceInterfaceEStringParserRuleCall_2_0_1 = (RuleCall)cDelegatedInterfaceInterfaceCrossReference_2_0.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameEStringParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRoleAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cRoleRoleCrossReference_2_0 = (CrossReference)cRoleAssignment_2.eContents().get(0);
+		private final RuleCall cRoleRoleEStringParserRuleCall_2_0_1 = (RuleCall)cRoleRoleCrossReference_2_0.eContents().get(1);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cDelegatedInterfaceAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cDelegatedInterfaceInterfaceCrossReference_4_0 = (CrossReference)cDelegatedInterfaceAssignment_4.eContents().get(0);
+		private final RuleCall cDelegatedInterfaceInterfaceEStringParserRuleCall_4_0_1 = (RuleCall)cDelegatedInterfaceInterfaceCrossReference_4_0.eContents().get(1);
 		
 		//DelegationConnector returns SystemDependant::DelegationConnector:
-		//    role=[SystemDependant::Role|EString] '-->' delegatedInterface=[SystemIndependant::Interface|EString];
+		//    name=EString ':' role=[SystemDependant::Role|EString] '->' delegatedInterface=[SystemIndependant::Interface|EString];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//role=[SystemDependant::Role|EString] '-->' delegatedInterface=[SystemIndependant::Interface|EString]
+		//name=EString ':' role=[SystemDependant::Role|EString] '->' delegatedInterface=[SystemIndependant::Interface|EString]
 		public Group getGroup() { return cGroup; }
 		
+		//name=EString
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_0_0() { return cNameEStringParserRuleCall_0_0; }
+		
+		//':'
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		
 		//role=[SystemDependant::Role|EString]
-		public Assignment getRoleAssignment_0() { return cRoleAssignment_0; }
+		public Assignment getRoleAssignment_2() { return cRoleAssignment_2; }
 		
 		//[SystemDependant::Role|EString]
-		public CrossReference getRoleRoleCrossReference_0_0() { return cRoleRoleCrossReference_0_0; }
+		public CrossReference getRoleRoleCrossReference_2_0() { return cRoleRoleCrossReference_2_0; }
 		
 		//EString
-		public RuleCall getRoleRoleEStringParserRuleCall_0_0_1() { return cRoleRoleEStringParserRuleCall_0_0_1; }
+		public RuleCall getRoleRoleEStringParserRuleCall_2_0_1() { return cRoleRoleEStringParserRuleCall_2_0_1; }
 		
-		//'-->'
-		public Keyword getHyphenMinusHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusHyphenMinusGreaterThanSignKeyword_1; }
+		//'->'
+		public Keyword getHyphenMinusGreaterThanSignKeyword_3() { return cHyphenMinusGreaterThanSignKeyword_3; }
 		
 		//delegatedInterface=[SystemIndependant::Interface|EString]
-		public Assignment getDelegatedInterfaceAssignment_2() { return cDelegatedInterfaceAssignment_2; }
+		public Assignment getDelegatedInterfaceAssignment_4() { return cDelegatedInterfaceAssignment_4; }
 		
 		//[SystemIndependant::Interface|EString]
-		public CrossReference getDelegatedInterfaceInterfaceCrossReference_2_0() { return cDelegatedInterfaceInterfaceCrossReference_2_0; }
+		public CrossReference getDelegatedInterfaceInterfaceCrossReference_4_0() { return cDelegatedInterfaceInterfaceCrossReference_4_0; }
 		
 		//EString
-		public RuleCall getDelegatedInterfaceInterfaceEStringParserRuleCall_2_0_1() { return cDelegatedInterfaceInterfaceEStringParserRuleCall_2_0_1; }
+		public RuleCall getDelegatedInterfaceInterfaceEStringParserRuleCall_4_0_1() { return cDelegatedInterfaceInterfaceEStringParserRuleCall_4_0_1; }
 	}
 	public class RoleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.componentsystem.dsl.Dsl.Role");
@@ -2304,26 +2312,16 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		private final Keyword cRoleKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cInterfaceKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cInterfaceAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cInterfaceInterfaceCrossReference_4_0 = (CrossReference)cInterfaceAssignment_4.eContents().get(0);
-		private final RuleCall cInterfaceInterfaceEStringParserRuleCall_4_0_1 = (RuleCall)cInterfaceInterfaceCrossReference_4_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cFromKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cInterfaceAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cInterfaceInterfaceCrossReference_3_0 = (CrossReference)cInterfaceAssignment_3.eContents().get(0);
+		private final RuleCall cInterfaceInterfaceEStringParserRuleCall_3_0_1 = (RuleCall)cInterfaceInterfaceCrossReference_3_0.eContents().get(1);
 		
 		//Role returns SystemDependant::Role:
-		//    'Role'
-		//    name=EString
-		//    '{'
-		//        'interface' interface=[SystemIndependant::Interface|EString]
-		//    '}';
+		//    'Role' name=EString 'from' interface=[SystemIndependant::Interface|EString];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Role'
-		//name=EString
-		//'{'
-		//    'interface' interface=[SystemIndependant::Interface|EString]
-		//'}'
+		//'Role' name=EString 'from' interface=[SystemIndependant::Interface|EString]
 		public Group getGroup() { return cGroup; }
 		
 		//'Role'
@@ -2335,23 +2333,17 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 		//EString
 		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-		
-		//'interface'
-		public Keyword getInterfaceKeyword_3() { return cInterfaceKeyword_3; }
+		//'from'
+		public Keyword getFromKeyword_2() { return cFromKeyword_2; }
 		
 		//interface=[SystemIndependant::Interface|EString]
-		public Assignment getInterfaceAssignment_4() { return cInterfaceAssignment_4; }
+		public Assignment getInterfaceAssignment_3() { return cInterfaceAssignment_3; }
 		
 		//[SystemIndependant::Interface|EString]
-		public CrossReference getInterfaceInterfaceCrossReference_4_0() { return cInterfaceInterfaceCrossReference_4_0; }
+		public CrossReference getInterfaceInterfaceCrossReference_3_0() { return cInterfaceInterfaceCrossReference_3_0; }
 		
 		//EString
-		public RuleCall getInterfaceInterfaceEStringParserRuleCall_4_0_1() { return cInterfaceInterfaceEStringParserRuleCall_4_0_1; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public RuleCall getInterfaceInterfaceEStringParserRuleCall_3_0_1() { return cInterfaceInterfaceEStringParserRuleCall_3_0_1; }
 	}
 	public class AllocationContextElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.componentsystem.dsl.Dsl.AllocationContext");
@@ -2916,11 +2908,7 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//Service returns SystemIndependant::Service:
-	//    'Service'
-	//    name=EString
-	//    '{'
-	//        'correspondingSignature' correspondingSignature=[SystemIndependant::Signature|EString]
-	//    '}';
+	//    'Service' name=EString 'for' correspondingSignature=[SystemIndependant::Signature|EString];
 	public ServiceElements getServiceAccess() {
 		return pService;
 	}
@@ -3136,7 +3124,7 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//AssemblyConnector returns SystemDependant::AssemblyConnector:
-	//    requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString];
+	//    name=EString ':' requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString];
 	public AssemblyConnectorElements getAssemblyConnectorAccess() {
 		return pAssemblyConnector;
 	}
@@ -3146,7 +3134,7 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//DelegationConnector returns SystemDependant::DelegationConnector:
-	//    role=[SystemDependant::Role|EString] '-->' delegatedInterface=[SystemIndependant::Interface|EString];
+	//    name=EString ':' role=[SystemDependant::Role|EString] '->' delegatedInterface=[SystemIndependant::Interface|EString];
 	public DelegationConnectorElements getDelegationConnectorAccess() {
 		return pDelegationConnector;
 	}
@@ -3156,11 +3144,7 @@ public class DslGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	}
 	
 	//Role returns SystemDependant::Role:
-	//    'Role'
-	//    name=EString
-	//    '{'
-	//        'interface' interface=[SystemIndependant::Interface|EString]
-	//    '}';
+	//    'Role' name=EString 'from' interface=[SystemIndependant::Interface|EString];
 	public RoleElements getRoleAccess() {
 		return pRole;
 	}

@@ -150,7 +150,7 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInterfaceAccess().getSignaturesAssignment_4_2(), "rule__Interface__SignaturesAssignment_4_2");
 			builder.put(grammarAccess.getInterfaceAccess().getSignaturesAssignment_4_3_1(), "rule__Interface__SignaturesAssignment_4_3_1");
 			builder.put(grammarAccess.getServiceAccess().getNameAssignment_1(), "rule__Service__NameAssignment_1");
-			builder.put(grammarAccess.getServiceAccess().getCorrespondingSignatureAssignment_4(), "rule__Service__CorrespondingSignatureAssignment_4");
+			builder.put(grammarAccess.getServiceAccess().getCorrespondingSignatureAssignment_3(), "rule__Service__CorrespondingSignatureAssignment_3");
 			builder.put(grammarAccess.getSignatureAccess().getReturnTypeAssignment_1_0(), "rule__Signature__ReturnTypeAssignment_1_0");
 			builder.put(grammarAccess.getSignatureAccess().getNameAssignment_2(), "rule__Signature__NameAssignment_2");
 			builder.put(grammarAccess.getSignatureAccess().getParametersAssignment_4_0(), "rule__Signature__ParametersAssignment_4_0");
@@ -207,12 +207,14 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCompositeComponentAccess().getAssemblyConnectorsAssignment_12_3_1(), "rule__CompositeComponent__AssemblyConnectorsAssignment_12_3_1");
 			builder.put(grammarAccess.getCompositeComponentAccess().getDelegationConnectorsAssignment_13_2(), "rule__CompositeComponent__DelegationConnectorsAssignment_13_2");
 			builder.put(grammarAccess.getCompositeComponentAccess().getDelegationConnectorsAssignment_13_3_1(), "rule__CompositeComponent__DelegationConnectorsAssignment_13_3_1");
-			builder.put(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleAssignment_0(), "rule__AssemblyConnector__RequiredRoleAssignment_0");
-			builder.put(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleAssignment_2(), "rule__AssemblyConnector__ProvidedRoleAssignment_2");
-			builder.put(grammarAccess.getDelegationConnectorAccess().getRoleAssignment_0(), "rule__DelegationConnector__RoleAssignment_0");
-			builder.put(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceAssignment_2(), "rule__DelegationConnector__DelegatedInterfaceAssignment_2");
+			builder.put(grammarAccess.getAssemblyConnectorAccess().getNameAssignment_0(), "rule__AssemblyConnector__NameAssignment_0");
+			builder.put(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleAssignment_2(), "rule__AssemblyConnector__RequiredRoleAssignment_2");
+			builder.put(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleAssignment_4(), "rule__AssemblyConnector__ProvidedRoleAssignment_4");
+			builder.put(grammarAccess.getDelegationConnectorAccess().getNameAssignment_0(), "rule__DelegationConnector__NameAssignment_0");
+			builder.put(grammarAccess.getDelegationConnectorAccess().getRoleAssignment_2(), "rule__DelegationConnector__RoleAssignment_2");
+			builder.put(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceAssignment_4(), "rule__DelegationConnector__DelegatedInterfaceAssignment_4");
 			builder.put(grammarAccess.getRoleAccess().getNameAssignment_1(), "rule__Role__NameAssignment_1");
-			builder.put(grammarAccess.getRoleAccess().getInterfaceAssignment_4(), "rule__Role__InterfaceAssignment_4");
+			builder.put(grammarAccess.getRoleAccess().getInterfaceAssignment_3(), "rule__Role__InterfaceAssignment_3");
 			builder.put(grammarAccess.getAllocationContextAccess().getNameAssignment_1(), "rule__AllocationContext__NameAssignment_1");
 			builder.put(grammarAccess.getAllocationContextAccess().getContainerAssignment_4(), "rule__AllocationContext__ContainerAssignment_4");
 			builder.put(grammarAccess.getAllocationContextAccess().getAssemblyContextAssignment_6(), "rule__AllocationContext__AssemblyContextAssignment_6");

@@ -81,11 +81,7 @@ EString returns ecore::EString:
 	STRING | ID;
 
 Service returns SystemIndependant::Service:
-	'Service'
-	name=EString
-	'{'
-		'correspondingSignature' correspondingSignature=[SystemIndependant::Signature|EString]
-	'}';
+	'Service' name=EString 'for' correspondingSignature=[SystemIndependant::Signature|EString];
 	
 Signature returns SystemIndependant::Signature:
 	{SystemIndependant::Signature}
@@ -189,17 +185,13 @@ CompositeComponent returns SystemDependant::CompositeComponent:
 	'}';
 	
 AssemblyConnector returns SystemDependant::AssemblyConnector:
-	requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString];
+	name=EString ':' requiredRole=[SystemDependant::Role|EString] '-(o-' providedRole=[SystemDependant::Role|EString];
 
 DelegationConnector returns SystemDependant::DelegationConnector:
-	role=[SystemDependant::Role|EString] '-->' delegatedInterface=[SystemIndependant::Interface|EString];
+	name=EString ':' role=[SystemDependant::Role|EString] '->' delegatedInterface=[SystemIndependant::Interface|EString];
 
 Role returns SystemDependant::Role:
-	'Role'
-	name=EString
-	'{'
-		'interface' interface=[SystemIndependant::Interface|EString]
-	'}';
+	'Role' name=EString 'from' interface=[SystemIndependant::Interface|EString];
 
 AllocationContext returns SystemDependant::AllocationContext:
 	'AllocationContext'

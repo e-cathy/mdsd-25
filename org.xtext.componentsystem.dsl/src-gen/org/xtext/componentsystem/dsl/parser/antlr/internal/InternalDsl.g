@@ -1123,13 +1123,9 @@ ruleService returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_2='for'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getServiceAccess().getLeftCurlyBracketKeyword_2());
-		}
-		otherlv_3='correspondingSignature'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getServiceAccess().getCorrespondingSignatureKeyword_3());
+			newLeafNode(otherlv_2, grammarAccess.getServiceAccess().getForKeyword_2());
 		}
 		(
 			(
@@ -1139,7 +1135,7 @@ ruleService returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getServiceAccess().getCorrespondingSignatureSignatureCrossReference_4_0());
+					newCompositeNode(grammarAccess.getServiceAccess().getCorrespondingSignatureSignatureCrossReference_3_0());
 				}
 				ruleEString
 				{
@@ -1147,10 +1143,6 @@ ruleService returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_5='}'
-		{
-			newLeafNode(otherlv_5, grammarAccess.getServiceAccess().getRightCurlyBracketKeyword_5());
-		}
 	)
 ;
 
@@ -3047,22 +3039,25 @@ ruleAssemblyConnector returns [EObject current=null]
 		(
 			(
 				{
+					newCompositeNode(grammarAccess.getAssemblyConnectorAccess().getNameEStringParserRuleCall_0_0());
+				}
+				lv_name_0_0=ruleEString
+				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAssemblyConnectorRule());
+						$current = createModelElementForParent(grammarAccess.getAssemblyConnectorRule());
 					}
-				}
-				{
-					newCompositeNode(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleRoleCrossReference_0_0());
-				}
-				ruleEString
-				{
+					set(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.xtext.componentsystem.dsl.Dsl.EString");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_1='-(o-'
+		otherlv_1=':'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getAssemblyConnectorAccess().getOKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getAssemblyConnectorAccess().getColonKeyword_1());
 		}
 		(
 			(
@@ -3072,7 +3067,27 @@ ruleAssemblyConnector returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleRoleCrossReference_2_0());
+					newCompositeNode(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleRoleCrossReference_2_0());
+				}
+				ruleEString
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='-(o-'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getAssemblyConnectorAccess().getOKeyword_3());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAssemblyConnectorRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleRoleCrossReference_4_0());
 				}
 				ruleEString
 				{
@@ -3102,22 +3117,25 @@ ruleDelegationConnector returns [EObject current=null]
 		(
 			(
 				{
+					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getNameEStringParserRuleCall_0_0());
+				}
+				lv_name_0_0=ruleEString
+				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getDelegationConnectorRule());
+						$current = createModelElementForParent(grammarAccess.getDelegationConnectorRule());
 					}
-				}
-				{
-					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_0_0());
-				}
-				ruleEString
-				{
+					set(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.xtext.componentsystem.dsl.Dsl.EString");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_1='-->'
+		otherlv_1=':'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getDelegationConnectorAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getDelegationConnectorAccess().getColonKeyword_1());
 		}
 		(
 			(
@@ -3127,7 +3145,27 @@ ruleDelegationConnector returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_2_0());
+					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getRoleRoleCrossReference_2_0());
+				}
+				ruleEString
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='->'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getDelegationConnectorAccess().getHyphenMinusGreaterThanSignKeyword_3());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDelegationConnectorRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceCrossReference_4_0());
 				}
 				ruleEString
 				{
@@ -3177,13 +3215,9 @@ ruleRole returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_2='from'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getRoleAccess().getLeftCurlyBracketKeyword_2());
-		}
-		otherlv_3='interface'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getRoleAccess().getInterfaceKeyword_3());
+			newLeafNode(otherlv_2, grammarAccess.getRoleAccess().getFromKeyword_2());
 		}
 		(
 			(
@@ -3193,7 +3227,7 @@ ruleRole returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getRoleAccess().getInterfaceInterfaceCrossReference_4_0());
+					newCompositeNode(grammarAccess.getRoleAccess().getInterfaceInterfaceCrossReference_3_0());
 				}
 				ruleEString
 				{
@@ -3201,10 +3235,6 @@ ruleRole returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_5='}'
-		{
-			newLeafNode(otherlv_5, grammarAccess.getRoleAccess().getRightCurlyBracketKeyword_5());
-		}
 	)
 ;
 

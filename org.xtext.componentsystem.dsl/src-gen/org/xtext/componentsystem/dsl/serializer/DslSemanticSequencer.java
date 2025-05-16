@@ -188,19 +188,22 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AssemblyConnector returns AssemblyConnector
 	 *
 	 * Constraint:
-	 *     (requiredRole=[Role|EString] providedRole=[Role|EString])
+	 *     (name=EString requiredRole=[Role|EString] providedRole=[Role|EString])
 	 * </pre>
 	 */
 	protected void sequence_AssemblyConnector(ISerializationContext context, AssemblyConnector semanticObject) {
 		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleRoleEStringParserRuleCall_0_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE, false));
-		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleRoleEStringParserRuleCall_2_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE, false));
+		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getNameEStringParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getRequiredRoleRoleEStringParserRuleCall_2_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__REQUIRED_ROLE, false));
+		feeder.accept(grammarAccess.getAssemblyConnectorAccess().getProvidedRoleRoleEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ASSEMBLY_CONNECTOR__PROVIDED_ROLE, false));
 		feeder.finish();
 	}
 	
@@ -362,19 +365,22 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DelegationConnector returns DelegationConnector
 	 *
 	 * Constraint:
-	 *     (role=[Role|EString] delegatedInterface=[Interface|EString])
+	 *     (name=EString role=[Role|EString] delegatedInterface=[Interface|EString])
 	 * </pre>
 	 */
 	protected void sequence_DelegationConnector(ISerializationContext context, DelegationConnector semanticObject) {
 		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_0_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE, false));
-		feeder.accept(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_2_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE, false));
+		feeder.accept(grammarAccess.getDelegationConnectorAccess().getNameEStringParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDelegationConnectorAccess().getRoleRoleEStringParserRuleCall_2_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__ROLE, false));
+		feeder.accept(grammarAccess.getDelegationConnectorAccess().getDelegatedInterfaceInterfaceEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.DELEGATION_CONNECTOR__DELEGATED_INTERFACE, false));
 		feeder.finish();
 	}
 	
@@ -533,7 +539,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRoleAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRoleAccess().getInterfaceInterfaceEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ROLE__INTERFACE, false));
+		feeder.accept(grammarAccess.getRoleAccess().getInterfaceInterfaceEStringParserRuleCall_3_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ROLE__INTERFACE, false));
 		feeder.finish();
 	}
 	
@@ -556,7 +562,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getServiceAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getServiceAccess().getCorrespondingSignatureSignatureEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemIndependantPackage.Literals.SERVICE__CORRESPONDING_SIGNATURE, false));
+		feeder.accept(grammarAccess.getServiceAccess().getCorrespondingSignatureSignatureEStringParserRuleCall_3_0_1(), semanticObject.eGet(SystemIndependantPackage.Literals.SERVICE__CORRESPONDING_SIGNATURE, false));
 		feeder.finish();
 	}
 	
