@@ -1,0 +1,228 @@
+ComponentSystem {
+  repositories {
+    Repository {
+      components {
+        BasicComponent WebGUI {
+          providedInterfaces (HTTP)
+          requiredInterfaces (MediaStore)
+          providedServices {
+            Service s {
+              correspondingSignature HTTPUpload
+            },
+            Service s {
+              correspondingSignature download
+            }
+          }
+        },
+        BasicComponent MediaManager {
+          providedInterfaces (MediaStore)
+          requiredInterfaces (Sound, AudioDB)
+          providedServices {
+            Service s {
+              correspondingSignature download
+            },
+            Service s {
+              correspondingSignature upload
+            }
+          }
+        },
+        BasicComponent DBCache {
+          providedInterfaces (AudioDB)
+          requiredInterfaces (AudioDB)
+          providedServices {
+            Service s {
+              correspondingSignature queryDB
+            },
+            Service s {
+              correspondingSignature addFile
+            }
+          }
+        },
+        BasicComponent DigitalWatermarking {
+          providedInterfaces (Sound)
+          providedServices {
+            Service s {
+              correspondingSignature watermark
+            }
+          }
+        },
+        BasicComponent PoolingAudioDB {
+          providedInterfaces (AudioDB)
+          providedServices {
+            Service s {
+              correspondingSignature queryDB
+            },
+            Service s {
+              correspondingSignature addFile
+            }
+          }
+        }
+      }
+      interfaces {
+        Interface HTTP {
+          signatures {
+            void HTTPDownload(),
+            void HTTPUpload()
+          }
+        },
+        Interface MediaStore {
+          signatures {
+            void download(),
+            void upload()
+          }
+        },
+        Interface Sound {
+          signatures {
+            void watermark()
+          }
+        },
+        Interface AudioDB {
+          signatures {
+            void queryDB(),
+            void addFile()
+          }
+        }
+      }
+    }
+  }
+  systems {
+    System {
+      interfaces (HTTP)
+      assembly Assembly {
+        assemblyContexts {
+          AssemblyContext PoolingAudioDB {
+            component PoolingAudioDB
+            allocationContext a1
+            providedRoles {
+              Role rAudioDB_PA {
+                interface AudioDB
+              }
+            }
+          },
+          AssemblyContext Composite_Component {
+            component Composite_Component
+            allocationContext a2
+            providedRoles {
+              Role rMediaStore_CompComp {
+                interface MediaStore
+              }
+            },
+            requiredRoles {
+              Role rAudioDB_CompComp {
+                interface AudioDB
+              }
+            }
+          },
+          AssemblyContext WebGUI {
+            component WebGUI
+            allocationContext a3
+            providedRoles {
+              Role rHTTP_WebGUI {
+                interface HTTP
+              }
+            },
+            requiredRoles {
+              Role rMediaStore_WebGUI {
+                interface MediaStore
+              }
+            }
+          }
+        }
+        compositeComponents {
+          CompositeComponent Composite_Component {
+            providedInterfaces (MediaStore)
+            requiredInterfaces (AudioDB)
+            assemblyContexts {
+              AssemblyContext MediaManager {
+                component MediaManager
+                providedRoles {
+                  Role rMediaStore_MedMan {
+                    interface MediaStore
+                  }
+                },
+                requiredRoles {
+                  Role rSound_MedMan {
+                    interface Sound
+                  },
+                  Role rAudioDB_MedMan {
+                    interface AudioDB
+                  }
+                }
+              },
+              AssemblyContext DigitalWatermarking {
+                component DigitalWatermarking
+                providedRoles {
+                  Role rSound_Water {
+                    interface Sound
+                  }
+                }
+              },
+              AssemblyContext DBCache {
+                component DBCache
+                providedRoles {
+                  Role rAudioDB_DBCache_p {
+                    interface AudioDB
+                  }
+                },
+                requiredRoles {
+                  Role rAudioDB_DBCache_r {
+                    interface AudioDB
+                  }
+                }
+              }
+            }
+            assemblyConnectors {
+              rAudioDB_DBCache_p -(o- rAudioDB_MedMan,
+              rMediaStore_MedMan -(o- rSound_MedMan
+            }
+            delegationConnectors {
+              rMediaStore_MedMan --> MediaStore,
+              rAudioDB_DBCache_r --> AudioDB
+            }
+          }
+        }
+        assemblyConnectors {
+          rMediaStore_CompComp -(o- rMediaStore_WebGUI,
+          rAudioDB_PA -(o- rAudioDB_CompComp
+        }
+
+        delegationConnectors {
+          rHTTP_WebGUI --> HTTP
+        }
+      }
+
+      allocation Allocation {
+        allocationContexts {
+          AllocationContext a1 {
+            container Database_Server
+            assemblyContext PoolingAudioDB
+          },
+          AllocationContext a2 {
+            container Application_Server
+            assemblyContext Composite_Component
+          },
+          AllocationContext a3 {
+            container Application_Server
+            assemblyContext WebGUI
+          }
+        }
+      }
+
+      environment Environment {
+        links {
+          Link Link {
+            containers (Application_Server, Database_Server)
+          }
+        }
+        containers {
+          Container Application_Server {
+            links (Link)
+          },
+          Container Database_Server {
+            links (Link)
+          }
+        }
+      }
+    }
+  }
+}
