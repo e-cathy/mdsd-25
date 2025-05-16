@@ -10,14 +10,14 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="MDSDComponentMetamodel" disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#/">
     <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//ComponentSystem">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/repository"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/system"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/repositories"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//ComponentSystem/systems"/>
     </genClasses>
     <genClasses image="false" ecoreClass="MDSDComponentMetamodel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//NamedElement/name"/>
     </genClasses>
-    <nestedGenPackages prefix="SystemIndependant" disposableProviderFactory="true"
-        ecorePackage="MDSDComponentMetamodel.ecore#//SystemIndependant">
+    <nestedGenPackages prefix="SystemIndependant" basePackage="MDSDComponentMetamodel"
+        disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#//SystemIndependant">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum">
         <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Boolean"/>
         <genEnumLiterals ecoreEnumLiteral="MDSDComponentMetamodel.ecore#//SystemIndependant/SimpleTypeEnum/Char"/>
@@ -79,7 +79,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/Loop/condition"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="SystemDependant" disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#//SystemDependant">
+    <nestedGenPackages prefix="SystemDependant" basePackage="MDSDComponentMetamodel"
+        disposableProviderFactory="true" ecorePackage="MDSDComponentMetamodel.ecore#//SystemDependant">
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemDependant/CompositeComponent">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/CompositeComponent/assemblyContexts"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemDependant/CompositeComponent/assemblyConnectors"/>

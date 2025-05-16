@@ -1,0 +1,45 @@
+ComponentSystem {
+  repository {
+    Repository {
+      components {
+        BasicComponent "CompA" {
+          providedInterfaces ("IService")
+          requiredInterfaces ("IDep")
+        }
+      , BasicComponent CompB { } } interfaces {
+        Interface "IService" {}, Interface "IDep" {}
+      }
+    }
+  }
+
+  system {
+    System {
+      interfaces ("IService")
+      assembly Assembly {
+        assemblyContexts {
+          AssemblyContext "ac1" {
+            component "CompA"
+            providedRoles {
+              Role "r1" {
+                interface "IService"
+              }
+            }
+          }
+        }
+      }
+      allocation Allocation {
+        allocationContexts {
+          AllocationContext "alloc1" {
+            container "host1"
+            assemblyContext "ac1"
+          }
+        }
+      }
+      environment Environment {
+        containers {
+          Container "host1" { }
+        }
+      }
+    }
+  }
+}

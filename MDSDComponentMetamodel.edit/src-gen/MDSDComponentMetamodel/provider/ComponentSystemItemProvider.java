@@ -73,8 +73,8 @@ public class ComponentSystemItemProvider extends ItemProviderAdapter implements 
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORY);
-			childrenFeatures.add(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEM);
+			childrenFeatures.add(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORIES);
+			childrenFeatures.add(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEMS);
 		}
 		return childrenFeatures;
 	}
@@ -136,8 +136,8 @@ public class ComponentSystemItemProvider extends ItemProviderAdapter implements 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ComponentSystem.class)) {
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORY:
-		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEM:
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__REPOSITORIES:
+		case MDSDComponentMetamodelPackage.COMPONENT_SYSTEM__SYSTEMS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -156,10 +156,10 @@ public class ComponentSystemItemProvider extends ItemProviderAdapter implements 
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors
-				.add(createChildParameter(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORY,
+				.add(createChildParameter(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__REPOSITORIES,
 						SystemIndependantFactory.eINSTANCE.createRepository()));
 
-		newChildDescriptors.add(createChildParameter(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEM,
+		newChildDescriptors.add(createChildParameter(MDSDComponentMetamodelPackage.Literals.COMPONENT_SYSTEM__SYSTEMS,
 				SystemDependantFactory.eINSTANCE.createSystem()));
 	}
 
