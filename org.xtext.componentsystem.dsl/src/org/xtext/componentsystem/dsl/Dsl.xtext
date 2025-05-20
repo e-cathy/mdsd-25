@@ -13,32 +13,14 @@ ComponentSystem returns ComponentSystem:
 		('systems' '{' systems+=System ( "," systems+=System)* '}' )?
 	'}';
 
-
-
-
-
 Type returns SystemIndependant::Type:
 	ComplexType | SimpleType;
-
-
-
-
 
 Action returns SystemIndependant::Action:
 	ExternalCall | InternalAction | Branch | Loop;
 
-
-
-
-
-
-
-
-
-
 Component returns SystemIndependant::Component:
 	BasicComponent;
-
 
 Repository returns SystemIndependant::Repository:
 	{SystemIndependant::Repository}
@@ -74,7 +56,7 @@ Interface returns SystemIndependant::Interface:
 	'Interface'
 	name=EString
 	'{'
-		('signatures' '{' signatures+=Signature ( "," signatures+=Signature)* '}' )?
+		(signatures+=Signature ";")*
 	'}';
 
 EString returns ecore::EString:
@@ -120,7 +102,7 @@ ComplexType returns SystemIndependant::ComplexType:
 	'ComplexType'
 	name=EString
 	'{'
-		'type' type=EJavaClass
+		(attributes+=Parameter ";")*
 	'}';
 
 SimpleType returns SystemIndependant::SimpleType:
@@ -129,9 +111,6 @@ SimpleType returns SystemIndependant::SimpleType:
 	'{'
 		'type' type=SimpleTypeEnum
 	'}';
-
-EJavaClass returns ecore::EJavaClass:
-	'EJavaClass' /* TODO: implement this rule and an appropriate IValueConverter */;
 
 enum SimpleTypeEnum returns SystemIndependant::SimpleTypeEnum:
 				Boolean = 'Boolean' | Char = 'Char' | Date = 'Date' | Double = 'Double' | Float = 'Float' | List = 'List' | Int = 'Int' | Long = 'Long' | Map = 'Map' | String = 'String';
@@ -197,8 +176,7 @@ AllocationContext returns SystemDependant::AllocationContext:
 	'AllocationContext'
 	name=EString
 	'{'
-		'container' container=[SystemDependant::Container|EString]
-		'assemblyContext' assemblyContext=[SystemDependant::AssemblyContext|EString]
+		assemblyContext=[SystemDependant::AssemblyContext|EString] "-[]->" container=[SystemDependant::Container|EString]
 	'}';
 
 Container returns SystemDependant::Container:
@@ -213,5 +191,5 @@ Link returns SystemDependant::Link:
 	'Link'
 	name=EString
 	'{'
-		'containers' '(' containers+=[SystemDependant::Container|EString] ( "," containers+=[SystemDependant::Container|EString])* ')' 
+		containers+=[SystemDependant::Container|EString] ( "<=>" containers+=[SystemDependant::Container|EString])+
 	'}';

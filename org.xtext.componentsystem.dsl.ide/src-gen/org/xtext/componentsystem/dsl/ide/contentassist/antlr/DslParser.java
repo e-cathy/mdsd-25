@@ -60,7 +60,6 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBasicComponentAccess().getGroup_7_3(), "rule__BasicComponent__Group_7_3__0");
 			builder.put(grammarAccess.getInterfaceAccess().getGroup(), "rule__Interface__Group__0");
 			builder.put(grammarAccess.getInterfaceAccess().getGroup_4(), "rule__Interface__Group_4__0");
-			builder.put(grammarAccess.getInterfaceAccess().getGroup_4_3(), "rule__Interface__Group_4_3__0");
 			builder.put(grammarAccess.getServiceAccess().getGroup(), "rule__Service__Group__0");
 			builder.put(grammarAccess.getSignatureAccess().getGroup(), "rule__Signature__Group__0");
 			builder.put(grammarAccess.getSignatureAccess().getGroup_4(), "rule__Signature__Group_4__0");
@@ -75,6 +74,7 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLoopAccess().getGroup_5(), "rule__Loop__Group_5__0");
 			builder.put(grammarAccess.getLoopAccess().getGroup_5_3(), "rule__Loop__Group_5_3__0");
 			builder.put(grammarAccess.getComplexTypeAccess().getGroup(), "rule__ComplexType__Group__0");
+			builder.put(grammarAccess.getComplexTypeAccess().getGroup_3(), "rule__ComplexType__Group_3__0");
 			builder.put(grammarAccess.getSimpleTypeAccess().getGroup(), "rule__SimpleType__Group__0");
 			builder.put(grammarAccess.getAssemblyAccess().getGroup(), "rule__Assembly__Group__0");
 			builder.put(grammarAccess.getAssemblyAccess().getGroup_3(), "rule__Assembly__Group_3__0");
@@ -121,7 +121,7 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getContainerAccess().getGroup_4(), "rule__Container__Group_4__0");
 			builder.put(grammarAccess.getContainerAccess().getGroup_4_3(), "rule__Container__Group_4_3__0");
 			builder.put(grammarAccess.getLinkAccess().getGroup(), "rule__Link__Group__0");
-			builder.put(grammarAccess.getLinkAccess().getGroup_6(), "rule__Link__Group_6__0");
+			builder.put(grammarAccess.getLinkAccess().getGroup_4(), "rule__Link__Group_4__0");
 			builder.put(grammarAccess.getComponentSystemAccess().getRepositoriesAssignment_4(), "rule__ComponentSystem__RepositoriesAssignment_4");
 			builder.put(grammarAccess.getComponentSystemAccess().getRepositoriesAssignment_5_1(), "rule__ComponentSystem__RepositoriesAssignment_5_1");
 			builder.put(grammarAccess.getComponentSystemAccess().getSystemsAssignment_7_2(), "rule__ComponentSystem__SystemsAssignment_7_2");
@@ -147,8 +147,7 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBasicComponentAccess().getBehaviorDescriptionAssignment_7_2(), "rule__BasicComponent__BehaviorDescriptionAssignment_7_2");
 			builder.put(grammarAccess.getBasicComponentAccess().getBehaviorDescriptionAssignment_7_3_1(), "rule__BasicComponent__BehaviorDescriptionAssignment_7_3_1");
 			builder.put(grammarAccess.getInterfaceAccess().getNameAssignment_2(), "rule__Interface__NameAssignment_2");
-			builder.put(grammarAccess.getInterfaceAccess().getSignaturesAssignment_4_2(), "rule__Interface__SignaturesAssignment_4_2");
-			builder.put(grammarAccess.getInterfaceAccess().getSignaturesAssignment_4_3_1(), "rule__Interface__SignaturesAssignment_4_3_1");
+			builder.put(grammarAccess.getInterfaceAccess().getSignaturesAssignment_4_0(), "rule__Interface__SignaturesAssignment_4_0");
 			builder.put(grammarAccess.getServiceAccess().getNameAssignment_1(), "rule__Service__NameAssignment_1");
 			builder.put(grammarAccess.getServiceAccess().getCorrespondingSignatureAssignment_3(), "rule__Service__CorrespondingSignatureAssignment_3");
 			builder.put(grammarAccess.getSignatureAccess().getReturnTypeAssignment_1_0(), "rule__Signature__ReturnTypeAssignment_1_0");
@@ -168,7 +167,7 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLoopAccess().getActionsAssignment_5_2(), "rule__Loop__ActionsAssignment_5_2");
 			builder.put(grammarAccess.getLoopAccess().getActionsAssignment_5_3_1(), "rule__Loop__ActionsAssignment_5_3_1");
 			builder.put(grammarAccess.getComplexTypeAccess().getNameAssignment_1(), "rule__ComplexType__NameAssignment_1");
-			builder.put(grammarAccess.getComplexTypeAccess().getTypeAssignment_4(), "rule__ComplexType__TypeAssignment_4");
+			builder.put(grammarAccess.getComplexTypeAccess().getAttributesAssignment_3_0(), "rule__ComplexType__AttributesAssignment_3_0");
 			builder.put(grammarAccess.getSimpleTypeAccess().getNameAssignment_1(), "rule__SimpleType__NameAssignment_1");
 			builder.put(grammarAccess.getSimpleTypeAccess().getTypeAssignment_4(), "rule__SimpleType__TypeAssignment_4");
 			builder.put(grammarAccess.getAssemblyAccess().getAssemblyContextsAssignment_3_2(), "rule__Assembly__AssemblyContextsAssignment_3_2");
@@ -216,14 +215,14 @@ public class DslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRoleAccess().getNameAssignment_1(), "rule__Role__NameAssignment_1");
 			builder.put(grammarAccess.getRoleAccess().getInterfaceAssignment_3(), "rule__Role__InterfaceAssignment_3");
 			builder.put(grammarAccess.getAllocationContextAccess().getNameAssignment_1(), "rule__AllocationContext__NameAssignment_1");
-			builder.put(grammarAccess.getAllocationContextAccess().getContainerAssignment_4(), "rule__AllocationContext__ContainerAssignment_4");
-			builder.put(grammarAccess.getAllocationContextAccess().getAssemblyContextAssignment_6(), "rule__AllocationContext__AssemblyContextAssignment_6");
+			builder.put(grammarAccess.getAllocationContextAccess().getAssemblyContextAssignment_3(), "rule__AllocationContext__AssemblyContextAssignment_3");
+			builder.put(grammarAccess.getAllocationContextAccess().getContainerAssignment_5(), "rule__AllocationContext__ContainerAssignment_5");
 			builder.put(grammarAccess.getContainerAccess().getNameAssignment_2(), "rule__Container__NameAssignment_2");
 			builder.put(grammarAccess.getContainerAccess().getLinksAssignment_4_2(), "rule__Container__LinksAssignment_4_2");
 			builder.put(grammarAccess.getContainerAccess().getLinksAssignment_4_3_1(), "rule__Container__LinksAssignment_4_3_1");
 			builder.put(grammarAccess.getLinkAccess().getNameAssignment_1(), "rule__Link__NameAssignment_1");
-			builder.put(grammarAccess.getLinkAccess().getContainersAssignment_5(), "rule__Link__ContainersAssignment_5");
-			builder.put(grammarAccess.getLinkAccess().getContainersAssignment_6_1(), "rule__Link__ContainersAssignment_6_1");
+			builder.put(grammarAccess.getLinkAccess().getContainersAssignment_3(), "rule__Link__ContainersAssignment_3");
+			builder.put(grammarAccess.getLinkAccess().getContainersAssignment_4_1(), "rule__Link__ContainersAssignment_4_1");
 		}
 	}
 	

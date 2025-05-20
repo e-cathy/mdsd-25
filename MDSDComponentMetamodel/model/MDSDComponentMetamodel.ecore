@@ -39,6 +39,8 @@
           <eTypeArguments/>
         </eGenericType>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+          eType="#//SystemIndependant/Parameter" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalCall" eSuperTypes="#//SystemIndependant/Action"/>
     <eClassifiers xsi:type="ecore:EEnum" name="SimpleTypeEnum">

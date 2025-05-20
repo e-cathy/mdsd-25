@@ -148,22 +148,22 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AllocationContext returns AllocationContext
 	 *
 	 * Constraint:
-	 *     (name=EString container=[Container|EString] assemblyContext=[AssemblyContext|EString])
+	 *     (name=EString assemblyContext=[AssemblyContext|EString] container=[Container|EString])
 	 * </pre>
 	 */
 	protected void sequence_AllocationContext(ISerializationContext context, AllocationContext semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
-			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ALLOCATION_CONTEXT__CONTAINER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ALLOCATION_CONTEXT__CONTAINER));
 			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ALLOCATION_CONTEXT__ASSEMBLY_CONTEXT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ALLOCATION_CONTEXT__ASSEMBLY_CONTEXT));
+			if (transientValues.isValueTransient(semanticObject, SystemDependantPackage.Literals.ALLOCATION_CONTEXT__CONTAINER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemDependantPackage.Literals.ALLOCATION_CONTEXT__CONTAINER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAllocationContextAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getAllocationContextAccess().getContainerContainerEStringParserRuleCall_4_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ALLOCATION_CONTEXT__CONTAINER, false));
-		feeder.accept(grammarAccess.getAllocationContextAccess().getAssemblyContextAssemblyContextEStringParserRuleCall_6_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ALLOCATION_CONTEXT__ASSEMBLY_CONTEXT, false));
+		feeder.accept(grammarAccess.getAllocationContextAccess().getAssemblyContextAssemblyContextEStringParserRuleCall_3_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ALLOCATION_CONTEXT__ASSEMBLY_CONTEXT, false));
+		feeder.accept(grammarAccess.getAllocationContextAccess().getContainerContainerEStringParserRuleCall_5_0_1(), semanticObject.eGet(SystemDependantPackage.Literals.ALLOCATION_CONTEXT__CONTAINER, false));
 		feeder.finish();
 	}
 	
@@ -290,20 +290,11 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ComplexType returns ComplexType
 	 *
 	 * Constraint:
-	 *     (name=EString type=EJavaClass)
+	 *     (name=EString attributes+=Parameter*)
 	 * </pre>
 	 */
 	protected void sequence_ComplexType(ISerializationContext context, ComplexType semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MDSDComponentMetamodelPackage.Literals.NAMED_ELEMENT__NAME));
-			if (transientValues.isValueTransient(semanticObject, SystemIndependantPackage.Literals.COMPLEX_TYPE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SystemIndependantPackage.Literals.COMPLEX_TYPE__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getComplexTypeAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getComplexTypeAccess().getTypeEJavaClassParserRuleCall_4_0(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -426,7 +417,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (name=EString (signatures+=Signature signatures+=Signature*)?)
+	 *     (name=EString signatures+=Signature*)
 	 * </pre>
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
@@ -461,7 +452,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Link returns Link
 	 *
 	 * Constraint:
-	 *     (name=EString containers+=[Container|EString] containers+=[Container|EString]*)
+	 *     (name=EString containers+=[Container|EString] containers+=[Container|EString]+)
 	 * </pre>
 	 */
 	protected void sequence_Link(ISerializationContext context, Link semanticObject) {
