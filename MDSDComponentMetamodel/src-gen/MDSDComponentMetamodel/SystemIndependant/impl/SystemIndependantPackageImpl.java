@@ -351,6 +351,16 @@ public class SystemIndependantPackageImpl extends EPackageImpl implements System
 	 * @generated
 	 */
 	@Override
+	public EReference getComplexType_Attributes() {
+		return (EReference) complexTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getExternalCall() {
 		return externalCallEClass;
 	}
@@ -620,6 +630,7 @@ public class SystemIndependantPackageImpl extends EPackageImpl implements System
 
 		complexTypeEClass = createEClass(COMPLEX_TYPE);
 		createEAttribute(complexTypeEClass, COMPLEX_TYPE__TYPE);
+		createEReference(complexTypeEClass, COMPLEX_TYPE__ATTRIBUTES);
 
 		externalCallEClass = createEClass(EXTERNAL_CALL);
 
@@ -738,6 +749,9 @@ public class SystemIndependantPackageImpl extends EPackageImpl implements System
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getComplexType_Type(), g1, "type", null, 1, 1, ComplexType.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComplexType_Attributes(), this.getParameter(), null, "attributes", null, 0, -1,
+				ComplexType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(externalCallEClass, ExternalCall.class, "ExternalCall", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

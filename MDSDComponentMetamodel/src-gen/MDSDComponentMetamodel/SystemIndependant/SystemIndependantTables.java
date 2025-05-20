@@ -74,6 +74,7 @@ public class SystemIndependantTables extends AbstractTables
 	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyContext = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("AssemblyContext", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_BasicComponent = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("BasicComponent", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Branch = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Branch", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_ComplexType = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("ComplexType", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Component = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Component", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_ComponentSystem = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_MDSDComponentMetamodel.getClassId("ComponentSystem", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_DelegationConnector = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("DelegationConnector", 0);
@@ -356,7 +357,8 @@ public class SystemIndependantTables extends AbstractTables
 		public static final ExecutorProperty _Branch__actions = new EcoreExecutorProperty(SystemIndependantPackage.Literals.BRANCH__ACTIONS, Types._Branch, 0);
 		public static final ExecutorProperty _Branch__condition = new EcoreExecutorProperty(SystemIndependantPackage.Literals.BRANCH__CONDITION, Types._Branch, 1);
 
-		public static final ExecutorProperty _ComplexType__type = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPLEX_TYPE__TYPE, Types._ComplexType, 0);
+		public static final ExecutorProperty _ComplexType__attributes = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPLEX_TYPE__ATTRIBUTES, Types._ComplexType, 0);
+		public static final ExecutorProperty _ComplexType__type = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPLEX_TYPE__TYPE, Types._ComplexType, 1);
 
 		public static final ExecutorProperty _Component__behaviorDescription = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPONENT__BEHAVIOR_DESCRIPTION, Types._Component, 0);
 		public static final ExecutorProperty _Component__providedInterfaces = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPONENT__PROVIDED_INTERFACES, Types._Component, 1);
@@ -376,7 +378,8 @@ public class SystemIndependantTables extends AbstractTables
 		public static final ExecutorProperty _Loop__condition = new EcoreExecutorProperty(SystemIndependantPackage.Literals.LOOP__CONDITION, Types._Loop, 1);
 
 		public static final ExecutorProperty _Parameter__type = new EcoreExecutorProperty(SystemIndependantPackage.Literals.PARAMETER__TYPE, Types._Parameter, 0);
-		public static final ExecutorProperty _Parameter__Signature__parameters = new ExecutorPropertyWithImplementation("Signature", Types._Parameter, 1, new EcoreLibraryOppositeProperty(SystemIndependantPackage.Literals.SIGNATURE__PARAMETERS));
+		public static final ExecutorProperty _Parameter__ComplexType__attributes = new ExecutorPropertyWithImplementation("ComplexType", Types._Parameter, 1, new EcoreLibraryOppositeProperty(SystemIndependantPackage.Literals.COMPLEX_TYPE__ATTRIBUTES));
+		public static final ExecutorProperty _Parameter__Signature__parameters = new ExecutorPropertyWithImplementation("Signature", Types._Parameter, 2, new EcoreLibraryOppositeProperty(SystemIndependantPackage.Literals.SIGNATURE__PARAMETERS));
 
 		public static final ExecutorProperty _Repository__components = new EcoreExecutorProperty(SystemIndependantPackage.Literals.REPOSITORY__COMPONENTS, Types._Repository, 0);
 		public static final ExecutorProperty _Repository__interfaces = new EcoreExecutorProperty(SystemIndependantPackage.Literals.REPOSITORY__INTERFACES, Types._Repository, 1);
@@ -1294,6 +1297,7 @@ public class SystemIndependantTables extends AbstractTables
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _ComplexType = {
+			SystemIndependantTables.Properties._ComplexType__attributes,
 			MDSDComponentMetamodelTables.Properties._NamedElement__name,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,

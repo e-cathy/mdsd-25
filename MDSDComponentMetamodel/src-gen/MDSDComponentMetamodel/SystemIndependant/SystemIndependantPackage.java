@@ -273,13 +273,22 @@ public interface SystemIndependantPackage extends EPackage {
 	int COMPLEX_TYPE__TYPE = TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_TYPE__ATTRIBUTES = TYPE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Complex Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+	int COMPLEX_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Complex Type</em>' class.
@@ -931,6 +940,17 @@ public interface SystemIndependantPackage extends EPackage {
 	EAttribute getComplexType_Type();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link MDSDComponentMetamodel.SystemIndependant.ComplexType#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
+	 * @see MDSDComponentMetamodel.SystemIndependant.ComplexType#getAttributes()
+	 * @see #getComplexType()
+	 * @generated
+	 */
+	EReference getComplexType_Attributes();
+
+	/**
 	 * Returns the meta object for class '{@link MDSDComponentMetamodel.SystemIndependant.ExternalCall <em>External Call</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,6 +1312,14 @@ public interface SystemIndependantPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute COMPLEX_TYPE__TYPE = eINSTANCE.getComplexType_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLEX_TYPE__ATTRIBUTES = eINSTANCE.getComplexType_Attributes();
 
 		/**
 		 * The meta object literal for the '{@link MDSDComponentMetamodel.SystemIndependant.impl.ExternalCallImpl <em>External Call</em>}' class.
