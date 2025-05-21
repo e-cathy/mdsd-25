@@ -45,7 +45,6 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/Repository/types"/>
       </genClasses>
       <genClasses ecoreClass="MDSDComponentMetamodel.ecore#//SystemIndependant/ComplexType">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MDSDComponentMetamodel.ecore#//SystemIndependant/ComplexType/type"/>
         <genFeatures children="true" createChild="true" propertySortChoices="true"
             ecoreFeature="ecore:EReference MDSDComponentMetamodel.ecore#//SystemIndependant/ComplexType/attributes"/>
       </genClasses>

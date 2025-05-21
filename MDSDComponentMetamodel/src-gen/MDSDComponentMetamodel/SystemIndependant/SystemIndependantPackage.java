@@ -264,22 +264,13 @@ public interface SystemIndependantPackage extends EPackage {
 	int COMPLEX_TYPE__NAME = TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_TYPE__TYPE = TYPE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_TYPE__ATTRIBUTES = TYPE_FEATURE_COUNT + 1;
+	int COMPLEX_TYPE__ATTRIBUTES = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Complex Type</em>' class.
@@ -288,7 +279,7 @@ public interface SystemIndependantPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+	int COMPLEX_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Complex Type</em>' class.
@@ -929,17 +920,6 @@ public interface SystemIndependantPackage extends EPackage {
 	EClass getComplexType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link MDSDComponentMetamodel.SystemIndependant.ComplexType#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see MDSDComponentMetamodel.SystemIndependant.ComplexType#getType()
-	 * @see #getComplexType()
-	 * @generated
-	 */
-	EAttribute getComplexType_Type();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link MDSDComponentMetamodel.SystemIndependant.ComplexType#getAttributes <em>Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1304,14 +1284,6 @@ public interface SystemIndependantPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPLEX_TYPE = eINSTANCE.getComplexType();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPLEX_TYPE__TYPE = eINSTANCE.getComplexType_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
