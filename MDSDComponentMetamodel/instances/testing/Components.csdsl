@@ -1,7 +1,166 @@
 ComponentSystem {
 	repositories {
-		Repository {
-			
-		components { BasicComponent WebGUI { providedInterfaces ( HTTP ) requiredInterfaces ( MediaStore ) providedServices { Service s for "HTTP.HTTPUpload" , Service s for "HTTP.HTTPDownload" } } , BasicComponent MediaManager { providedInterfaces ( MediaStore ) requiredInterfaces ( AudioDB , Sound ) providedServices { Service s for "MediaStore.download" , Service s for "MediaStore.upload" } } , BasicComponent DBCache { providedInterfaces ( AudioDB ) requiredInterfaces ( AudioDB ) providedServices { Service s for "AudioDB.queryDB" , Service s for "AudioDB.addFile" } } , BasicComponent DigitalWatermarking { providedInterfaces ( Sound ) providedServices { Service s for "Sound.watermark" } } , BasicComponent PoolingAudioDB { providedInterfaces ( AudioDB ) providedServices { Service s for "AudioDB.queryDB" , Service s for "AudioDB.addFile" } } } interfaces { Interface HTTP { void HTTPDownload ( ) ; void HTTPUpload ( ) ; } , Interface MediaStore { void download ( ) ; void upload ( ) ; } , Interface Sound { void watermark ( ) ; } , Interface AudioDB { void queryDB ( ) ; void addFile ( ) ; } } }
+		Repository {	
+			components { 
+				BasicComponent WebGUI { 
+					providedInterfaces ( HTTP ) 
+					requiredInterfaces ( MediaStore ) 
+					providedServices { 
+						Service s for "HTTP.HTTPUpload" , 
+						Service s for "HTTP.HTTPDownload"
+					}
+				} , 
+				BasicComponent MediaManager { 
+					providedInterfaces ( MediaStore ) 
+					requiredInterfaces ( AudioDB , Sound ) 
+					providedServices { 
+						Service s for "MediaStore.download" , 
+						Service s for "MediaStore.upload"
+					}
+				} , 
+				BasicComponent DBCache { 
+					providedInterfaces ( AudioDB ) 
+					requiredInterfaces ( AudioDB ) 
+					providedServices { 
+						Service s for "AudioDB.queryDB" , 
+						Service s for "AudioDB.addFile"
+					}
+				} , 
+				BasicComponent DigitalWatermarking { 
+					providedInterfaces ( Sound ) 
+					providedServices { 
+						Service s for "Sound.watermark"
+					}
+				} , 
+				BasicComponent PoolingAudioDB { 
+					providedInterfaces ( AudioDB ) 
+					providedServices { 
+						Service s for "AudioDB.queryDB" , 
+						Service s for "AudioDB.addFile"
+					}
+				}
+			} 
+			interfaces { 
+				Interface HTTP { 
+					void HTTPDownload ( ) ; 
+					void HTTPUpload ( ) ;
+				} , 
+				Interface MediaStore { 
+					void download ( ) ; 
+					void upload ( ) ;
+				} , 
+				Interface Sound { 
+					void watermark ( ) ;
+				} , 
+				Interface AudioDB { 
+					void queryDB ( ) ; 
+					void addFile ( ) ;
+				}
+			}
+		}
 	}
-systems { System { interfaces ( HTTP ) assembly Assembly { assemblyContexts { AssemblyContext PoolingAudioDB { component PoolingAudioDB providedRoles { Role "R AudioDB PA" from AudioDB } } , AssemblyContext WebGUI { component WebGUI providedRoles { Role "R HTTP WebGUI" from HTTP } requiredRoles { Role "R MediaStore WebGUI" from MediaStore } } } } allocation Allocation { } environment Environment { links { Link ServerLink { ApplicationServer <=> DatabaseServer } } containers { Container ApplicationServer { links ( ServerLink ) } , Container DatabaseServer { links ( ServerLink ) } } } } } }
+	systems { 
+		System { 
+			interfaces ( HTTP ) 
+			assembly Assembly { 
+				assemblyContexts { 
+					AssemblyContext PoolingAudioDB { 
+						component PoolingAudioDB 
+						allocationContext a1 
+						providedRoles { 
+							Role "R AudioDB PA" from AudioDB
+						}
+					} , 
+					AssemblyContext WebGUI { 
+						component WebGUI 
+						allocationContext a3 
+						providedRoles { 
+							Role "R HTTP WebGUI" from HTTP
+						} 
+						requiredRoles { 
+							Role "R MediaStore WebGUI" from MediaStore
+						}
+					} , 
+					AssemblyContext ^CompositeComponent { 
+						component ^CompositeComponent 
+						allocationContext a2 
+						providedRoles { 
+							Role "R MediaStore CompComp" from MediaStore
+						} 
+						requiredRoles { 
+							Role "R AudioDB CompComp" from AudioDB
+						}
+					}
+				} compositeComponents { 
+					CompositeComponent ^CompositeComponent { 
+						providedInterfaces ( MediaStore ) 
+						requiredInterfaces ( AudioDB ) 
+						assemblyContexts { 
+							AssemblyContext MediaManager { 
+								component MediaManager 
+								providedRoles { 
+									Role "R MediaStore MedMan" from MediaStore
+								} 
+								requiredRoles { 
+									Role "R Sound MedMan" from Sound , 
+									Role "R AudioDB MedMan" from AudioDB
+								}
+							} , 
+							AssemblyContext DigitalWatermarking { 
+								component DigitalWatermarking 
+								providedRoles { 
+									Role "R Sound Water" from Sound
+								}
+							} , 
+							AssemblyContext DBCache { 
+								component DBCache 
+								providedRoles { 
+									Role "R AudioDB DBCache-p" from AudioDB
+								} 
+								requiredRoles { 
+									Role "R Audio DBCache-r" from AudioDB
+								}
+							}
+						} assemblyConnectors { 
+							c3 : "MediaManager.R AudioDB MedMan" -(o- "DBCache.R AudioDB DBCache-p" , 
+							c4 : "MediaManager.R AudioDB MedMan" -(o- "DigitalWatermarking.R Sound Water"
+						} delegationConnectors { 
+							d2 : "MediaManager.R MediaStore MedMan" -> MediaStore , 
+							d3 : "DBCache.R Audio DBCache-r" -> AudioDB
+						}
+					}
+				} assemblyConnectors { 
+					c1 : "WebGUI.R MediaStore WebGUI" -(o- "CompositeComponent.R MediaStore CompComp" , 
+					c2 : "CompositeComponent.R AudioDB CompComp" -(o- "PoolingAudioDB.R AudioDB PA"
+				} delegationConnectors { 
+					d1 : "WebGUI.R HTTP WebGUI" -> HTTP
+				}
+			} allocation Allocation { 
+				allocationContexts { 
+					AllocationContext a1 { 
+						PoolingAudioDB -[]-> DatabaseServer
+					} , 
+					AllocationContext a2 { 
+						^CompositeComponent -[]-> ApplicationServer
+					} , 
+					AllocationContext a3 { 
+						WebGUI -[]-> ApplicationServer
+					}
+				}
+			} environment Environment { 
+				links { 
+					Link ServerLink { 
+						ApplicationServer <=> DatabaseServer
+					}
+				} containers { 
+					Container ApplicationServer { 
+						links ( ServerLink )
+					} , 
+					Container DatabaseServer { 
+						links ( ServerLink )
+					}
+				}
+			}
+		}
+	} 
+}
