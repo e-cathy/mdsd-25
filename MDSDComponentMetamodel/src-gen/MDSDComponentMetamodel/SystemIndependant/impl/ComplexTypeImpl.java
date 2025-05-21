@@ -7,14 +7,11 @@ import MDSDComponentMetamodel.SystemIndependant.Parameter;
 import MDSDComponentMetamodel.SystemIndependant.SystemIndependantPackage;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -26,23 +23,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link MDSDComponentMetamodel.SystemIndependant.impl.ComplexTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link MDSDComponentMetamodel.SystemIndependant.impl.ComplexTypeImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ComplexTypeImpl extends TypeImpl implements ComplexType {
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Class<?> type;
-
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -70,30 +56,6 @@ public class ComplexTypeImpl extends TypeImpl implements ComplexType {
 	@Override
 	protected EClass eStaticClass() {
 		return SystemIndependantPackage.Literals.COMPLEX_TYPE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Class<?> getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setType(Class<?> newType) {
-		Class<?> oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemIndependantPackage.COMPLEX_TYPE__TYPE, oldType,
-					type));
 	}
 
 	/**
@@ -132,8 +94,6 @@ public class ComplexTypeImpl extends TypeImpl implements ComplexType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SystemIndependantPackage.COMPLEX_TYPE__TYPE:
-			return getType();
 		case SystemIndependantPackage.COMPLEX_TYPE__ATTRIBUTES:
 			return getAttributes();
 		}
@@ -149,9 +109,6 @@ public class ComplexTypeImpl extends TypeImpl implements ComplexType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SystemIndependantPackage.COMPLEX_TYPE__TYPE:
-			setType((Class<?>) newValue);
-			return;
 		case SystemIndependantPackage.COMPLEX_TYPE__ATTRIBUTES:
 			getAttributes().clear();
 			getAttributes().addAll((Collection<? extends Parameter>) newValue);
@@ -168,9 +125,6 @@ public class ComplexTypeImpl extends TypeImpl implements ComplexType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SystemIndependantPackage.COMPLEX_TYPE__TYPE:
-			setType((Class<?>) null);
-			return;
 		case SystemIndependantPackage.COMPLEX_TYPE__ATTRIBUTES:
 			getAttributes().clear();
 			return;
@@ -186,29 +140,10 @@ public class ComplexTypeImpl extends TypeImpl implements ComplexType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SystemIndependantPackage.COMPLEX_TYPE__TYPE:
-			return type != null;
 		case SystemIndependantPackage.COMPLEX_TYPE__ATTRIBUTES:
 			return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (type: ");
-		result.append(type);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ComplexTypeImpl

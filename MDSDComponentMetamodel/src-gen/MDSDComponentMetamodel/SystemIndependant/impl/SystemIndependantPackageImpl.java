@@ -32,7 +32,6 @@ import MDSDComponentMetamodel.impl.MDSDComponentMetamodelPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -341,18 +340,8 @@ public class SystemIndependantPackageImpl extends EPackageImpl implements System
 	 * @generated
 	 */
 	@Override
-	public EAttribute getComplexType_Type() {
-		return (EAttribute) complexTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getComplexType_Attributes() {
-		return (EReference) complexTypeEClass.getEStructuralFeatures().get(1);
+		return (EReference) complexTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -629,7 +618,6 @@ public class SystemIndependantPackageImpl extends EPackageImpl implements System
 		createEReference(repositoryEClass, REPOSITORY__TYPES);
 
 		complexTypeEClass = createEClass(COMPLEX_TYPE);
-		createEAttribute(complexTypeEClass, COMPLEX_TYPE__TYPE);
 		createEReference(complexTypeEClass, COMPLEX_TYPE__ATTRIBUTES);
 
 		externalCallEClass = createEClass(EXTERNAL_CALL);
@@ -744,11 +732,6 @@ public class SystemIndependantPackageImpl extends EPackageImpl implements System
 
 		initEClass(complexTypeEClass, ComplexType.class, "ComplexType", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
-		EGenericType g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getComplexType_Type(), g1, "type", null, 1, 1, ComplexType.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComplexType_Attributes(), this.getParameter(), null, "attributes", null, 0, -1,
 				ComplexType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

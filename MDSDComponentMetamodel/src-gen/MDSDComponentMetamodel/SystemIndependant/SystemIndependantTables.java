@@ -15,15 +15,12 @@ import MDSDComponentMetamodel.MDSDComponentMetamodelTables;
 import MDSDComponentMetamodel.SystemDependant.SystemDependantPackage;
 // import MDSDComponentMetamodel.SystemIndependant.SystemIndependantPackage;
 // import MDSDComponentMetamodel.SystemIndependant.SystemIndependantTables;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
-import org.eclipse.ocl.pivot.ids.DataTypeId;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.ids.WildcardId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorPackage;
@@ -65,11 +62,9 @@ public class SystemIndependantTables extends AbstractTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
 	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_MDSDComponentMetamodel = IdManager.getNsURIPackageId("http://www.example.org/MDSDComponentMetamodel", null, MDSDComponentMetamodelPackage.eINSTANCE);
 	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemDependant = IdManager.getNsURIPackageId("http://www.example.org/SystemDependant", null, SystemDependantPackage.eINSTANCE);
 	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_SystemIndependant = IdManager.getNsURIPackageId("http://www.example.org/SystemIndependant", null, SystemIndependantPackage.eINSTANCE);
-	public static final /*@NonInvalid*/ WildcardId WILDid_ = IdManager.getWildcardId();
 	public static final /*@NonInvalid*/ ClassId CLSSid_Action = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Action", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_AssemblyContext = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("AssemblyContext", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_BasicComponent = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("BasicComponent", 0);
@@ -87,7 +82,6 @@ public class SystemIndependantTables extends AbstractTables
 	public static final /*@NonInvalid*/ ClassId CLSSid_Signature = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Signature", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_System = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemDependant.getClassId("System", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Type = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getClassId("Type", 0);
-	public static final /*@NonInvalid*/ DataTypeId DATAid_EJavaClass = SystemIndependantTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EJavaClass", 1);
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_SimpleTypeEnum = SystemIndependantTables.PACKid_http_c_s_s_www_example_org_s_SystemIndependant.getEnumerationId("SimpleTypeEnum");
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AssemblyContext = TypeId.BAG.getSpecializedId(SystemIndependantTables.CLSSid_AssemblyContext, false, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Component = TypeId.BAG.getSpecializedId(SystemIndependantTables.CLSSid_Component, false, ValueUtil.ZERO_VALUE, ValueUtil.UNLIMITED_VALUE);
@@ -358,7 +352,6 @@ public class SystemIndependantTables extends AbstractTables
 		public static final ExecutorProperty _Branch__condition = new EcoreExecutorProperty(SystemIndependantPackage.Literals.BRANCH__CONDITION, Types._Branch, 1);
 
 		public static final ExecutorProperty _ComplexType__attributes = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPLEX_TYPE__ATTRIBUTES, Types._ComplexType, 0);
-		public static final ExecutorProperty _ComplexType__type = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPLEX_TYPE__TYPE, Types._ComplexType, 1);
 
 		public static final ExecutorProperty _Component__behaviorDescription = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPONENT__BEHAVIOR_DESCRIPTION, Types._Component, 0);
 		public static final ExecutorProperty _Component__providedInterfaces = new EcoreExecutorProperty(SystemIndependantPackage.Literals.COMPONENT__PROVIDED_INTERFACES, Types._Component, 1);
@@ -1300,8 +1293,7 @@ public class SystemIndependantTables extends AbstractTables
 			SystemIndependantTables.Properties._ComplexType__attributes,
 			MDSDComponentMetamodelTables.Properties._NamedElement__name,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
-			OCLstdlibTables.Properties._OclElement__oclContents,
-			SystemIndependantTables.Properties._ComplexType__type
+			OCLstdlibTables.Properties._OclElement__oclContents
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _Component = {

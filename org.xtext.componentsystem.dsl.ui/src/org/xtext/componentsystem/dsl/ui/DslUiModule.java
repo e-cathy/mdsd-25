@@ -4,6 +4,7 @@
 package org.xtext.componentsystem.dsl.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -12,5 +13,10 @@ public class DslUiModule extends AbstractDslUiModule {
 
 	public DslUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+	
+	@Override
+	public Class<? extends IXtextEditorCallback> bindIXtextEditorCallback() {
+	    return DslEditorCallback.class;
 	}
 }
