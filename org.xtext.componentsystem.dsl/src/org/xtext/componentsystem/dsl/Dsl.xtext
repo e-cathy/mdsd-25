@@ -145,7 +145,6 @@ AssemblyContext returns SystemDependant::AssemblyContext:
 	name=EString
 	'{'
 		'component' component=[SystemIndependant::Component|EString]
-		('allocationContext' allocationContext=[SystemDependant::AllocationContext|EString])?
 		('providedRoles' '{' providedRoles+=Role ( "," providedRoles+=Role)* '}' )?
 		('requiredRoles' '{' requiredRoles+=Role ( "," requiredRoles+=Role)* '}' )?
 	'}';
@@ -181,11 +180,7 @@ AllocationContext returns SystemDependant::AllocationContext:
 
 Container returns SystemDependant::Container:
 	{SystemDependant::Container}
-	'Container'
-	name=EString
-	'{'
-		('links' '(' links+=[SystemDependant::Link|EString] ( "," links+=[SystemDependant::Link|EString])* ')' )?
-	'}';
+	'Container' name=EString;
 
 Link returns SystemDependant::Link:
 	'Link'

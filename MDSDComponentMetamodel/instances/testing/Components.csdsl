@@ -1,11 +1,11 @@
 ComponentSystem {
 	repositories {
 		Repository {	
-			components { 
+			components {
 				BasicComponent WebGUI { 
-					providedInterfaces ( HTTP ) 
+					providedInterfaces ( HTTP )
 					requiredInterfaces ( MediaStore ) 
-					providedServices { 
+					providedServices {
 						Service s for "HTTP.HTTPUpload" , 
 						Service s for "HTTP.HTTPDownload"
 					}
@@ -66,14 +66,12 @@ ComponentSystem {
 				assemblyContexts { 
 					AssemblyContext PoolingAudioDB { 
 						component PoolingAudioDB 
-						allocationContext a1 
 						providedRoles { 
 							Role "R AudioDB PA" from AudioDB
 						}
 					} , 
 					AssemblyContext WebGUI { 
 						component WebGUI 
-						allocationContext a3 
 						providedRoles { 
 							Role "R HTTP WebGUI" from HTTP
 						} 
@@ -83,7 +81,6 @@ ComponentSystem {
 					} , 
 					AssemblyContext ^CompositeComponent { 
 						component ^CompositeComponent 
-						allocationContext a2 
 						providedRoles { 
 							Role "R MediaStore CompComp" from MediaStore
 						} 
@@ -153,12 +150,8 @@ ComponentSystem {
 						ApplicationServer <=> DatabaseServer
 					}
 				} containers { 
-					Container ApplicationServer { 
-						links ( ServerLink )
-					} , 
-					Container DatabaseServer { 
-						links ( ServerLink )
-					}
+					Container ApplicationServer, 
+					Container DatabaseServer
 				}
 			}
 		}

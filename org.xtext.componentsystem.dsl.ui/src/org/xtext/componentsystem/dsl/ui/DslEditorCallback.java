@@ -34,6 +34,7 @@ public class DslEditorCallback implements IXtextEditorCallback {
             // Remove existing resource
             Resource existing = resourceSet.getResource(xmiUri, false);
             if (existing != null) {
+            	existing.unload();
                 resourceSet.getResources().remove(existing);
             }
             
