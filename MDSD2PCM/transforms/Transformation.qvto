@@ -1,5 +1,16 @@
-transformation Transformation();
+modeltype pcm uses "http://palladiosimulator.org/PalladioComponentModel/5.2";
+modeltype componentSystem uses "http://www.example.org/MDSDComponentMetamodel";
+
+transformation ComponentSystem2PCM(in source: componentSystem, out target: pcm);
 
 main() {
+	source.objectsOfType(ComponentSystem);
+	source.objectsOfType(componentSystem::SystemIndependant::Repository);
+}
 
+mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::core::entity::InterfaceProvidingEntity {
+	result.providedRoles_InterfaceProvidingEntity := null;
+}
+
+mapping componentSystem::SystemIndependant::Repository :: Repo2Repo2() : PCMClass {
 }
