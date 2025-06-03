@@ -5,12 +5,14 @@ transformation ComponentSystem2PCM(in source: componentSystem, out target: pcm);
 
 main() {
 	source.objectsOfType(ComponentSystem);
-	source.objectsOfType(componentSystem::SystemIndependant::Repository);
+	source.rootObjects()->selectByKind(componentSystem::SystemIndependant::Repository)->Repo2Repo();
 }
 
 abstract mapping componentSystem::NamedElement :: Named2Named() : pcm::core::entity::NamedElement {
 	result.entityName := self.name;
 }
+
+-- REPOSITORY --
 
 mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::repository::Repository {
 	result.components__Repository := self.components->BasicComp2BasicComp();
@@ -18,14 +20,18 @@ mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::rep
 	result.dataTypes__Repository := self.types->Type2DataType();
 }
 
-abstract mapping componentSystem::SystemIndependant::Component :: Comp2RepoComp() : pcm::repository::RepositoryComponent 
+mapping componentSystem::SystemIndependant::Component :: Comp2RepoComp() : pcm::repository::RepositoryComponent disjuncts 
+componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp,
+componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp;
+
+abstract mapping componentSystem::SystemIndependant::Component :: AbstractComp2RepoComp() : pcm::repository::RepositoryComponent 
 inherits componentSystem::NamedElement::Named2Named {
 	result.providedRoles_InterfaceProvidingEntity := self.providedInterfaces->Interface2OpInterface();
 	result.requiredRoles_InterfaceRequiringEntity := self.requiredInterfaces->Interface2OpInterface();
 }
 
 mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp() : pcm::repository::BasicComponent 
-inherits componentSystem::SystemIndependant::Component::Comp2RepoComp {
+inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
 
 }
 
@@ -37,12 +43,12 @@ inherits componentSystem::NamedElement::Named2Named {
 mapping componentSystem::SystemIndependant::Signature :: Signature2OpSignature() : pcm::repository::OperationSignature
 inherits componentSystem::NamedElement::Named2Named {
 	result.parameters__OperationSignature := self.parameters->Param2Param();
-	result.returnType__OperationSignature := self.returnType->Type2DataType();
+	result.returnType__OperationSignature := self.returnType.map Type2DataType();
 }
 
 mapping componentSystem::SystemIndependant::Parameter :: Param2Param() : pcm::repository::Parameter {
 	result.parameterName := self.name;
-	result.dataType__Parameter := self.type->Type2DataType();
+	result.dataType__Parameter := self.type.map Type2DataType();
 }
 
 mapping componentSystem::SystemIndependant::Type :: Type2DataType() : pcm::repository::DataType disjuncts
@@ -59,7 +65,7 @@ inherits componentSystem::NamedElement::Named2Named {
 }
 
 mapping componentSystem::SystemIndependant::Parameter :: Param2InnerDeclaration() : pcm::repository::InnerDeclaration {
-	result.datatype_InnerDeclaration := self.type->Type2DataType();
+	result.datatype_InnerDeclaration := self.type.map Type2DataType();
 }
 
 helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pcm::repository::PrimitiveTypeEnum {
@@ -80,3 +86,47 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 	endif
 }
 
+-- ASSEMBLY --
+
+abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure() : pcm::core::composition::ComposedStructure {
+	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
+	result.connectors__ComposedStructure := self.assemblyConnectors->AssemblyConn2AssemblyConn();
+	result.resourceRequiredDelegationConnectors_ComposedStructure := self.delegationConnectors;
+}
+
+mapping componentSystem::SystemDependant::AssemblyContext :: AssemblyCont2AssemblyCont() : pcm::core::composition::AssemblyContext 
+inherits componentSystem::NamedElement::Named2Named {
+	result.encapsulatedComponent__AssemblyContext := self.component.map Comp2RepoComp();
+}
+
+mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp() : pcm::repository::CompositeComponent
+inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
+	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
+	result.connectors__ComposedStructure := self.assemblyConnectors->AssemblyConn2AssemblyConn();
+	result.resourceRequiredDelegationConnectors_ComposedStructure := self.delegationConnectors;
+}
+
+mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector
+inherits componentSystem::NamedElement::Named2Named {
+	result.providedRole_AssemblyConnector := self.providedRole;
+	result.requiredRole_AssemblyConnector := self.requiredRole;
+}
+
+-- ALLOCATION --
+
+
+
+-- ENVIRONMENT --
+
+mapping componentSystem::SystemDependant::Environment :: Env2ResourceEnv() : pcm::resourceenvironment::ResourceEnvironment {
+	result.linkingResources__ResourceEnvironment := self.links->Link2LinkingResource();
+	result.resourceContainer_ResourceEnvironment := self.containers->Cont2ResourceCont();
+}
+
+mapping componentSystem::SystemDependant::Container :: Cont2ResourceCont() : pcm::resourceenvironment::ResourceContainer
+inherits componentSystem::NamedElement::Named2Named {}
+
+mapping componentSystem::SystemDependant::Link :: Link2LinkingResource() : pcm::resourceenvironment::LinkingResource 
+inherits componentSystem::NamedElement::Named2Named {
+	result.connectedResourceContainers_LinkingResource := self.containers->Cont2ResourceCont();
+}
