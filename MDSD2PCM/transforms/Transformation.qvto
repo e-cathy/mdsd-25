@@ -86,12 +86,18 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 	endif
 }
 
+-- SYSTEM --
+mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::System {
+	
+}
+
 -- ASSEMBLY --
 
 abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure() : pcm::core::composition::ComposedStructure {
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
-	result.connectors__ComposedStructure := self.assemblyConnectors->AssemblyConn2AssemblyConn();
-	result.resourceRequiredDelegationConnectors_ComposedStructure := self.delegationConnectors;
+	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn();
+	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
+	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 }
 
 mapping componentSystem::SystemDependant::AssemblyContext :: AssemblyCont2AssemblyCont() : pcm::core::composition::AssemblyContext 
@@ -102,14 +108,31 @@ inherits componentSystem::NamedElement::Named2Named {
 mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp() : pcm::repository::CompositeComponent
 inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
-	result.connectors__ComposedStructure := self.assemblyConnectors->AssemblyConn2AssemblyConn();
-	result.resourceRequiredDelegationConnectors_ComposedStructure := self.delegationConnectors;
+	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn();
+	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
+	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 }
 
 mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector
 inherits componentSystem::NamedElement::Named2Named {
-	result.providedRole_AssemblyConnector := self.providedRole;
+	result.providedRole_AssemblyConnector := self.providedRole; //TODO: map
 	result.requiredRole_AssemblyConnector := self.requiredRole;
+}
+
+mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn() : pcm::core::composition::DelegationConnector {
+	init {
+        if self.role.providedAssemblyContext <> null then {
+            result := object pcm::core::composition::ProvidedDelegationConnector {
+                innerProvidedRole_ProvidedDelegationConnector := self.role.map Role2Role();
+                outerProvidedRole_ProvidedDelegationConnector := self.delegatedInterface.map Interface2Role();
+            };
+        } elif self.role.requiredAssemblyContext <> null then {
+            result := object pcm::core::composition::RequiredDelegationConnector {
+                innerRequiredRole_RequiredDelegationConnector := self.role.map Role2Role();
+                outerRequiredRole_RequiredDelegationConnector := self.delegatedInterface.map Interface2Role();
+            };
+        } endif;
+    }
 }
 
 -- ALLOCATION --
