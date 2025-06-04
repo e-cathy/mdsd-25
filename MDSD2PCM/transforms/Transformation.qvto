@@ -4,6 +4,7 @@ modeltype componentSystem uses "http://www.example.org/MDSDComponentMetamodel";
 transformation ComponentSystem2PCM(in source: componentSystem, out target: pcm);
 
 main() {
+	// TODO
 	source.objectsOfType(ComponentSystem);
 	source.rootObjects()->selectByKind(componentSystem::SystemIndependant::Repository)->Repo2Repo();
 }
@@ -88,16 +89,24 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 
 -- SYSTEM --
 mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::System {
+	init {
+		result := self.assembly.map Assembly2Sys();
+	}
 	
 }
 
 -- ASSEMBLY --
 
 abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure() : pcm::core::composition::ComposedStructure {
-	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
-	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn();
-	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
+	result.assemblyContexts__ComposedStructure := self.assembly.assemblyContexts->AssemblyCont2AssemblyCont();
+	var delegation_connectors := self.assembly.delegationConnectors -> map DelegationConn2Conn();
+	var assembly_connectors := self.assembly.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
+}
+
+mapping componentSystem::SystemDependant::Assembly :: Assembly2Sys() : pcm::system::System 
+inherits componentSystem::SystemDependant::Assembly::Assembly2CompStructure{
+	
 }
 
 mapping componentSystem::SystemDependant::AssemblyContext :: AssemblyCont2AssemblyCont() : pcm::core::composition::AssemblyContext 
@@ -115,24 +124,40 @@ inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
 
 mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector
 inherits componentSystem::NamedElement::Named2Named {
-	result.providedRole_AssemblyConnector := self.providedRole; //TODO: map
-	result.requiredRole_AssemblyConnector := self.requiredRole;
+	result.providedRole_AssemblyConnector := self.providedRole.map Role2ProvidedRole();
+	result.requiredRole_AssemblyConnector := self.requiredRole.map Role2RequiredRole();
 }
 
 mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn() : pcm::core::composition::DelegationConnector {
 	init {
         if self.role.providedAssemblyContext <> null then {
             result := object pcm::core::composition::ProvidedDelegationConnector {
-                innerProvidedRole_ProvidedDelegationConnector := self.role.map Role2Role();
+                innerProvidedRole_ProvidedDelegationConnector := self.role.map Role2ProvidedRole();
                 outerProvidedRole_ProvidedDelegationConnector := self.delegatedInterface.map Interface2Role();
             };
         } elif self.role.requiredAssemblyContext <> null then {
             result := object pcm::core::composition::RequiredDelegationConnector {
-                innerRequiredRole_RequiredDelegationConnector := self.role.map Role2Role();
+                innerRequiredRole_RequiredDelegationConnector := self.role.map Role2RequiredRole();
                 outerRequiredRole_RequiredDelegationConnector := self.delegatedInterface.map Interface2Role();
             };
         } endif;
     }
+}
+
+mapping componentSystem::SystemDependant::Role :: Role2Role() : pcm::repository::Role disjuncts
+componentSystem::SystemDependant::Role :: Role2ProvidedRole,
+componentSystem::SystemDependant::Role :: Role2RequiredRole;
+
+mapping componentSystem::SystemDependant::Role :: Role2ProvidedRole() : pcm::repository::OperationProvidedRole when {
+	self.providedAssemblyContext <> null;
+}{
+	result.providedInterface__OperationProvidedRole := self.interface.map Interface2OpInterface();
+}
+
+mapping componentSystem::SystemDependant::Role :: Role2RequiredRole() : pcm::repository::OperationRequiredRole when {
+	self.requiredAssemblyContext <> null;
+}{
+	result.requiredInterface__OperationRequiredRole := self.interface.map Interface2OpInterface();
 }
 
 -- ALLOCATION --
