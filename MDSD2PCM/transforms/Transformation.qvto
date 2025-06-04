@@ -162,7 +162,15 @@ mapping componentSystem::SystemDependant::Role :: Role2RequiredRole() : pcm::rep
 
 -- ALLOCATION --
 
+mapping componentSystem::SystemDependant::Allocation :: Alloc2Alloc() : pcm::allocation::Allocation {
+	result.allocationContexts_Allocation := self.allocationContexts->AllocContext2AllocContext();
+}
 
+mapping componentSystem::SystemDependant::AllocationContext :: AllocContext2AllocContext() : pcm::allocation::AllocationContext 
+inherits componentSystem::NamedElement::Named2Named {
+	result.resourceContainer_AllocationContext := self.container.map Cont2ResourceCont();
+	result.assemblyContext_AllocationContext := self.assemblyContext.map AssemblyCont2AssemblyCont();
+}
 
 -- ENVIRONMENT --
 
