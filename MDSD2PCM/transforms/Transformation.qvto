@@ -98,9 +98,9 @@ mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::Sys
 -- ASSEMBLY --
 
 abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure() : pcm::core::composition::ComposedStructure {
-	result.assemblyContexts__ComposedStructure := self.assembly.assemblyContexts->AssemblyCont2AssemblyCont();
-	var delegation_connectors := self.assembly.delegationConnectors -> map DelegationConn2Conn();
-	var assembly_connectors := self.assembly.assemblyConnectors->AssemblyConn2AssemblyConn();
+	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
+	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn();
+	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 }
 
