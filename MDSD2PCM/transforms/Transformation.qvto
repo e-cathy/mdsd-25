@@ -92,7 +92,9 @@ mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::Sys
 	init {
 		result := self.assembly.map Assembly2Sys();
 	}
-	
+	population {
+		result.providedRoles_InterfaceProvidingEntity := self.assembly.delegationConnectors -> role.map Role2ProvidedRole();
+	}	
 }
 
 -- ASSEMBLY --
@@ -120,6 +122,8 @@ inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
 	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn();
 	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
+	result.providedRoles_InterfaceProvidingEntity := self.delegationConnectors -> role -> select(r | r.providedAssemblyContext <> null).map Role2ProvidedRole();
+	result.requiredRoles_InterfaceRequiringEntity := self.delegationConnectors -> role -> select(r | r.requiredAssemblyContext <> null).map Role2RequiredRole();
 }
 
 mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector
