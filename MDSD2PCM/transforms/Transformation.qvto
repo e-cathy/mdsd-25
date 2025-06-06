@@ -121,12 +121,17 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 }
 
 query createEmptySEFF(comp: pcm::repository::BasicComponent, sig: pcm::repository::Signature) : pcm::seff::ResourceDemandingSEFF{
+    var start := object pcm::seff::StartAction{};
+    var stop := object pcm::seff::StopAction{
+    	predecessor_AbstractAction := start;
+    };
+    start.successor_AbstractAction := stop;
     return object pcm::seff::ResourceDemandingSEFF{
         seffTypeID := "-1";
-        steps_Behaviour:= Set{};
+        steps_Behaviour:= Set{start,stop};
         basicComponent_ServiceEffectSpecification:= comp;
         describedService__SEFF:= sig;
-    }
+    };
 }
 
 
