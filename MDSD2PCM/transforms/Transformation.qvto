@@ -1,12 +1,22 @@
 modeltype pcm uses "http://palladiosimulator.org/PalladioComponentModel/5.2";
 modeltype componentSystem uses "http://www.example.org/MDSDComponentMetamodel";
+modeltype pcmEnvironment uses 'http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2';
+modeltype pcmAllocation uses 'http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2';
+modeltype pcmSystem uses 'http://palladiosimulator.org/PalladioComponentModel/System/5.2';
+modeltype pcmRepository uses 'http://palladiosimulator.org/PalladioComponentModel/Repository/5.2';
 
-transformation ComponentSystem2PCM(in source: componentSystem, out target: pcm);
+transformation ComponentSystem2PCM(in source: componentSystem,
+ out targetEnv: pcmEnvironment, out targetAlloc: pcmAllocation, out targetSys: pcmSystem, out targetRepo: pcmRepository);
 
 main() {
-	// TODO
-	source.objectsOfType(ComponentSystem);
-	source.rootObjects()->selectByKind(componentSystem::SystemIndependant::Repository)->Repo2Repo();
+	var root = source.rootObjects()[ComponentSystem];
+	if (root <> null) {
+		var systems = root.systems;
+		systems -> map Sys2Sys();
+		systems -> environment -> map Env2ResourceEnv();
+		systems -> allocation -> map Alloc2Alloc();
+		root.repositories -> map Repo2Repo();
+	} endif;
 }
 
 abstract mapping componentSystem::NamedElement :: Named2Named() : pcm::core::entity::NamedElement {
@@ -27,8 +37,8 @@ componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp;
 
 abstract mapping componentSystem::SystemIndependant::Component :: AbstractComp2RepoComp() : pcm::repository::RepositoryComponent 
 inherits componentSystem::NamedElement::Named2Named {
-	result.providedRoles_InterfaceProvidingEntity := self.providedInterfaces->Interface2OpInterface();
-	result.requiredRoles_InterfaceRequiringEntity := self.requiredInterfaces->Interface2OpInterface();
+	result.providedRoles_InterfaceProvidingEntity := self.providedInterfaces -> map Interface2ProvidedRole(result);
+	result.requiredRoles_InterfaceRequiringEntity := self.requiredInterfaces -> map Interface2RequiredRole(result);
 }
 
 mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp() : pcm::repository::BasicComponent 
@@ -45,6 +55,30 @@ mapping componentSystem::SystemIndependant::Signature :: Signature2OpSignature()
 inherits componentSystem::NamedElement::Named2Named {
 	result.parameters__OperationSignature := self.parameters->Param2Param();
 	result.returnType__OperationSignature := self.returnType.map Type2DataType();
+}
+
+mapping componentSystem::SystemIndependant::Interface :: Interface2ProvidedRole(
+ entity : pcm::core::entity::InterfaceProvidingEntity) : pcm::repository::OperationProvidedRole
+ {
+	init {
+		result := object pcm::repository::OperationProvidedRole {
+			providedInterface__OperationProvidedRole := self.map Interface2OpInterface();
+			providingEntity_ProvidedRole := entity;
+			entityName := self.name;
+		}
+	}
+}
+
+mapping componentSystem::SystemIndependant::Interface :: Interface2RequiredRole(
+ entity : pcm::core::entity::InterfaceRequiringEntity) : pcm::repository::OperationRequiredRole 
+ {
+	init {
+		result := object pcm::repository::OperationRequiredRole {
+			requiredInterface__OperationRequiredRole := self.map Interface2OpInterface();
+			requiringEntity_RequiredRole := entity;
+			entityName := self.name;
+		}
+	}
 }
 
 mapping componentSystem::SystemIndependant::Parameter :: Param2Param() : pcm::repository::Parameter {
@@ -90,7 +124,7 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 -- SYSTEM --
 mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::System {
 	init {
-		result := self.assembly.map Assembly2Sys();
+		result := self.assembly.map Assembly2Sys(result);
 	}
 	population {
 		result.providedRoles_InterfaceProvidingEntity := self.assembly.delegationConnectors -> role.map Role2ProvidedRole();
@@ -99,14 +133,14 @@ mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::Sys
 
 -- ASSEMBLY --
 
-abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure() : pcm::core::composition::ComposedStructure {
+abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure(sys: pcm::system::System) : pcm::core::composition::ComposedStructure {
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
-	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn();
+	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(sys);
 	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 }
 
-mapping componentSystem::SystemDependant::Assembly :: Assembly2Sys() : pcm::system::System 
+mapping componentSystem::SystemDependant::Assembly :: Assembly2Sys(sys: pcm::system::System) : pcm::system::System 
 inherits componentSystem::SystemDependant::Assembly::Assembly2CompStructure{
 	
 }
@@ -119,7 +153,7 @@ inherits componentSystem::NamedElement::Named2Named {
 mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp() : pcm::repository::CompositeComponent
 inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
-	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn();
+	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(result);
 	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 	result.providedRoles_InterfaceProvidingEntity := self.delegationConnectors -> role -> select(r | r.providedAssemblyContext <> null).map Role2ProvidedRole();
@@ -132,17 +166,17 @@ inherits componentSystem::NamedElement::Named2Named {
 	result.requiredRole_AssemblyConnector := self.requiredRole.map Role2RequiredRole();
 }
 
-mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn() : pcm::core::composition::DelegationConnector {
+mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn(entity: pcm::core::entity::InterfaceProvidingRequiringEntity) : pcm::core::composition::DelegationConnector {
 	init {
         if self.role.providedAssemblyContext <> null then {
             result := object pcm::core::composition::ProvidedDelegationConnector {
                 innerProvidedRole_ProvidedDelegationConnector := self.role.map Role2ProvidedRole();
-                outerProvidedRole_ProvidedDelegationConnector := self.delegatedInterface.map Interface2Role();
+                outerProvidedRole_ProvidedDelegationConnector := self.delegatedInterface.map Interface2ProvidedRole(entity);
             };
         } elif self.role.requiredAssemblyContext <> null then {
             result := object pcm::core::composition::RequiredDelegationConnector {
                 innerRequiredRole_RequiredDelegationConnector := self.role.map Role2RequiredRole();
-                outerRequiredRole_RequiredDelegationConnector := self.delegatedInterface.map Interface2Role();
+                outerRequiredRole_RequiredDelegationConnector := self.delegatedInterface.map Interface2RequiredRole(entity);
             };
         } endif;
     }
