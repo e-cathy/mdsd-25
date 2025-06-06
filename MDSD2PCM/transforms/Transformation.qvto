@@ -44,7 +44,8 @@ inherits componentSystem::NamedElement::Named2Named {
 
 mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp() : pcm::repository::BasicComponent 
 inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
-	result.serviceEffectSpecifications__BasicComponent := Set{createEmptySEFF(result,null)};
+	var signatures := self.providedInterfaces->collect(e | e.signatures)->flatten().map Signature2OpSignature();
+	result.serviceEffectSpecifications__BasicComponent :=signatures.map Signature2Seff(result);
 }
 
 mapping componentSystem::SystemIndependant::Interface :: Interface2OpInterface() : pcm::repository::OperationInterface
@@ -123,18 +124,18 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 	endif
 }
 
-query createEmptySEFF(comp: pcm::repository::BasicComponent, sig: pcm::repository::Signature) : pcm::seff::ResourceDemandingSEFF{
+
+mapping  pcm::repository::Signature :: Signature2Seff(comp: pcm::repository::BasicComponent) : pcm::seff::ResourceDemandingSEFF{
     var start := object pcm::seff::StartAction{};
     var stop := object pcm::seff::StopAction{
     	predecessor_AbstractAction := start;
     };
     start.successor_AbstractAction := stop;
-    return object pcm::seff::ResourceDemandingSEFF{
-        seffTypeID := "-1";
-        steps_Behaviour:= Set{start,stop};
-        basicComponent_ServiceEffectSpecification:= comp;
-        describedService__SEFF:= sig;
-    };
+    seffTypeID := "-1";
+    steps_Behaviour:= Set{start,stop};
+    basicComponent_ServiceEffectSpecification:= comp;
+    describedService__SEFF:= self;
+
 }
 
 
