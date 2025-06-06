@@ -5,8 +5,7 @@ modeltype pcmAllocation uses 'http://palladiosimulator.org/PalladioComponentMode
 modeltype pcmSystem uses 'http://palladiosimulator.org/PalladioComponentModel/System/5.2';
 modeltype pcmRepository uses 'http://palladiosimulator.org/PalladioComponentModel/Repository/5.2';
 
-transformation ComponentSystem2PCM(in source: componentSystem,
- out targetEnv: pcmEnvironment, out targetAlloc: pcmAllocation, out targetSys: pcmSystem, out targetRepo: pcmRepository);
+transformation ComponentSystem2PCM(in source: componentSystem, out target: pcm);
 
 main() {
 	var root = source.rootObjects()[ComponentSystem];

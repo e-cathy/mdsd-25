@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system">
+  <system:System id="__aMVwELbEfC4kqrTVekc0g">
+    <assemblyContexts__ComposedStructure id="__aXU4ELbEfC4kqrTVekc0g" entityName="WebGUI" encapsulatedComponent__AssemblyContext="__aYjAELbEfC4kqrTVekc0g"/>
+    <assemblyContexts__ComposedStructure id="__aM80ULbEfC4kqrTVekc0g" entityName="PoolingAudioDB" encapsulatedComponent__AssemblyContext="__aOK8ELbEfC4kqrTVekc0g"/>
+    <assemblyContexts__ComposedStructure id="__al-YELbEfC4kqrTVekc0g" entityName="CompositeComponent" encapsulatedComponent__AssemblyContext="__anMgELbEfC4kqrTVekc0g"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="__bCDQELbEfC4kqrTVekc0g" entityName="c1" providedRole_AssemblyConnector="__bCDQULbEfC4kqrTVekc0g" requiredRole_AssemblyConnector="__bCqUELbEfC4kqrTVekc0g"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="__bA1IELbEfC4kqrTVekc0g" innerProvidedRole_ProvidedDelegationConnector="__bA1IULbEfC4kqrTVekc0g" outerProvidedRole_ProvidedDelegationConnector="__bBcMELbEfC4kqrTVekc0g"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="__bD4cELbEfC4kqrTVekc0g" entityName="c2" providedRole_AssemblyConnector="__bFGkELbEfC4kqrTVekc0g" requiredRole_AssemblyConnector="__bFtoELbEfC4kqrTVekc0g"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="__bA1IULbEfC4kqrTVekc0g" providedInterface__OperationProvidedRole="__aaYMULbEfC4kqrTVekc0g"/>
+  </system:System>
+  <repository:CompositeComponent id="__anMgELbEfC4kqrTVekc0g" entityName="CompositeComponent">
+    <assemblyContexts__ComposedStructure id="__a0A0ELbEfC4kqrTVekc0g" entityName="DBCache" encapsulatedComponent__AssemblyContext="__a0A0ULbEfC4kqrTVekc0g"/>
+    <assemblyContexts__ComposedStructure id="__avIUELbEfC4kqrTVekc0g" entityName="DigitalWatermarking" encapsulatedComponent__AssemblyContext="__awWcELbEfC4kqrTVekc0g"/>
+    <assemblyContexts__ComposedStructure id="__apowELbEfC4kqrTVekc0g" entityName="MediaManager" encapsulatedComponent__AssemblyContext="__aq24ELbEfC4kqrTVekc0g"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="__a8jsELbEfC4kqrTVekc0g" entityName="c4" providedRole_AssemblyConnector="__a9KwELbEfC4kqrTVekc0g" requiredRole_AssemblyConnector="__a7VkELbEfC4kqrTVekc0g"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="__a45UELbEfC4kqrTVekc0g" entityName="c3" providedRole_AssemblyConnector="__a6HcELbEfC4kqrTVekc0g" requiredRole_AssemblyConnector="__a7VkELbEfC4kqrTVekc0g"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="__a3EIELbEfC4kqrTVekc0g" innerProvidedRole_ProvidedDelegationConnector="__a3EIULbEfC4kqrTVekc0g" outerProvidedRole_ProvidedDelegationConnector="__anzkELbEfC4kqrTVekc0g"/>
+    <connectors__ComposedStructure xsi:type="composition:RequiredDelegationConnector" id="__a4SQELbEfC4kqrTVekc0g" innerRequiredRole_RequiredDelegationConnector="__a4SQULbEfC4kqrTVekc0g" outerRequiredRole_RequiredDelegationConnector="__apBsELbEfC4kqrTVekc0g"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="__a3EIULbEfC4kqrTVekc0g" providedInterface__OperationProvidedRole="__ahF4ELbEfC4kqrTVekc0g"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="__a4SQULbEfC4kqrTVekc0g" requiredInterface__OperationRequiredRole="__aOyAULbEfC4kqrTVekc0g"/>
+  </repository:CompositeComponent>
+  <repository:OperationProvidedRole id="__anzkELbEfC4kqrTVekc0g" entityName="MediaStore" providedInterface__OperationProvidedRole="__ahF4ELbEfC4kqrTVekc0g"/>
+  <repository:OperationRequiredRole id="__apBsELbEfC4kqrTVekc0g" entityName="AudioDB" requiredInterface__OperationRequiredRole="__aOyAULbEfC4kqrTVekc0g"/>
+  <repository:OperationProvidedRole id="__a6HcELbEfC4kqrTVekc0g" providedInterface__OperationProvidedRole="__aOyAULbEfC4kqrTVekc0g"/>
+  <repository:OperationRequiredRole id="__a7VkELbEfC4kqrTVekc0g" requiredInterface__OperationRequiredRole="__aOyAULbEfC4kqrTVekc0g"/>
+  <repository:OperationProvidedRole id="__a9KwELbEfC4kqrTVekc0g" providedInterface__OperationProvidedRole="__atTIULbEfC4kqrTVekc0g"/>
+  <repository:OperationProvidedRole id="__bBcMELbEfC4kqrTVekc0g" entityName="HTTP" providedInterface__OperationProvidedRole="__aaYMULbEfC4kqrTVekc0g"/>
+  <repository:OperationProvidedRole id="__bCDQULbEfC4kqrTVekc0g" providedInterface__OperationProvidedRole="__ahF4ELbEfC4kqrTVekc0g"/>
+  <repository:OperationRequiredRole id="__bCqUELbEfC4kqrTVekc0g" requiredInterface__OperationRequiredRole="__ahF4ELbEfC4kqrTVekc0g"/>
+  <repository:OperationProvidedRole id="__bFGkELbEfC4kqrTVekc0g" providedInterface__OperationProvidedRole="__aOyAULbEfC4kqrTVekc0g"/>
+  <repository:OperationRequiredRole id="__bFtoELbEfC4kqrTVekc0g" requiredInterface__OperationRequiredRole="__aOyAULbEfC4kqrTVekc0g"/>
+  <resourceenvironment:ResourceEnvironment>
+    <linkingResources__ResourceEnvironment id="__bJYAELbEfC4kqrTVekc0g" entityName="ServerLink" connectedResourceContainers_LinkingResource="__bKmIELbEfC4kqrTVekc0g __bLNMELbEfC4kqrTVekc0g"/>
+    <resourceContainer_ResourceEnvironment id="__bKmIELbEfC4kqrTVekc0g" entityName="ApplicationServer"/>
+    <resourceContainer_ResourceEnvironment id="__bLNMELbEfC4kqrTVekc0g" entityName="DatabaseServer"/>
+  </resourceenvironment:ResourceEnvironment>
+  <allocation:Allocation id="__bNCYELbEfC4kqrTVekc0g">
+    <allocationContexts_Allocation id="__bO3kELbEfC4kqrTVekc0g" entityName="a2" resourceContainer_AllocationContext="__bKmIELbEfC4kqrTVekc0g" assemblyContext_AllocationContext="__al-YELbEfC4kqrTVekc0g"/>
+    <allocationContexts_Allocation id="__bQFsELbEfC4kqrTVekc0g" entityName="a3" resourceContainer_AllocationContext="__bKmIELbEfC4kqrTVekc0g" assemblyContext_AllocationContext="__aXU4ELbEfC4kqrTVekc0g"/>
+    <allocationContexts_Allocation id="__bNCYULbEfC4kqrTVekc0g" entityName="a1" resourceContainer_AllocationContext="__bLNMELbEfC4kqrTVekc0g" assemblyContext_AllocationContext="__aM80ULbEfC4kqrTVekc0g"/>
+  </allocation:Allocation>
+  <repository:Repository id="__bRT0ELbEfC4kqrTVekc0g">
+    <components__Repository xsi:type="repository:BasicComponent" id="__aq24ELbEfC4kqrTVekc0g" entityName="MediaManager">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="__ard8ELbEfC4kqrTVekc0g" entityName="MediaStore" providedInterface__OperationProvidedRole="__ahF4ELbEfC4kqrTVekc0g"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="__atTIELbEfC4kqrTVekc0g" entityName="Sound" requiredInterface__OperationRequiredRole="__atTIULbEfC4kqrTVekc0g"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="__assEELbEfC4kqrTVekc0g" entityName="AudioDB" requiredInterface__OperationRequiredRole="__aOyAULbEfC4kqrTVekc0g"/>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="__aOK8ELbEfC4kqrTVekc0g" entityName="PoolingAudioDB">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="__aOyAELbEfC4kqrTVekc0g" entityName="AudioDB" providedInterface__OperationProvidedRole="__aOyAULbEfC4kqrTVekc0g"/>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="__awWcELbEfC4kqrTVekc0g" entityName="DigitalWatermarking">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="__ayLoELbEfC4kqrTVekc0g" entityName="Sound" providedInterface__OperationProvidedRole="__atTIULbEfC4kqrTVekc0g"/>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="__aYjAELbEfC4kqrTVekc0g" entityName="WebGUI">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="__aaYMELbEfC4kqrTVekc0g" entityName="HTTP" providedInterface__OperationProvidedRole="__aaYMULbEfC4kqrTVekc0g"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="__age0ELbEfC4kqrTVekc0g" entityName="MediaStore" requiredInterface__OperationRequiredRole="__ahF4ELbEfC4kqrTVekc0g"/>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="__a0A0ULbEfC4kqrTVekc0g" entityName="DBCache">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="__a0n4ELbEfC4kqrTVekc0g" entityName="AudioDB" providedInterface__OperationProvidedRole="__aOyAULbEfC4kqrTVekc0g"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="__a12AELbEfC4kqrTVekc0g" entityName="AudioDB" requiredInterface__OperationRequiredRole="__aOyAULbEfC4kqrTVekc0g"/>
+    </components__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="__aaYMULbEfC4kqrTVekc0g" entityName="HTTP">
+      <signatures__OperationInterface id="__aeCkELbEfC4kqrTVekc0g" entityName="HTTPUpload"/>
+      <signatures__OperationInterface id="__abmUELbEfC4kqrTVekc0g" entityName="HTTPDownload"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="__aOyAULbEfC4kqrTVekc0g" entityName="AudioDB">
+      <signatures__OperationInterface id="__aPZEELbEfC4kqrTVekc0g" entityName="queryDB"/>
+      <signatures__OperationInterface id="__aQnMELbEfC4kqrTVekc0g" entityName="addFile"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="__atTIULbEfC4kqrTVekc0g" entityName="Sound">
+      <signatures__OperationInterface id="__at6MELbEfC4kqrTVekc0g" entityName="watermark"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="__ahF4ELbEfC4kqrTVekc0g" entityName="MediaStore">
+      <signatures__OperationInterface id="__ahs8ELbEfC4kqrTVekc0g" entityName="download"/>
+      <signatures__OperationInterface id="__ajiIELbEfC4kqrTVekc0g" entityName="upload"/>
+    </interfaces__Repository>
+  </repository:Repository>
+</xmi:XMI>
