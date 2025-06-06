@@ -42,7 +42,7 @@ inherits componentSystem::NamedElement::Named2Named {
 
 mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp() : pcm::repository::BasicComponent 
 inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
-	result.serviceEffectSpecifications__BasicComponent := Set{createEmptySEFF()};
+	result.serviceEffectSpecifications__BasicComponent := Set{createEmptySEFF(result,null)};
 }
 
 mapping componentSystem::SystemIndependant::Interface :: Interface2OpInterface() : pcm::repository::OperationInterface
@@ -120,11 +120,13 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 	endif
 }
 
-query createEmptySEFF(comp: pcm::repository::BasicComponent) : pcm::seff::ResourceDemandingSEFF{
-	return object pcm::seff::ResourceDemandingSEFF{
-		seffTypeID := "-1";
-		steps_Behaviour:= Set{}
-	}
+query createEmptySEFF(comp: pcm::repository::BasicComponent, sig: pcm::repository::Signature) : pcm::seff::ResourceDemandingSEFF{
+    return object pcm::seff::ResourceDemandingSEFF{
+        seffTypeID := "-1";
+        steps_Behaviour:= Set{};
+        basicComponent_ServiceEffectSpecification:= comp;
+        describedService__SEFF:= sig;
+    }
 }
 
 
