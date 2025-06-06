@@ -13,7 +13,9 @@ main() {
 		var systems = root.systems;
 		systems -> map Sys2Sys();
 		systems -> environment -> map Env2ResourceEnv();
-		systems -> allocation -> map Alloc2Alloc();
+		systems->forEach(sys) {
+    		sys.allocation.map Alloc2Alloc(sys.map Sys2Sys());
+		};
 		root.repositories -> map Repo2Repo();
 	} endif;
 }
@@ -216,8 +218,9 @@ when {
 
 -- ALLOCATION --
 
-mapping componentSystem::SystemDependant::Allocation :: Alloc2Alloc() : pcm::allocation::Allocation {
+mapping componentSystem::SystemDependant::Allocation :: Alloc2Alloc(sys : pcm::system::System) : pcm::allocation::Allocation {
 	result.allocationContexts_Allocation := self.allocationContexts->AllocContext2AllocContext();
+	result.system_Allocation := sys;
 }
 
 mapping componentSystem::SystemDependant::AllocationContext :: AllocContext2AllocContext() : pcm::allocation::AllocationContext 
