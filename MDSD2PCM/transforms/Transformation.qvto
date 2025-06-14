@@ -60,28 +60,45 @@ inherits componentSystem::NamedElement::Named2Named {
 }
 
 mapping componentSystem::SystemIndependant::Interface :: Interface2ProvidedRole(
- entity : pcm::core::entity::InterfaceProvidingEntity) : pcm::repository::OperationProvidedRole
- {
-	init {
-		var existingRole := self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
-		result := object pcm::repository::OperationProvidedRole {
-			providedInterface__OperationProvidedRole := self.map Interface2OpInterface();
-			providingEntity_ProvidedRole := entity;
-			entityName := self.name;
-		}
-	}
+    entity : pcm::core::entity::InterfaceProvidingEntity
+) : pcm::repository::OperationProvidedRole {
+    init {
+    // Try to get already existing instance of role
+    var existingRole : pcm::repository::OperationProvidedRole :=
+        self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
+        if existingRole <> null then {
+            // Return role if existing to not create duplicated instances
+            result := existingRole;
+        } else {
+            // First instantiation of this role
+            result := object pcm::repository::OperationProvidedRole {
+                providedInterface__OperationProvidedRole := self.map Interface2OpInterface();
+                providingEntity_ProvidedRole := entity;
+                entityName := self.name;
+            };
+        } endif
+    }
 }
 
 mapping componentSystem::SystemIndependant::Interface :: Interface2RequiredRole(
- entity : pcm::core::entity::InterfaceRequiringEntity) : pcm::repository::OperationRequiredRole 
- {
-	init {
-		result := object pcm::repository::OperationRequiredRole {
-			requiredInterface__OperationRequiredRole := self.map Interface2OpInterface();
-			requiringEntity_RequiredRole := entity;
-			entityName := self.name;
-		}
-	}
+    entity : pcm::core::entity::InterfaceRequiringEntity
+) : pcm::repository::OperationRequiredRole {
+    init {
+    // Try to get already existing instance of role
+    var existingRole : pcm::repository::OperationRequiredRole :=
+        self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
+        if existingRole <> null then {
+            // Return role if existing to not create duplicated instances
+            result := existingRole;
+        } else {
+            // First instantiation of this role
+            result := object pcm::repository::OperationRequiredRole {
+                requiredInterface__OperationRequiredRole := self.map Interface2OpInterface();
+                requiringEntity_RequiredRole := entity;
+                entityName := self.name;
+            };
+        } endif
+    }
 }
 
 mapping componentSystem::SystemIndependant::Parameter :: Param2Param() : pcm::repository::Parameter {
@@ -186,23 +203,82 @@ mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2Asse
 	result.requiringAssemblyContext_AssemblyConnector := self.requiredRole.requiredAssemblyContext.map AssemblyCont2AssemblyCont();
 }
 
-mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn(entity: pcm::core::entity::InterfaceProvidingRequiringEntity) : pcm::core::composition::DelegationConnector {
-	init {
+// This new version of the DelegationConn2Conn mapping should resolve the following constraints (but doesn't):
+// 'componentOfAssemblyContextAndInnerRoleProvidingComponentNeedToBeTheSame' and
+// 'componentOfAssemblyContextAndInnerRoleRequiringComponentNeedToBeTheSame'
+mapping componentSystem::SystemDependant::DelegationConnector 
+    :: DelegationConn2Conn(
+         entity : pcm::core::entity::InterfaceProvidingRequiringEntity
+       ) : pcm::core::composition::DelegationConnector
+{
+    init {
         if self.role.providedAssemblyContext <> null then {
+            -- Provided-Delegation
+            -- 1) Get or create innerProvidedRole
+            var innerProv : pcm::repository::OperationProvidedRole :=
+                self.role.interface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
+            if innerProv = null then
+                innerProv := self.role.interface.map Interface2ProvidedRole(entity)
+            endif;
+            -- 2) Get or create outerProvidedRole
+            var outerProv : pcm::repository::OperationProvidedRole :=
+                self.delegatedInterface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
+            if outerProv = null then
+                outerProv := self.delegatedInterface.map Interface2ProvidedRole(entity)
+            endif;
+            
             result := object pcm::core::composition::ProvidedDelegationConnector {
-                innerProvidedRole_ProvidedDelegationConnector := self.role.interface.map Interface2ProvidedRole(entity);
-                outerProvidedRole_ProvidedDelegationConnector := self.delegatedInterface.map Interface2ProvidedRole(entity);
-                assemblyContext_ProvidedDelegationConnector := self.role.providedAssemblyContext.map AssemblyCont2AssemblyCont();
+                innerProvidedRole_ProvidedDelegationConnector := innerProv;
+                outerProvidedRole_ProvidedDelegationConnector := outerProv;
+                assemblyContext_ProvidedDelegationConnector := 
+                    self.role.providedAssemblyContext.map AssemblyCont2AssemblyCont();
             };
+            
         } elif self.role.requiredAssemblyContext <> null then {
+            -- Required-Delegation
+            -- 1) Get or create innerRequiredRole
+            var innerReq : pcm::repository::OperationRequiredRole :=
+                self.role.interface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
+            if innerReq = null then
+                innerReq := self.role.interface.map Interface2RequiredRole(entity)
+            endif;
+            
+            -- 2) Get or create outerRequiredRole
+            var outerReq : pcm::repository::OperationRequiredRole :=
+                self.delegatedInterface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
+            if outerReq = null then
+                outerReq := self.delegatedInterface.map Interface2RequiredRole(entity)
+            endif;
+            
             result := object pcm::core::composition::RequiredDelegationConnector {
-                innerRequiredRole_RequiredDelegationConnector := self.role.interface.map Interface2RequiredRole(entity);
-                outerRequiredRole_RequiredDelegationConnector := self.delegatedInterface.map Interface2RequiredRole(entity);
-                assemblyContext_RequiredDelegationConnector := self.role.requiredAssemblyContext.map AssemblyCont2AssemblyCont();
+                innerRequiredRole_RequiredDelegationConnector := innerReq;
+                outerRequiredRole_RequiredDelegationConnector := outerReq;
+                assemblyContext_RequiredDelegationConnector     := 
+                    self.role.requiredAssemblyContext.map AssemblyCont2AssemblyCont();
             };
         } endif;
     }
 }
+// Old version of the DelegationConnector mapping
+//mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn(entity: pcm::core::entity::InterfaceProvidingRequiringEntity) : pcm::core::composition::DelegationConnector {
+//	init {
+//        if self.role.providedAssemblyContext <> null then {
+//            result := object pcm::core::composition::ProvidedDelegationConnector {
+//                innerProvidedRole_ProvidedDelegationConnector := self.role.interface.map Interface2ProvidedRole(entity);
+//                outerProvidedRole_ProvidedDelegationConnector := self.delegatedInterface.map Interface2ProvidedRole(entity);
+//                assemblyContext_ProvidedDelegationConnector := self.role.providedAssemblyContext.map AssemblyCont2AssemblyCont();
+//            };
+//        } elif self.role.requiredAssemblyContext <> null then {
+//            result := object pcm::core::composition::RequiredDelegationConnector {
+//                innerRequiredRole_RequiredDelegationConnector := self.role.interface.map Interface2RequiredRole(entity);
+//                outerRequiredRole_RequiredDelegationConnector := self.delegatedInterface.map Interface2RequiredRole(entity);
+//                assemblyContext_RequiredDelegationConnector := self.role.requiredAssemblyContext.map AssemblyCont2AssemblyCont();
+//            };
+//        } endif;
+//    }
+//}
+
+
 
 // Roles are always mapped over their interfaces to make sure that they can be identified
 //mapping componentSystem::SystemDependant::Role :: Role2ProvidedRole(entity: pcm::core::entity::InterfaceProvidingEntity) : pcm::repository::OperationProvidedRole 
