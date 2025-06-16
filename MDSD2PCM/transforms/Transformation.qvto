@@ -244,18 +244,8 @@ mapping componentSystem::SystemDependant::DelegationConnector
     init {
         if self.role.providedAssemblyContext <> null then {
             -- Provided-Delegation
-            -- 1) Get or create innerProvidedRole
-            var innerProv : pcm::repository::OperationProvidedRole :=
-                self.role.interface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
-            if innerProv = null then
-                innerProv := self.role.interface.map Interface2ProvidedRole(entity)
-            endif;
-            -- 2) Get or create outerProvidedRole
-            var outerProv : pcm::repository::OperationProvidedRole :=
-                self.delegatedInterface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
-            if outerProv = null then
-                outerProv := self.delegatedInterface.map Interface2ProvidedRole(entity)
-            endif;
+            var innerProv := self.role.interface.map Interface2ProvidedRole(self.role.providedAssemblyContext.component.map CompInAssembly2RepoComp()); 
+            var outerProv := self.delegatedInterface.map Interface2ProvidedRole(entity);
             
             result := object pcm::core::composition::ProvidedDelegationConnector {
                 innerProvidedRole_ProvidedDelegationConnector := innerProv;
@@ -266,19 +256,8 @@ mapping componentSystem::SystemDependant::DelegationConnector
             
         } elif self.role.requiredAssemblyContext <> null then {
             -- Required-Delegation
-            -- 1) Get or create innerRequiredRole
-            var innerReq : pcm::repository::OperationRequiredRole :=
-                self.role.interface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
-            if innerReq = null then
-                innerReq := self.role.interface.map Interface2RequiredRole(entity)
-            endif;
-            
-            -- 2) Get or create outerRequiredRole
-            var outerReq : pcm::repository::OperationRequiredRole :=
-                self.delegatedInterface.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
-            if outerReq = null then
-                outerReq := self.delegatedInterface.map Interface2RequiredRole(entity)
-            endif;
+            var innerReq := self.role.interface.map Interface2RequiredRole(self.role.requiredAssemblyContext.component.map CompInAssembly2RepoComp());
+            var outerReq := self.delegatedInterface.map Interface2RequiredRole(entity);
             
             result := object pcm::core::composition::RequiredDelegationConnector {
                 innerRequiredRole_RequiredDelegationConnector := innerReq;
