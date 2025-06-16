@@ -360,6 +360,9 @@ inherits componentSystem::NamedElement::Named2Named {
 		failureProbability := 0.0;
 		communicationLinkResourceType_CommunicationLinkResourceSpecification := object pcm::resourcetype::CommunicationLinkResourceType {
 			entityName := "commLinkResType";
+			resourceRepository_ResourceType := object pcm::resourcetype::ResourceRepository {
+				
+			};
 		};
 		// TODO: Cannot find PCMRandomVariables ...
 		//latency_CommunicationLinkResourceSpecification := object pcm::core::PCMRandomVariable {
