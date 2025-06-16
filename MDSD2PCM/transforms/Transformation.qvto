@@ -102,11 +102,6 @@ mapping componentSystem::SystemIndependant::Interface :: Interface2RequiredRole(
             // Return role if existing to not create duplicated instances
             result := existingRole;
         } else {
-        	if (entity = null) then {
-        		log("null entity for interface " + self.name);
-        	} else {
-        		log(entity.entityName);
-        	} endif;
             // First instantiation of this role
             result := object pcm::repository::OperationRequiredRole {
                 requiredInterface__OperationRequiredRole := self.map Interface2OpInterface();

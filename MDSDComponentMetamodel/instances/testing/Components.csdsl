@@ -120,7 +120,7 @@ ComponentSystem {
 							}
 						} assemblyConnectors { 
 							c3 : "MediaManager.R AudioDB MedMan" -(o- "DBCache.R AudioDB DBCache-p" , 
-							c4 : "MediaManager.R AudioDB MedMan" -(o- "DigitalWatermarking.R Sound Water"
+							c4 : "MediaManager.R Sound MedMan" -(o- "DigitalWatermarking.R Sound Water"
 						} delegationConnectors { 
 							d2 : "MediaManager.R MediaStore MedMan" -> MediaStore , 
 							d3 : "DBCache.R Audio DBCache-r" -> AudioDB
