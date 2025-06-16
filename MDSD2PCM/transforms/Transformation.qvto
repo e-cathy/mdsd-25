@@ -30,6 +30,7 @@ mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::rep
 	result.components__Repository := self.components->BasicComp2BasicComp();
 	result.interfaces__Repository := self.interfaces->Interface2OpInterface();
 	result.dataTypes__Repository := self.types->Type2DataType();
+	result.entityName := "repository";
 }
 
 mapping componentSystem::SystemIndependant::Component :: Comp2RepoComp() : pcm::repository::RepositoryComponent disjuncts 
@@ -143,9 +144,12 @@ helper mapTypeEnum(st : componentSystem::SystemIndependant::SimpleTypeEnum) : pc
 
 
 mapping  pcm::repository::Signature :: Signature2Seff(comp: pcm::repository::BasicComponent) : pcm::seff::ResourceDemandingSEFF{
-    var start := object pcm::seff::StartAction{};
+    var start := object pcm::seff::StartAction{
+    	entityName := "start"
+    };
     var stop := object pcm::seff::StopAction{
     	predecessor_AbstractAction := start;
+    	entityName := "stop"
     };
     start.successor_AbstractAction := stop;
     seffTypeID := "-1";
@@ -163,6 +167,7 @@ mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::Sys
 	}
 	population {
 		result.providedRoles_InterfaceProvidingEntity := self.interfaces -> map Interface2ProvidedRole(result);
+		result.entityName := "system";
 	}	
 }
 
@@ -195,7 +200,8 @@ inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
 	result.requiredRoles_InterfaceRequiringEntity := self.delegationConnectors -> role -> select(r | r.requiredAssemblyContext <> null) -> interface -> map Interface2RequiredRole(result);
 }
 
-mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn(entity: pcm::core::entity::InterfaceProvidingRequiringEntity) : pcm::core::composition::AssemblyConnector {
+mapping componentSystem::SystemDependant::AssemblyConnector 
+	:: AssemblyConn2AssemblyConn(entity: pcm::core::entity::InterfaceProvidingRequiringEntity) : pcm::core::composition::AssemblyConnector {
 	result.entityName := self.name;
 	result.providedRole_AssemblyConnector := self.providedRole.interface.map Interface2ProvidedRole(entity);
 	result.requiredRole_AssemblyConnector := self.requiredRole.interface.map Interface2RequiredRole(entity);
@@ -258,6 +264,9 @@ mapping componentSystem::SystemDependant::DelegationConnector
             };
         } endif;
     }
+    population {
+    	result.entityName := self.name;
+    }
 }
 // Old version of the DelegationConnector mapping
 //mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn(entity: pcm::core::entity::InterfaceProvidingRequiringEntity) : pcm::core::composition::DelegationConnector {
@@ -304,6 +313,7 @@ mapping componentSystem::SystemDependant::DelegationConnector
 mapping componentSystem::SystemDependant::Allocation :: Alloc2Alloc(sys : pcm::system::System) : pcm::allocation::Allocation {
 	result.allocationContexts_Allocation := self.allocationContexts->AllocContext2AllocContext();
 	result.system_Allocation := sys;
+	result.entityName := sys.entityName + "-Allocation";
 }
 
 mapping componentSystem::SystemDependant::AllocationContext :: AllocContext2AllocContext() : pcm::allocation::AllocationContext 
@@ -317,7 +327,7 @@ inherits componentSystem::NamedElement::Named2Named {
 mapping componentSystem::SystemDependant::Environment :: Env2ResourceEnv() : pcm::resourceenvironment::ResourceEnvironment {
 	result.linkingResources__ResourceEnvironment := self.links->Link2LinkingResource();
 	result.resourceContainer_ResourceEnvironment := self.containers->Cont2ResourceCont();
-	result.entityName := "Environment";
+	result.entityName := "environment";
 }
 
 mapping componentSystem::SystemDependant::Container :: Cont2ResourceCont() : pcm::resourceenvironment::ResourceContainer
@@ -329,7 +339,9 @@ inherits componentSystem::NamedElement::Named2Named {
 	result.communicationLinkResourceSpecifications_LinkingResource := object pcm::resourceenvironment::CommunicationLinkResourceSpecification {
 		linkingResource_CommunicationLinkResourceSpecification := result;
 		failureProbability := 0.0;
-		communicationLinkResourceType_CommunicationLinkResourceSpecification := object pcm::resourcetype::CommunicationLinkResourceType {};
+		communicationLinkResourceType_CommunicationLinkResourceSpecification := object pcm::resourcetype::CommunicationLinkResourceType {
+			entityName := "commLinkResType";
+		};
 		// TODO: Cannot find PCMRandomVariables ...
 		//latency_CommunicationLinkResourceSpecification := object pcm::core::PCMRandomVariable {
 		//	specification := '0.0' 
