@@ -7,15 +7,21 @@ modeltype pcmRepository uses 'http://palladiosimulator.org/PalladioComponentMode
 
 transformation ComponentSystem2PCM(in source: componentSystem, out target: pcm);
 
+property compositeRepository : pcm::repository::Repository;
+
 main() {
 	var root = source.rootObjects()[ComponentSystem];
 	if (root <> null) {
 		root.repositories -> map Repo2Repo();
+		compositeRepository := object pcm::repository::Repository {
+			entityName := "GeneratedCompositeRespository";
+			repositoryDescription := "Contains the composite components as they were not assigned to a repository in the source model."
+		};
 		var systems = root.systems;
 		systems -> map Sys2Sys();
 		systems -> environment -> map Env2ResourceEnv();
 		systems->forEach(sys) {
-    		sys.allocation.map Alloc2Alloc(sys.map Sys2Sys());
+    		sys.allocation.map Alloc2Alloc(sys.map Sys2Sys(), sys.environment.map Env2ResourceEnv());
 		};
 	} endif;
 }
@@ -27,26 +33,30 @@ abstract mapping componentSystem::NamedElement :: Named2Named() : pcm::core::ent
 -- REPOSITORY --
 
 mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::repository::Repository {
-	result.components__Repository := self.components->BasicComp2BasicComp();
+	result.components__Repository := self.components->BasicComp2BasicComp(result);
 	result.interfaces__Repository := self.interfaces->Interface2OpInterface();
 	result.dataTypes__Repository := self.types->Type2DataType();
 	result.entityName := "repository";
 }
 
-mapping componentSystem::SystemIndependant::Component :: Comp2RepoComp() : pcm::repository::RepositoryComponent disjuncts 
-componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp,
-componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp;
-
-abstract mapping componentSystem::SystemIndependant::Component :: AbstractComp2RepoComp() : pcm::repository::RepositoryComponent 
-inherits componentSystem::NamedElement::Named2Named {
+mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp(repo : pcm::repository::Repository) : pcm::repository::BasicComponent {
+	var signatures := self.providedInterfaces->collect(e | e.signatures)->flatten().map Signature2OpSignature();
+	result.serviceEffectSpecifications__BasicComponent :=signatures.map Signature2Seff(result);
+	result.repository__RepositoryComponent := repo;
+	result.entityName := self.name;
 	result.providedRoles_InterfaceProvidingEntity := self.providedInterfaces -> map Interface2ProvidedRole(result);
 	result.requiredRoles_InterfaceRequiringEntity := self.requiredInterfaces -> map Interface2RequiredRole(result);
 }
 
-mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp() : pcm::repository::BasicComponent 
-inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
-	var signatures := self.providedInterfaces->collect(e | e.signatures)->flatten().map Signature2OpSignature();
-	result.serviceEffectSpecifications__BasicComponent :=signatures.map Signature2Seff(result);
+mapping componentSystem::SystemIndependant::Component :: CompInAssembly2RepoComp() : pcm::repository::RepositoryComponent disjuncts 
+componentSystem::SystemIndependant::BasicComponent :: BasicCompInAssembly2BasicComp,
+componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp;
+
+mapping componentSystem::SystemIndependant::BasicComponent :: BasicCompInAssembly2BasicComp() : pcm::repository::BasicComponent 
+inherits componentSystem::NamedElement::Named2Named {
+	init {
+		result := self.resolveoneIn(componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp);
+	}
 }
 
 mapping componentSystem::SystemIndependant::Interface :: Interface2OpInterface() : pcm::repository::OperationInterface
@@ -187,17 +197,25 @@ inherits componentSystem::SystemDependant::Assembly::Assembly2CompStructure{
 
 mapping componentSystem::SystemDependant::AssemblyContext :: AssemblyCont2AssemblyCont() : pcm::core::composition::AssemblyContext 
 inherits componentSystem::NamedElement::Named2Named {
-	result.encapsulatedComponent__AssemblyContext := self.component.map Comp2RepoComp();
+	result.encapsulatedComponent__AssemblyContext := self.component.map CompInAssembly2RepoComp();
 }
 
-mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp() : pcm::repository::CompositeComponent
-inherits componentSystem::SystemIndependant::Component::AbstractComp2RepoComp {
+mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp() : pcm::repository::CompositeComponent {
+	result.entityName := self.name;
+	result.providedRoles_InterfaceProvidingEntity := self.providedInterfaces -> map Interface2ProvidedRole(result);
+	result.requiredRoles_InterfaceRequiringEntity := self.requiredInterfaces -> map Interface2RequiredRole(result);
+	
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
+	
 	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(result);
 	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn(result);
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
+	
 	result.providedRoles_InterfaceProvidingEntity := self.delegationConnectors -> role -> select(r | r.providedAssemblyContext <> null) -> interface -> map Interface2ProvidedRole(result);
 	result.requiredRoles_InterfaceRequiringEntity := self.delegationConnectors -> role -> select(r | r.requiredAssemblyContext <> null) -> interface -> map Interface2RequiredRole(result);
+	
+	result.repository__RepositoryComponent := compositeRepository;
+	compositeRepository.components__Repository += result;
 }
 
 mapping componentSystem::SystemDependant::AssemblyConnector 
@@ -310,9 +328,10 @@ mapping componentSystem::SystemDependant::DelegationConnector
 
 -- ALLOCATION --
 
-mapping componentSystem::SystemDependant::Allocation :: Alloc2Alloc(sys : pcm::system::System) : pcm::allocation::Allocation {
+mapping componentSystem::SystemDependant::Allocation :: Alloc2Alloc(sys : pcm::system::System, env : pcm::resourceenvironment::ResourceEnvironment) : pcm::allocation::Allocation {
 	result.allocationContexts_Allocation := self.allocationContexts->AllocContext2AllocContext();
 	result.system_Allocation := sys;
+	result.targetResourceEnvironment_Allocation := env;
 	result.entityName := sys.entityName + "-Allocation";
 }
 
