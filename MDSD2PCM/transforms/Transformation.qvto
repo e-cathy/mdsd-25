@@ -172,19 +172,19 @@ mapping  pcm::repository::Signature :: Signature2Seff(comp: pcm::repository::Bas
 
 -- SYSTEM --
 mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::System {
-	init {
-		result := self.assembly.map Assembly2Sys(result);
-	}
-	population {
-		result.providedRoles_InterfaceProvidingEntity := self.interfaces -> map Interface2ProvidedRole(result);
 		result.entityName := "system";
-	}	
+		result.providedRoles_InterfaceProvidingEntity := self.interfaces -> map Interface2ProvidedRole(result);
+		
+		self.assembly.map Assembly2Sys(result);
 }
 
 -- ASSEMBLY --
 
 abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure(sys: pcm::system::System) : pcm::core::composition::ComposedStructure {
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
+	if sys = null then {
+		log ("sys is null")
+	} endif;
 	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(sys);
 	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
@@ -192,7 +192,9 @@ abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStru
 
 mapping componentSystem::SystemDependant::Assembly :: Assembly2Sys(sys: pcm::system::System) : pcm::system::System 
 inherits componentSystem::SystemDependant::Assembly::Assembly2CompStructure{
-	
+	init {
+		result := sys;
+	}
 }
 
 mapping componentSystem::SystemDependant::AssemblyContext :: AssemblyCont2AssemblyCont() : pcm::core::composition::AssemblyContext 
@@ -233,14 +235,14 @@ mapping componentSystem::SystemDependant::AssemblyConnector
 // 'componentOfAssemblyContextAndInnerRoleRequiringComponentNeedToBeTheSame'
 mapping componentSystem::SystemDependant::DelegationConnector 
     :: DelegationConn2Conn(
-         entity : pcm::core::entity::InterfaceProvidingRequiringEntity
+         outerEntity : pcm::core::entity::InterfaceProvidingRequiringEntity
        ) : pcm::core::composition::DelegationConnector
 {
     init {
         if self.role.providedAssemblyContext <> null then {
             -- Provided-Delegation
             var innerProv := self.role.interface.map Interface2ProvidedRole(self.role.providedAssemblyContext.component.map CompInAssembly2RepoComp()); 
-            var outerProv := self.delegatedInterface.map Interface2ProvidedRole(entity);
+            var outerProv := self.delegatedInterface.map Interface2ProvidedRole(outerEntity);
             
             result := object pcm::core::composition::ProvidedDelegationConnector {
                 innerProvidedRole_ProvidedDelegationConnector := innerProv;
@@ -252,12 +254,12 @@ mapping componentSystem::SystemDependant::DelegationConnector
         } elif self.role.requiredAssemblyContext <> null then {
             -- Required-Delegation
             var innerReq := self.role.interface.map Interface2RequiredRole(self.role.requiredAssemblyContext.component.map CompInAssembly2RepoComp());
-            var outerReq := self.delegatedInterface.map Interface2RequiredRole(entity);
+            var outerReq := self.delegatedInterface.map Interface2RequiredRole(outerEntity);
             
             result := object pcm::core::composition::RequiredDelegationConnector {
                 innerRequiredRole_RequiredDelegationConnector := innerReq;
                 outerRequiredRole_RequiredDelegationConnector := outerReq;
-                assemblyContext_RequiredDelegationConnector     := 
+                assemblyContext_RequiredDelegationConnector := 
                     self.role.requiredAssemblyContext.map AssemblyCont2AssemblyCont();
             };
         } endif;
