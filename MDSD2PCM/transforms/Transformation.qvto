@@ -41,11 +41,11 @@ mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::rep
 
 mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp(repo : pcm::repository::Repository) : pcm::repository::BasicComponent {
 	var signatures := self.providedInterfaces->collect(e | e.signatures)->flatten().map Signature2OpSignature();
-	result.serviceEffectSpecifications__BasicComponent :=signatures.map Signature2Seff(result);
-	result.repository__RepositoryComponent := repo;
 	result.entityName := self.name;
+	result.repository__RepositoryComponent := repo;
 	result.providedRoles_InterfaceProvidingEntity := self.providedInterfaces -> map Interface2ProvidedRole(result);
 	result.requiredRoles_InterfaceRequiringEntity := self.requiredInterfaces -> map Interface2RequiredRole(result);
+	result.serviceEffectSpecifications__BasicComponent := signatures.map Signature2Seff(result);
 }
 
 mapping componentSystem::SystemIndependant::Component :: CompInAssembly2RepoComp() : pcm::repository::RepositoryComponent disjuncts 
@@ -77,7 +77,7 @@ mapping componentSystem::SystemIndependant::Interface :: Interface2ProvidedRole(
     // Try to get already existing instance of role
     var existingRole : pcm::repository::OperationProvidedRole :=
         self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
-        if existingRole <> null then {
+        if (existingRole <> null) and (existingRole.providingEntity_ProvidedRole = entity) then {
             // Return role if existing to not create duplicated instances
             result := existingRole;
         } else {
@@ -98,17 +98,22 @@ mapping componentSystem::SystemIndependant::Interface :: Interface2RequiredRole(
     // Try to get already existing instance of role
     var existingRole : pcm::repository::OperationRequiredRole :=
         self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
-        if existingRole <> null then {
+        if (existingRole <> null) and (existingRole.requiringEntity_RequiredRole = entity) then {
             // Return role if existing to not create duplicated instances
             result := existingRole;
         } else {
+        	if (entity = null) then {
+        		log("null entity for interface " + self.name);
+        	} else {
+        		log(entity.entityName);
+        	} endif;
             // First instantiation of this role
             result := object pcm::repository::OperationRequiredRole {
                 requiredInterface__OperationRequiredRole := self.map Interface2OpInterface();
                 requiringEntity_RequiredRole := entity;
                 entityName := self.name;
             };
-        } endif
+        } endif;
     }
 }
 
@@ -186,7 +191,7 @@ mapping componentSystem::SystemDependant::System :: Sys2Sys() : pcm::system::Sys
 abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStructure(sys: pcm::system::System) : pcm::core::composition::ComposedStructure {
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
 	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(sys);
-	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn(sys);
+	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 }
 
@@ -208,7 +213,7 @@ mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompCom
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
 	
 	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(result);
-	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn(result);
+	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 	
 	result.providedRoles_InterfaceProvidingEntity := self.delegationConnectors -> role -> select(r | r.providedAssemblyContext <> null) -> interface -> map Interface2ProvidedRole(result);
@@ -219,10 +224,11 @@ mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompCom
 }
 
 mapping componentSystem::SystemDependant::AssemblyConnector 
-	:: AssemblyConn2AssemblyConn(entity: pcm::core::entity::InterfaceProvidingRequiringEntity) : pcm::core::composition::AssemblyConnector {
+	:: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector {
 	result.entityName := self.name;
-	result.providedRole_AssemblyConnector := self.providedRole.interface.map Interface2ProvidedRole(entity);
-	result.requiredRole_AssemblyConnector := self.requiredRole.interface.map Interface2RequiredRole(entity);
+	// TODO: wrong to pass entity as this is the composing structure (CompComp or Sys)
+	result.providedRole_AssemblyConnector := self.providedRole.interface.map Interface2ProvidedRole(self.providedRole.providedAssemblyContext.component.map CompInAssembly2RepoComp());
+	result.requiredRole_AssemblyConnector := self.requiredRole.interface.map Interface2RequiredRole(self.requiredRole.requiredAssemblyContext.component.map CompInAssembly2RepoComp());
 	result.providingAssemblyContext_AssemblyConnector := self.providedRole.providedAssemblyContext.map AssemblyCont2AssemblyCont();
 	result.requiringAssemblyContext_AssemblyConnector := self.requiredRole.requiredAssemblyContext.map AssemblyCont2AssemblyCont();
 }
