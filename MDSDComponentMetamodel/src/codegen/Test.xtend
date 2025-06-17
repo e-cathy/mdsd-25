@@ -1,5 +1,0 @@
-package codegen
-
-class Test {
-	
-}
