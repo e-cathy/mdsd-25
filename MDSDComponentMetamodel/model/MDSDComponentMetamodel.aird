@@ -5,6 +5,7 @@
     <semanticResources>MDSDComponentMetamodel.genmodel</semanticResources>
     <semanticResources>ComponentSystem.xmi</semanticResources>
     <semanticResources>../instances/testing/Components.csdsl</semanticResources>
+    <semanticResources>../src/codegen/Test.xtend</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_QmoIcCTTEfCexKEGshhAVQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Review']"/>
     </ownedViews>
