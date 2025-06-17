@@ -73,6 +73,8 @@ mapping componentSystem::SystemIndependant::Interface :: Interface2ProvidedRole(
 ) : pcm::repository::OperationProvidedRole {
     init {
     // Try to get already existing instance of role
+    // TODO: Do not only resolve one but resolve all transformed elements and check if one of them has the 
+    // fitting provided entity (same in Interface2RequiredRole)
     var existingRole : pcm::repository::OperationProvidedRole :=
         self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
         if (existingRole <> null) and (existingRole.providingEntity_ProvidedRole = entity) then {
