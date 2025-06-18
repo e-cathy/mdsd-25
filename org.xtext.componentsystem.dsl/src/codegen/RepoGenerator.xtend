@@ -45,7 +45,15 @@ class RepoGenerator implements IGenerator {
     	 fsa.generateFile(getPackage(comp).replace(".", "/") + "/" +  getComponentName(comp) + JAVA_SUFFIX, comp.compile)  
     }
     
+    // Return helper class
     def String compile(Repository repo) '''
+    	package <<repo.name>>
+    	
+    	public static class Helper {
+    		public static boolean assertNull() {
+    			
+    		}
+    	}
     '''
     
     def String compile(Interface interf) '''
@@ -57,7 +65,7 @@ class RepoGenerator implements IGenerator {
     
     def String getPackage(EObject object) {
         if(object instanceof Repository) {
-            return "repository";
+            return object.name;
         } else if (object instanceof Interface) {
             return "interface";
         } else if (object instanceof BasicComponent) {

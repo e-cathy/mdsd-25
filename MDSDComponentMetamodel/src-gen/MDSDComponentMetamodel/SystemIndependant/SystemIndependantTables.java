@@ -242,6 +242,7 @@ public class SystemIndependantTables extends AbstractTables
 		private static final ExecutorFragment _Parameter__OclElement = new ExecutorFragment(Types._Parameter, OCLstdlibTables.Types._OclElement);
 		private static final ExecutorFragment _Parameter__Parameter = new ExecutorFragment(Types._Parameter, SystemIndependantTables.Types._Parameter);
 
+		private static final ExecutorFragment _Repository__NamedElement = new ExecutorFragment(Types._Repository, MDSDComponentMetamodelTables.Types._NamedElement);
 		private static final ExecutorFragment _Repository__OclAny = new ExecutorFragment(Types._Repository, OCLstdlibTables.Types._OclAny);
 		private static final ExecutorFragment _Repository__OclElement = new ExecutorFragment(Types._Repository, OCLstdlibTables.Types._OclElement);
 		private static final ExecutorFragment _Repository__Repository = new ExecutorFragment(Types._Repository, SystemIndependantTables.Types._Repository);
@@ -511,9 +512,10 @@ public class SystemIndependantTables extends AbstractTables
 			{
 				Fragments._Repository__OclAny /* 0 */,
 				Fragments._Repository__OclElement /* 1 */,
-				Fragments._Repository__Repository /* 2 */
+				Fragments._Repository__NamedElement /* 2 */,
+				Fragments._Repository__Repository /* 3 */
 			};
-		private static final int /*@NonNull*/ [] __Repository = { 1,1,1 };
+		private static final int /*@NonNull*/ [] __Repository = { 1,1,1,1 };
 
 		private static final ExecutorFragment /*@NonNull*/ [] _Service =
 			{
@@ -948,6 +950,7 @@ public class SystemIndependantTables extends AbstractTables
 		};
 
 		private static final ExecutorOperation /*@NonNull*/ [] _Repository__Repository = {};
+		private static final ExecutorOperation /*@NonNull*/ [] _Repository__NamedElement = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _Repository__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -1216,6 +1219,7 @@ public class SystemIndependantTables extends AbstractTables
 			Fragments._Parameter__OclElement.initOperations(_Parameter__OclElement);
 			Fragments._Parameter__Parameter.initOperations(_Parameter__Parameter);
 
+			Fragments._Repository__NamedElement.initOperations(_Repository__NamedElement);
 			Fragments._Repository__OclAny.initOperations(_Repository__OclAny);
 			Fragments._Repository__OclElement.initOperations(_Repository__OclElement);
 			Fragments._Repository__Repository.initOperations(_Repository__Repository);
@@ -1343,6 +1347,7 @@ public class SystemIndependantTables extends AbstractTables
 		private static final ExecutorProperty /*@NonNull*/ [] _Repository = {
 			SystemIndependantTables.Properties._Repository__components,
 			SystemIndependantTables.Properties._Repository__interfaces,
+			MDSDComponentMetamodelTables.Properties._NamedElement__name,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
 			SystemIndependantTables.Properties._Repository__types

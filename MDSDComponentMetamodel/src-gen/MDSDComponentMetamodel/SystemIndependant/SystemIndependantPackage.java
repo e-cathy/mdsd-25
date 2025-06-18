@@ -200,13 +200,22 @@ public interface SystemIndependantPackage extends EPackage {
 	int REPOSITORY = 3;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY__NAME = MDSDComponentMetamodelPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY__COMPONENTS = 0;
+	int REPOSITORY__COMPONENTS = MDSDComponentMetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Interfaces</b></em>' containment reference list.
@@ -215,7 +224,7 @@ public interface SystemIndependantPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY__INTERFACES = 1;
+	int REPOSITORY__INTERFACES = MDSDComponentMetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -224,7 +233,7 @@ public interface SystemIndependantPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY__TYPES = 2;
+	int REPOSITORY__TYPES = MDSDComponentMetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Repository</em>' class.
@@ -233,7 +242,7 @@ public interface SystemIndependantPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_FEATURE_COUNT = 3;
+	int REPOSITORY_FEATURE_COUNT = MDSDComponentMetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Repository</em>' class.
@@ -242,7 +251,7 @@ public interface SystemIndependantPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OPERATION_COUNT = 0;
+	int REPOSITORY_OPERATION_COUNT = MDSDComponentMetamodelPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link MDSDComponentMetamodel.SystemIndependant.impl.ComplexTypeImpl <em>Complex Type</em>}' class.

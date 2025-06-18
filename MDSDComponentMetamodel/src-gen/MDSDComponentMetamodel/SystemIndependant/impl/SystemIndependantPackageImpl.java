@@ -692,6 +692,7 @@ public class SystemIndependantPackageImpl extends EPackageImpl implements System
 		serviceEClass.getESuperTypes().add(theMDSDComponentMetamodelPackage.getNamedElement());
 		typeEClass.getESuperTypes().add(theMDSDComponentMetamodelPackage.getNamedElement());
 		parameterEClass.getESuperTypes().add(theMDSDComponentMetamodelPackage.getNamedElement());
+		repositoryEClass.getESuperTypes().add(theMDSDComponentMetamodelPackage.getNamedElement());
 		complexTypeEClass.getESuperTypes().add(this.getType());
 		externalCallEClass.getESuperTypes().add(this.getAction());
 		signatureEClass.getESuperTypes().add(theMDSDComponentMetamodelPackage.getNamedElement());

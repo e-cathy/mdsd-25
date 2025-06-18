@@ -99,6 +99,8 @@ public class SystemIndependantSwitch<T> extends Switch<T> {
 			Repository repository = (Repository) theEObject;
 			T result = caseRepository(repository);
 			if (result == null)
+				result = caseNamedElement(repository);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}

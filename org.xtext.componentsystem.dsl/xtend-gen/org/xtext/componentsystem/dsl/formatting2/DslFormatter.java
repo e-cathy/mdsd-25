@@ -52,28 +52,28 @@ public class DslFormatter extends AbstractFormatter2 {
   }
 
   @XbaseGenerated
-  public void format(final Object componentSystem, final IFormattableDocument document) {
-    if (componentSystem instanceof XtextResource) {
-      _format((XtextResource)componentSystem, document);
+  public void format(final Object repository, final IFormattableDocument document) {
+    if (repository instanceof XtextResource) {
+      _format((XtextResource)repository, document);
       return;
-    } else if (componentSystem instanceof ComponentSystem) {
-      _format((ComponentSystem)componentSystem, document);
+    } else if (repository instanceof Repository) {
+      _format((Repository)repository, document);
       return;
-    } else if (componentSystem instanceof Repository) {
-      _format((Repository)componentSystem, document);
+    } else if (repository instanceof ComponentSystem) {
+      _format((ComponentSystem)repository, document);
       return;
-    } else if (componentSystem instanceof EObject) {
-      _format((EObject)componentSystem, document);
+    } else if (repository instanceof EObject) {
+      _format((EObject)repository, document);
       return;
-    } else if (componentSystem == null) {
+    } else if (repository == null) {
       _format((Void)null, document);
       return;
-    } else if (componentSystem != null) {
-      _format(componentSystem, document);
+    } else if (repository != null) {
+      _format(repository, document);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(componentSystem, document).toString());
+        Arrays.<Object>asList(repository, document).toString());
     }
   }
 }

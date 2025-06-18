@@ -71,6 +71,21 @@ public class RepoGenerator implements IGenerator {
 
   public String compile(final Repository repo) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package <<repo.name>>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public static class Helper {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static boolean assertNull() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
     return _builder.toString();
   }
 
@@ -91,7 +106,7 @@ public class RepoGenerator implements IGenerator {
 
   public String getPackage(final EObject object) {
     if ((object instanceof Repository)) {
-      return "repository";
+      return ((Repository)object).getName();
     } else {
       if ((object instanceof Interface)) {
         return "interface";
@@ -122,11 +137,11 @@ public class RepoGenerator implements IGenerator {
     } else if (comp instanceof Interface) {
       _compile((Interface)comp, fsa);
       return;
-    } else if (comp instanceof ComponentSystem) {
-      _compile((ComponentSystem)comp, fsa);
-      return;
     } else if (comp instanceof Repository) {
       _compile((Repository)comp, fsa);
+      return;
+    } else if (comp instanceof ComponentSystem) {
+      _compile((ComponentSystem)comp, fsa);
       return;
     } else if (comp != null) {
       _compile(comp, fsa);

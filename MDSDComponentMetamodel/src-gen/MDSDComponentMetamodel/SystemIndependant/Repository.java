@@ -2,9 +2,8 @@
  */
 package MDSDComponentMetamodel.SystemIndependant;
 
+import MDSDComponentMetamodel.NamedElement;
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Repository extends EObject {
+public interface Repository extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' containment reference list.
 	 * The list contents are of type {@link MDSDComponentMetamodel.SystemIndependant.BasicComponent}.
