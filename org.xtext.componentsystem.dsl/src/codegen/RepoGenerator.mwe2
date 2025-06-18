@@ -1,0 +1,35 @@
+module codegen.RepoGenerator
+ 
+import org.eclipse.emf.mwe.utils.*
+ 
+var targetDir = "repo-src-gen"
+var modelPath = "instances"
+ 
+Workflow {
+ 
+    bean = StandaloneSetup {
+        registerGeneratedEPackage = "MDSDComponentMetamodel.MDSDComponentMetamodelPackage"
+    }
+ 
+    component = DirectoryCleaner {
+        directory = targetDir
+    }
+ 
+    component = codegen.RepositoryGeneratorSupport {}
+ 
+    component = org.eclipse.xtext.mwe.Reader {
+        path = modelPath
+        register = codegen.RepositoryGeneratorSetup {}
+        loadResource = {
+            slot = "model"
+        }
+    }
+ 
+    component = org.eclipse.xtext.generator.GeneratorComponent {
+        register = codegen.RepositoryGeneratorSetup {}
+        slot = 'model'
+        outlet = {
+            path = targetDir
+        }
+    }
+}
