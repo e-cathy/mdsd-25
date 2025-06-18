@@ -75,7 +75,21 @@ class RepoGenerator implements IGenerator {
 	'''
     
     def String compile(BasicComponent comp) '''
-    // this is component «comp.name».
+    		package «comp.name»;
+    		
+    		public class «getComponentName(comp)» «IF !comp.providedInterfaces.empty» extends «comp.providedInterfaces.head.name»«ENDIF»{
+    			«FOR a: comp.requiredInterfaces»
+    				«getInterfaceName(a)» «getInterfaceName(a).toFirstLower»;
+    			«ENDFOR»
+    
+    			«FOR i: comp.providedInterfaces»
+    				«FOR s: i.signatures»
+    				public void get«i.name» () {
+    					return null;
+    				}
+    				«ENDFOR»
+    			«ENDFOR»
+    		}
     '''
     
     def String getPackage(EObject object) {
