@@ -7,30 +7,51 @@ import org.eclipse.emf.ecore.EObject
 import MDSDComponentMetamodel.SystemIndependant.Repository
 import MDSDComponentMetamodel.SystemIndependant.Interface
 import MDSDComponentMetamodel.SystemIndependant.BasicComponent
+import MDSDComponentMetamodel.ComponentSystem
 
 class RepoGenerator implements IGenerator {
     
     final String JAVA_SUFFIX = ".java";
     
     override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-        for(repository: resource.allContents.toIterable.filter(Repository)) {
-            fsa.generateFile(getPackage(repository).replace(".", "/") + "/" +  "Helper" + JAVA_SUFFIX, repository.compile)    
-        }
-        for(interface: resource.allContents.toIterable.filter(Interface)) {
-            fsa.generateFile(getPackage(interface).replace(".", "/") + "/" +  getInterfaceName(interface) + JAVA_SUFFIX, interface.compile)    
-        }
-        for(component: resource.allContents.toIterable.filter(BasicComponent)) {
-            fsa.generateFile(getPackage(component).replace(".", "/") + "/" +  getComponentName(component) + JAVA_SUFFIX, component.compile)    
+    	for (EObject o : resource.contents) {
+            o.compile(fsa)
         }
     }
+	
+	def dispatch void compile(EObject object, IFileSystemAccess access) {}
     
-    def compile(Repository repo) '''
+    def dispatch void compile(ComponentSystem cs, IFileSystemAccess fsa) {
+		for (Repository repo : cs.getRepositories()) {
+			repo.compile(fsa)
+		}
+	}
+    
+    def dispatch void compile(Repository repo, IFileSystemAccess fsa) {
+    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  "Helper" + JAVA_SUFFIX, repo.compile) 
+    	for (Interface i : repo.getInterfaces()) {
+    		i.compile(fsa)
+    	}
+    	for (BasicComponent c : repo.getComponents()) {
+    		c.compile(fsa)
+    	}
+    }
+    
+    def dispatch void compile(Interface i, IFileSystemAccess fsa) {
+    	fsa.generateFile(getPackage(i).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compile)  
+    }
+    
+    def dispatch void compile(BasicComponent comp, IFileSystemAccess fsa) {
+    	 fsa.generateFile(getPackage(comp).replace(".", "/") + "/" +  getComponentName(comp) + JAVA_SUFFIX, comp.compile)  
+    }
+    
+    def String compile(Repository repo) '''
     '''
     
-    def compile(Interface interf) '''
+    def String compile(Interface interf) '''
     '''
     
-    def compile(BasicComponent comp) '''
+    def String compile(BasicComponent comp) '''
     // this is component «comp.name».
     '''
     

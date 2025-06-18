@@ -7,6 +7,8 @@
     <semanticResources>../instances/testing/Components.csdsl</semanticResources>
     <semanticResources>../src/codegen/Test.xtend</semanticResources>
     <semanticResources>../src/codegen/RepositoryGenerator.xtend</semanticResources>
+    <semanticResources>../xtend-gen/codegen/.JavaGenerator.java._trace</semanticResources>
+    <semanticResources>../xtend-gen/codegen/.Test.java._trace</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_QmoIcCTTEfCexKEGshhAVQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Review']"/>
     </ownedViews>
