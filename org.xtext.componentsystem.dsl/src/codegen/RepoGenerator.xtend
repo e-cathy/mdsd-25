@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.EObject
 import MDSDComponentMetamodel.SystemIndependant.Repository
 import MDSDComponentMetamodel.SystemIndependant.Interface
 import MDSDComponentMetamodel.SystemIndependant.BasicComponent
+import MDSDComponentMetamodel.SystemIndependant.Signature
+import MDSDComponentMetamodel.SystemIndependant.Type
+import MDSDComponentMetamodel.SystemIndependant.SimpleTypeEnum
 
 class RepoGenerator implements IGenerator {
     
@@ -28,7 +31,19 @@ class RepoGenerator implements IGenerator {
     '''
     
     def compile(Interface interf) '''
+        package repository;
+        
+        public interface «getInterfaceName(interf)» {
+            
+            «FOR signature:interf.signatures»
+                 «signature.compile» 
+            «ENDFOR»
+        }
     '''
+    
+    def compile(Signature signature) '''
+	«getType(signature.returnType)» «signature.name»(«ListExtensions.map(signature.parameters)[p | getType(p.type) + " " + p.name].join(", ")»);
+	'''
     
     def compile(BasicComponent comp) '''
     // this is component «comp.name».
@@ -53,4 +68,28 @@ class RepoGenerator implements IGenerator {
     def String getComponentName(BasicComponent comp) {
         return comp.name + "Impl";
     }
+    
+    def String getType(Type type) {
+    	if (type === null) {
+    		return "void";
+    	}
+    	if (type.type === null) {
+    		return "void";
+    	} else if (type.type == SimpleTypeEnum.BOOLEAN) {
+			return "boolean"
+		} else if (type.type == SimpleTypeEnum.CHAR) {
+			return "char";
+		} else if (type.type == SimpleTypeEnum.DOUBLE) {
+			return "double";
+		} else if (type.type == SimpleTypeEnum.FLOAT) {
+			return "float";
+		} else if (type.type == SimpleTypeEnum.INT) {
+			return "int";
+		} else if (type.type == SimpleTypeEnum.LONG) {
+			return "long";
+		} else if (type.type == SimpleTypeEnum.STRING) {
+			return "String";
+		}
+		return "undefinedType"
+	}
 }
