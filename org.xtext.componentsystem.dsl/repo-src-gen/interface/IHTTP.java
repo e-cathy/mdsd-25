@@ -1,7 +1,7 @@
-package interface;
+package repository;
 
 public interface IHTTP {
     
-    void HTTPDownload ();
-    void HTTPUpload ();
+    void HTTPDownload();
+    void HTTPUpload();
 }

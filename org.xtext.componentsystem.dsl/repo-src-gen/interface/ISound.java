@@ -1,6 +1,6 @@
-package interface;
+package repository;
 
 public interface ISound {
     
-    void watermark ();
+    void watermark();
 }

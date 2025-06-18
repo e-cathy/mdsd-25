@@ -1,7 +1,7 @@
-package interface;
+package repository;
 
 public interface IAudioDB {
     
-    void queryDB ();
-    void addFile ();
+    void queryDB();
+    void addFile();
 }
