@@ -30,13 +30,13 @@ class RepoGenerator implements IGenerator {
 		}
 	}
     
-    def dispatch void compile(Repository repo, IFileSystemAccess fsa) {
+    def void compile(Repository repo, IFileSystemAccess fsa) {
     	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  "Helper" + JAVA_SUFFIX, repo.compile) 
     	for (Interface i : repo.getInterfaces()) {
     		i.compile(repo, fsa)
     	}
     	for (BasicComponent c : repo.getComponents()) {
-    		c.compile(fsa)
+    		c.compile(repo, fsa)
     	}
     }
     
@@ -44,8 +44,8 @@ class RepoGenerator implements IGenerator {
     	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compile)  
     }
     
-    def dispatch void compile(BasicComponent comp, IFileSystemAccess fsa) {
-    	 fsa.generateFile(getPackage(comp).replace(".", "/") + "/" +  getComponentName(comp) + JAVA_SUFFIX, comp.compile)  
+    def dispatch void compile(BasicComponent comp, Repository repo, IFileSystemAccess fsa) {
+    	 fsa.generateFile(getPackage(comp).replace(".", "/") + "/" +  getComponentName(comp) + JAVA_SUFFIX, comp.compile(repo))  
     }
     
     // Return helper class
@@ -82,16 +82,25 @@ class RepoGenerator implements IGenerator {
 	«getType(signature.returnType)» «signature.name»(«ListExtensions.map(signature.parameters)[p | getType(p.type) + " " + p.name].join(", ")»);
 	'''
     
-    def String compile(BasicComponent comp) '''
+    def String compile(BasicComponent comp, Repository repo) '''
 		package «comp.name»;
-		
-		public class «getComponentName(comp)»«IF !comp.providedInterfaces.empty» implements «getInterfaceName(comp.providedInterfaces.head)»«ENDIF»{
+			
+		«FOR i: comp.providedInterfaces»
+			import «repo.name».«getInterfaceName(i)»;
+		«ENDFOR»
+		«FOR i: comp.requiredInterfaces»
+			import «repo.name».«getInterfaceName(i)»;
+		«ENDFOR»
+		import «repo.name».Helper;
+			
+		public class «getComponentName(comp)»«IF !comp.providedInterfaces.empty» implements «ListExtensions.map(comp.providedInterfaces)[i | getInterfaceName(i)].join(", ")»«ENDIF»{
 			«FOR i: comp.requiredInterfaces»
 				«getInterfaceName(i)» «getInterfaceName(i).toFirstLower»;
 			«ENDFOR»
 			
 			«FOR i: comp.requiredInterfaces»
 				public void set«getInterfaceName(i)» («getInterfaceName(i)» «getInterfaceName(i).toFirstLower») {
+					Helper.asserNull(this.«getInterfaceName(i).toFirstLower»)
 					this.«getInterfaceName(i).toFirstLower» = «getInterfaceName(i).toFirstLower»;
 				}
 			«ENDFOR»
@@ -102,6 +111,9 @@ class RepoGenerator implements IGenerator {
 				// Implementing «s.name» from interface «getInterfaceName(i)»
 				@Override
 				public «getType(s.returnType)» «s.name»() {
+					«FOR r: comp.requiredInterfaces»
+						Helper.assertNotNull(this.«getInterfaceName(r).toFirstLower»)
+					«ENDFOR»
 					// TODO: Insert code here
 				}
 				«ENDFOR»
