@@ -71,8 +71,7 @@ class RepoGenerator implements IGenerator {
     def String compile(Interface interf) '''
         package repository;
         
-        public interface «getInterfaceName(interf)» {
-            
+        public interface «getInterfaceName(interf)» {     
             «FOR signature:interf.signatures»
                  «signature.compile» 
             «ENDFOR»
@@ -84,21 +83,30 @@ class RepoGenerator implements IGenerator {
 	'''
     
     def String compile(BasicComponent comp) '''
-    		package «comp.name»;
-    		
-    		public class «getComponentName(comp)» «IF !comp.providedInterfaces.empty» extends «comp.providedInterfaces.head.name»«ENDIF»{
-    			«FOR a: comp.requiredInterfaces»
-    				«getInterfaceName(a)» «getInterfaceName(a).toFirstLower»;
-    			«ENDFOR»
-    
-    			«FOR i: comp.providedInterfaces»
-    				«FOR s: i.signatures»
-    				public void get«i.name» () {
-    					return null;
-    				}
-    				«ENDFOR»
-    			«ENDFOR»
-    		}
+		package «comp.name»;
+		
+		public class «getComponentName(comp)»«IF !comp.providedInterfaces.empty» implements «getInterfaceName(comp.providedInterfaces.head)»«ENDIF»{
+			«FOR i: comp.requiredInterfaces»
+				«getInterfaceName(i)» «getInterfaceName(i).toFirstLower»;
+			«ENDFOR»
+			
+			«FOR i: comp.requiredInterfaces»
+				public void set«getInterfaceName(i)» («getInterfaceName(i)» «getInterfaceName(i).toFirstLower») {
+					this.«getInterfaceName(i).toFirstLower» = «getInterfaceName(i).toFirstLower»;
+				}
+			«ENDFOR»
+
+			«FOR i: comp.providedInterfaces»
+				«FOR s: i.signatures»
+							
+				// Implementing «s.name» from interface «getInterfaceName(i)»
+				@Override
+				public «getType(s.returnType)» «s.name»() {
+					// TODO: Insert code here
+				}
+				«ENDFOR»
+			«ENDFOR»
+		}
     '''
     
     def String getPackage(EObject object) {
