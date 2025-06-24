@@ -45,12 +45,12 @@ public class RepoGenerator implements IGenerator {
     }
   }
 
-  public void compile(final Repository repo, final IFileSystemAccess fsa) {
+  protected void _compile(final Repository repo, final IFileSystemAccess fsa) {
     String _replace = this.getPackage(repo).replace(".", "/");
     String _plus = (_replace + "/");
     String _plus_1 = (_plus + "Helper");
     String _plus_2 = (_plus_1 + this.JAVA_SUFFIX);
-    fsa.generateFile(_plus_2, this.compile(repo));
+    fsa.generateFile(_plus_2, this.compileContent(repo));
     EList<Interface> _interfaces = repo.getInterfaces();
     for (final Interface i : _interfaces) {
       this.compile(i, repo, fsa);
@@ -67,7 +67,7 @@ public class RepoGenerator implements IGenerator {
     String _interfaceName = this.getInterfaceName(i);
     String _plus_1 = (_plus + _interfaceName);
     String _plus_2 = (_plus_1 + this.JAVA_SUFFIX);
-    fsa.generateFile(_plus_2, this.compile(i, repo));
+    fsa.generateFile(_plus_2, this.compileContent(i, repo));
   }
 
   protected void _compile(final BasicComponent comp, final Repository repo, final IFileSystemAccess fsa) {
@@ -76,10 +76,10 @@ public class RepoGenerator implements IGenerator {
     String _componentName = this.getComponentName(comp);
     String _plus_1 = (_plus + _componentName);
     String _plus_2 = (_plus_1 + this.JAVA_SUFFIX);
-    fsa.generateFile(_plus_2, this.compile(comp, repo));
+    fsa.generateFile(_plus_2, this.compileContent(comp, repo));
   }
 
-  public String compile(final Repository repo) {
+  public String compileContent(final Repository repo) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _package = this.getPackage(repo);
@@ -125,7 +125,7 @@ public class RepoGenerator implements IGenerator {
     return _builder.toString();
   }
 
-  public String compile(final Interface interf, final Repository repo) {
+  public String compileContent(final Interface interf, final Repository repo) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _package = this.getPackage(repo);
@@ -142,8 +142,8 @@ public class RepoGenerator implements IGenerator {
       EList<Signature> _signatures = interf.getSignatures();
       for(final Signature signature : _signatures) {
         _builder.append("    ");
-        String _compile = this.compile(signature);
-        _builder.append(_compile, "    ");
+        String _compileContent = this.compileContent(signature);
+        _builder.append(_compileContent, "    ");
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
       }
@@ -153,7 +153,7 @@ public class RepoGenerator implements IGenerator {
     return _builder.toString();
   }
 
-  public String compile(final Signature signature) {
+  public String compileContent(final Signature signature) {
     StringConcatenation _builder = new StringConcatenation();
     String _type = this.getType(signature.getReturnType());
     _builder.append(_type);
@@ -162,7 +162,7 @@ public class RepoGenerator implements IGenerator {
     _builder.append(_name);
     _builder.append("(");
     final Function1<Parameter, String> _function = (Parameter p) -> {
-      return this.compile(p);
+      return this.compileContent(p);
     };
     String _join = IterableExtensions.join(ListExtensions.<Parameter, String>map(signature.getParameters(), _function), ", ");
     _builder.append(_join);
@@ -171,7 +171,7 @@ public class RepoGenerator implements IGenerator {
     return _builder.toString();
   }
 
-  public String compile(final Parameter param) {
+  public String compileContent(final Parameter param) {
     StringConcatenation _builder = new StringConcatenation();
     String _type = this.getType(param.getType());
     _builder.append(_type);
@@ -182,7 +182,7 @@ public class RepoGenerator implements IGenerator {
     return _builder.toString();
   }
 
-  public String compile(final BasicComponent comp, final Repository repo) {
+  public String compileContent(final BasicComponent comp, final Repository repo) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _package = this.getPackage(comp);
@@ -426,16 +426,19 @@ public class RepoGenerator implements IGenerator {
   }
 
   @XbaseGenerated
-  public void compile(final EObject cs, final IFileSystemAccess fsa) {
-    if (cs instanceof ComponentSystem) {
-      _compile((ComponentSystem)cs, fsa);
+  public void compile(final EObject repo, final IFileSystemAccess fsa) {
+    if (repo instanceof Repository) {
+      _compile((Repository)repo, fsa);
       return;
-    } else if (cs != null) {
-      _compile(cs, fsa);
+    } else if (repo instanceof ComponentSystem) {
+      _compile((ComponentSystem)repo, fsa);
+      return;
+    } else if (repo != null) {
+      _compile(repo, fsa);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(cs, fsa).toString());
+        Arrays.<Object>asList(repo, fsa).toString());
     }
   }
 

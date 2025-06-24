@@ -31,8 +31,8 @@ class RepoGenerator implements IGenerator {
 		}
 	}
     
-    def void compile(Repository repo, IFileSystemAccess fsa) {
-    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  "Helper" + JAVA_SUFFIX, repo.compile) 
+    def dispatch void compile(Repository repo, IFileSystemAccess fsa) {
+    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  "Helper" + JAVA_SUFFIX, repo.compileContent) 
     	for (Interface i : repo.getInterfaces()) {
     		i.compile(repo, fsa)
     	}
@@ -42,15 +42,15 @@ class RepoGenerator implements IGenerator {
     }
     
     def dispatch void compile(Interface i, Repository repo, IFileSystemAccess fsa) {
-    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compile(repo))  
+    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compileContent(repo))  
     }
     
     def dispatch void compile(BasicComponent comp, Repository repo, IFileSystemAccess fsa) {
-    	 fsa.generateFile(getPackage(comp).replace(".", "/") + "/" +  getComponentName(comp) + JAVA_SUFFIX, comp.compile(repo))  
+    	 fsa.generateFile(getPackage(comp).replace(".", "/") + "/" +  getComponentName(comp) + JAVA_SUFFIX, comp.compileContent(repo))  
     }
     
     // Return helper class
-    def String compile(Repository repo) '''
+    def String compileContent(Repository repo) '''
     	package «getPackage(repo)»
     	
     	public class Helper {
@@ -69,25 +69,25 @@ class RepoGenerator implements IGenerator {
     	}
     '''
     
-    def String compile(Interface interf, Repository repo) '''
+    def String compileContent(Interface interf, Repository repo) '''
         package «getPackage(repo)»;
         
         public interface «getInterfaceName(interf)» {     
             «FOR signature:interf.signatures»
-                 «signature.compile» 
+                 «signature.compileContent» 
             «ENDFOR»
         }
     '''
 	
-	def String compile(Signature signature) '''
-	«getType(signature.returnType)» «signature.name»(«ListExtensions.map(signature.parameters)[p | p.compile].join(", ")»);
+	def String compileContent(Signature signature) '''
+	«getType(signature.returnType)» «signature.name»(«ListExtensions.map(signature.parameters)[p | p.compileContent].join(", ")»);
 	'''
     
-    def String compile(Parameter param) '''
+    def String compileContent(Parameter param) '''
     «getType(param.type)» «param.name»
     '''
     
-    def String compile(BasicComponent comp, Repository repo) '''
+    def String compileContent(BasicComponent comp, Repository repo) '''
 		package «getPackage(comp)»;
 			
 		«FOR i: comp.providedInterfaces»
