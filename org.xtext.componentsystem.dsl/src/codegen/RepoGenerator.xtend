@@ -33,15 +33,15 @@ class RepoGenerator implements IGenerator {
     def dispatch void compile(Repository repo, IFileSystemAccess fsa) {
     	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  "Helper" + JAVA_SUFFIX, repo.compile) 
     	for (Interface i : repo.getInterfaces()) {
-    		i.compile(fsa)
+    		i.compile(repo, fsa)
     	}
     	for (BasicComponent c : repo.getComponents()) {
     		c.compile(fsa)
     	}
     }
     
-    def dispatch void compile(Interface i, IFileSystemAccess fsa) {
-    	fsa.generateFile(getPackage(i).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compile)  
+    def dispatch void compile(Interface i, Repository repo, IFileSystemAccess fsa) {
+    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compile)  
     }
     
     def dispatch void compile(BasicComponent comp, IFileSystemAccess fsa) {
@@ -95,8 +95,6 @@ class RepoGenerator implements IGenerator {
     def String getPackage(EObject object) {
         if(object instanceof Repository) {
             return object.name;
-        } else if (object instanceof Interface) {
-            return "interface";
         } else if (object instanceof BasicComponent) {
             return object.name;
         }

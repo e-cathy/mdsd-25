@@ -19,6 +19,7 @@ import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xbase.lib.XbaseGenerated;
 
 @SuppressWarnings("all")
@@ -51,7 +52,7 @@ public class RepoGenerator implements IGenerator {
     fsa.generateFile(_plus_2, this.compile(repo));
     EList<Interface> _interfaces = repo.getInterfaces();
     for (final Interface i : _interfaces) {
-      this.compile(i, fsa);
+      this.compile(i, repo, fsa);
     }
     EList<BasicComponent> _components = repo.getComponents();
     for (final BasicComponent c : _components) {
@@ -59,8 +60,8 @@ public class RepoGenerator implements IGenerator {
     }
   }
 
-  protected void _compile(final Interface i, final IFileSystemAccess fsa) {
-    String _replace = this.getPackage(i).replace(".", "/");
+  protected void _compile(final Interface i, final Repository repo, final IFileSystemAccess fsa) {
+    String _replace = this.getPackage(repo).replace(".", "/");
     String _plus = (_replace + "/");
     String _interfaceName = this.getInterfaceName(i);
     String _plus_1 = (_plus + _interfaceName);
@@ -147,11 +148,70 @@ public class RepoGenerator implements IGenerator {
 
   public String compile(final BasicComponent comp) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("// this is component ");
+    _builder.append("\t\t");
+    _builder.append("package ");
     String _name = comp.getName();
-    _builder.append(_name);
-    _builder.append(".");
+    _builder.append(_name, "\t\t");
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("public class ");
+    String _componentName = this.getComponentName(comp);
+    _builder.append(_componentName, "\t\t");
+    _builder.append(" ");
+    {
+      boolean _isEmpty = comp.getProvidedInterfaces().isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        _builder.append(" extends ");
+        String _name_1 = IterableExtensions.<Interface>head(comp.getProvidedInterfaces()).getName();
+        _builder.append(_name_1, "\t\t");
+      }
+    }
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Interface> _requiredInterfaces = comp.getRequiredInterfaces();
+      for(final Interface a : _requiredInterfaces) {
+        _builder.append("\t\t\t");
+        String _interfaceName = this.getInterfaceName(a);
+        _builder.append(_interfaceName, "\t\t\t");
+        _builder.append(" ");
+        String _firstLower = StringExtensions.toFirstLower(this.getInterfaceName(a));
+        _builder.append(_firstLower, "\t\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      EList<Interface> _providedInterfaces = comp.getProvidedInterfaces();
+      for(final Interface i : _providedInterfaces) {
+        {
+          EList<Signature> _signatures = i.getSignatures();
+          for(final Signature s : _signatures) {
+            _builder.append("\t\t\t");
+            _builder.append("public void get");
+            String _name_2 = i.getName();
+            _builder.append(_name_2, "\t\t\t");
+            _builder.append(" () {");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t");
+            _builder.append("\t");
+            _builder.append("return null;");
+            _builder.newLine();
+            _builder.append("\t\t\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
     return _builder.toString();
   }
 
@@ -159,12 +219,8 @@ public class RepoGenerator implements IGenerator {
     if ((object instanceof Repository)) {
       return ((Repository)object).getName();
     } else {
-      if ((object instanceof Interface)) {
-        return "interface";
-      } else {
-        if ((object instanceof BasicComponent)) {
-          return ((BasicComponent)object).getName();
-        }
+      if ((object instanceof BasicComponent)) {
+        return ((BasicComponent)object).getName();
       }
     }
     return "unknownObject";
@@ -239,9 +295,6 @@ public class RepoGenerator implements IGenerator {
     if (comp instanceof BasicComponent) {
       _compile((BasicComponent)comp, fsa);
       return;
-    } else if (comp instanceof Interface) {
-      _compile((Interface)comp, fsa);
-      return;
     } else if (comp instanceof Repository) {
       _compile((Repository)comp, fsa);
       return;
@@ -255,5 +308,11 @@ public class RepoGenerator implements IGenerator {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(comp, fsa).toString());
     }
+  }
+
+  @XbaseGenerated
+  public void compile(final Interface i, final Repository repo, final IFileSystemAccess fsa) {
+    _compile(i, repo, fsa);
+    return;
   }
 }
