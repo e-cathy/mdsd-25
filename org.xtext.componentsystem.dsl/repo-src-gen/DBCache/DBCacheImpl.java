@@ -8,7 +8,7 @@ public class DBCacheImpl implements IAudioDB{
 	IAudioDB iAudioDB;
 	
 	public void setIAudioDB (IAudioDB iAudioDB) {
-		Helper.asserNull(this.iAudioDB);
+		Helper.assertNull(this.iAudioDB);
 		this.iAudioDB = iAudioDB;
 	}
 				

@@ -8,7 +8,7 @@ public class WebGUIImpl implements IHTTP{
 	IMediaStore iMediaStore;
 	
 	public void setIMediaStore (IMediaStore iMediaStore) {
-		Helper.asserNull(this.iMediaStore);
+		Helper.assertNull(this.iMediaStore);
 		this.iMediaStore = iMediaStore;
 	}
 				

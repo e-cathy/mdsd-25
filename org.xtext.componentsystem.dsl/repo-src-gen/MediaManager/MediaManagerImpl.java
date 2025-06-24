@@ -10,12 +10,12 @@ public class MediaManagerImpl implements IMediaStore{
 	ISound iSound;
 	
 	public void setIAudioDB (IAudioDB iAudioDB) {
-		Helper.asserNull(this.iAudioDB);
+		Helper.assertNull(this.iAudioDB);
 		this.iAudioDB = iAudioDB;
 	}
 	
 	public void setISound (ISound iSound) {
-		Helper.asserNull(this.iSound);
+		Helper.assertNull(this.iSound);
 		this.iSound = iSound;
 	}
 				
