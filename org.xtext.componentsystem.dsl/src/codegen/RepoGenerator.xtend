@@ -41,7 +41,7 @@ class RepoGenerator implements IGenerator {
     }
     
     def dispatch void compile(Interface i, Repository repo, IFileSystemAccess fsa) {
-    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compile)  
+    	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compile(repo))  
     }
     
     def dispatch void compile(BasicComponent comp, Repository repo, IFileSystemAccess fsa) {
@@ -50,7 +50,7 @@ class RepoGenerator implements IGenerator {
     
     // Return helper class
     def String compile(Repository repo) '''
-    	package «repo.name»
+    	package «getPackage(repo)»
     	
     	public class Helper {
     	
@@ -68,8 +68,8 @@ class RepoGenerator implements IGenerator {
     	}
     '''
     
-    def String compile(Interface interf) '''
-        package repository;
+    def String compile(Interface interf, Repository repo) '''
+        package «getPackage(repo)»;
         
         public interface «getInterfaceName(interf)» {     
             «FOR signature:interf.signatures»
@@ -83,13 +83,13 @@ class RepoGenerator implements IGenerator {
 	'''
     
     def String compile(BasicComponent comp, Repository repo) '''
-		package «comp.name»;
+		package «getPackage(comp)»;
 			
 		«FOR i: comp.providedInterfaces»
-			import «repo.name».«getInterfaceName(i)»;
+			import «getPackage(repo)».«getInterfaceName(i)»;
 		«ENDFOR»
 		«FOR i: comp.requiredInterfaces»
-			import «repo.name».«getInterfaceName(i)»;
+			import «getPackage(repo)».«getInterfaceName(i)»;
 		«ENDFOR»
 		import «repo.name».Helper;
 			
@@ -97,14 +97,13 @@ class RepoGenerator implements IGenerator {
 			«FOR i: comp.requiredInterfaces»
 				«getInterfaceName(i)» «getInterfaceName(i).toFirstLower»;
 			«ENDFOR»
-			
 			«FOR i: comp.requiredInterfaces»
-				public void set«getInterfaceName(i)» («getInterfaceName(i)» «getInterfaceName(i).toFirstLower») {
-					Helper.asserNull(this.«getInterfaceName(i).toFirstLower»)
-					this.«getInterfaceName(i).toFirstLower» = «getInterfaceName(i).toFirstLower»;
-				}
+			
+			public void set«getInterfaceName(i)» («getInterfaceName(i)» «getInterfaceName(i).toFirstLower») {
+				Helper.asserNull(this.«getInterfaceName(i).toFirstLower»);
+				this.«getInterfaceName(i).toFirstLower» = «getInterfaceName(i).toFirstLower»;
+			}
 			«ENDFOR»
-
 			«FOR i: comp.providedInterfaces»
 				«FOR s: i.signatures»
 							
@@ -112,7 +111,7 @@ class RepoGenerator implements IGenerator {
 				@Override
 				public «getType(s.returnType)» «s.name»() {
 					«FOR r: comp.requiredInterfaces»
-						Helper.assertNotNull(this.«getInterfaceName(r).toFirstLower»)
+						Helper.assertNotNull(this.«getInterfaceName(r).toFirstLower»);
 					«ENDFOR»
 					// TODO: Insert code here
 				}

@@ -1,7 +1,6 @@
-package repository;
+package MediaStoreRepo;
 
-public interface IAudioDB {
-    
+public interface IAudioDB {     
     void queryDB();
     void addFile();
 }

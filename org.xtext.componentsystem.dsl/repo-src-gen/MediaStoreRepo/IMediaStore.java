@@ -1,7 +1,6 @@
-package repository;
+package MediaStoreRepo;
 
-public interface IMediaStore {
-    
+public interface IMediaStore {     
     void download();
     void upload();
 }

@@ -1,7 +1,6 @@
-package repository;
+package MediaStoreRepo;
 
-public interface IHTTP {
-    
+public interface IHTTP {     
     void HTTPDownload();
     void HTTPUpload();
 }

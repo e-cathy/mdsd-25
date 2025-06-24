@@ -1,6 +1,7 @@
 package codegen;
 
 import MDSDComponentMetamodel.ComponentSystem;
+import MDSDComponentMetamodel.NamedElement;
 import MDSDComponentMetamodel.SystemIndependant.BasicComponent;
 import MDSDComponentMetamodel.SystemIndependant.Interface;
 import MDSDComponentMetamodel.SystemIndependant.Parameter;
@@ -44,7 +45,7 @@ public class RepoGenerator implements IGenerator {
     }
   }
 
-  protected void _compile(final Repository repo, final IFileSystemAccess fsa) {
+  public void compile(final Repository repo, final IFileSystemAccess fsa) {
     String _replace = this.getPackage(repo).replace(".", "/");
     String _plus = (_replace + "/");
     String _plus_1 = (_plus + "Helper");
@@ -56,7 +57,7 @@ public class RepoGenerator implements IGenerator {
     }
     EList<BasicComponent> _components = repo.getComponents();
     for (final BasicComponent c : _components) {
-      this.compile(c, fsa);
+      this.compile(c, repo, fsa);
     }
   }
 
@@ -66,23 +67,23 @@ public class RepoGenerator implements IGenerator {
     String _interfaceName = this.getInterfaceName(i);
     String _plus_1 = (_plus + _interfaceName);
     String _plus_2 = (_plus_1 + this.JAVA_SUFFIX);
-    fsa.generateFile(_plus_2, this.compile(i));
+    fsa.generateFile(_plus_2, this.compile(i, repo));
   }
 
-  protected void _compile(final BasicComponent comp, final IFileSystemAccess fsa) {
+  protected void _compile(final BasicComponent comp, final Repository repo, final IFileSystemAccess fsa) {
     String _replace = this.getPackage(comp).replace(".", "/");
     String _plus = (_replace + "/");
     String _componentName = this.getComponentName(comp);
     String _plus_1 = (_plus + _componentName);
     String _plus_2 = (_plus_1 + this.JAVA_SUFFIX);
-    fsa.generateFile(_plus_2, this.compile(comp));
+    fsa.generateFile(_plus_2, this.compile(comp, repo));
   }
 
   public String compile(final Repository repo) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    String _name = repo.getName();
-    _builder.append(_name);
+    String _package = this.getPackage(repo);
+    _builder.append(_package);
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("public class Helper {");
@@ -124,18 +125,19 @@ public class RepoGenerator implements IGenerator {
     return _builder.toString();
   }
 
-  public String compile(final Interface interf) {
+  public String compile(final Interface interf, final Repository repo) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package repository;");
-    _builder.newLine();
+    _builder.append("package ");
+    String _package = this.getPackage(repo);
+    _builder.append(_package);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("public interface ");
     String _interfaceName = this.getInterfaceName(interf);
     _builder.append(_interfaceName);
-    _builder.append(" {");
+    _builder.append(" {     ");
     _builder.newLineIfNotEmpty();
-    _builder.append("    ");
-    _builder.newLine();
     {
       EList<Signature> _signatures = interf.getSignatures();
       for(final Signature signature : _signatures) {
@@ -172,70 +174,169 @@ public class RepoGenerator implements IGenerator {
     return _builder.toString();
   }
 
-  public String compile(final BasicComponent comp) {
+  public String compile(final BasicComponent comp, final Repository repo) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t\t");
     _builder.append("package ");
-    String _name = comp.getName();
-    _builder.append(_name, "\t\t");
+    String _package = this.getPackage(comp);
+    _builder.append(_package);
     _builder.append(";");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
+    _builder.append("\t");
     _builder.newLine();
-    _builder.append("\t\t");
+    {
+      EList<Interface> _providedInterfaces = comp.getProvidedInterfaces();
+      for(final Interface i : _providedInterfaces) {
+        _builder.append("import ");
+        String _package_1 = this.getPackage(repo);
+        _builder.append(_package_1);
+        _builder.append(".");
+        String _interfaceName = this.getInterfaceName(i);
+        _builder.append(_interfaceName);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Interface> _requiredInterfaces = comp.getRequiredInterfaces();
+      for(final Interface i_1 : _requiredInterfaces) {
+        _builder.append("import ");
+        String _package_2 = this.getPackage(repo);
+        _builder.append(_package_2);
+        _builder.append(".");
+        String _interfaceName_1 = this.getInterfaceName(i_1);
+        _builder.append(_interfaceName_1);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("import ");
+    String _name = repo.getName();
+    _builder.append(_name);
+    _builder.append(".Helper;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
     _builder.append("public class ");
     String _componentName = this.getComponentName(comp);
-    _builder.append(_componentName, "\t\t");
-    _builder.append(" ");
+    _builder.append(_componentName);
     {
       boolean _isEmpty = comp.getProvidedInterfaces().isEmpty();
       boolean _not = (!_isEmpty);
       if (_not) {
-        _builder.append(" extends ");
-        String _name_1 = IterableExtensions.<Interface>head(comp.getProvidedInterfaces()).getName();
-        _builder.append(_name_1, "\t\t");
+        _builder.append(" implements ");
+        final Function1<Interface, String> _function = (Interface i_2) -> {
+          return this.getInterfaceName(i_2);
+        };
+        String _join = IterableExtensions.join(ListExtensions.<Interface, String>map(comp.getProvidedInterfaces(), _function), ", ");
+        _builder.append(_join);
       }
     }
     _builder.append("{");
     _builder.newLineIfNotEmpty();
     {
-      EList<Interface> _requiredInterfaces = comp.getRequiredInterfaces();
-      for(final Interface a : _requiredInterfaces) {
-        _builder.append("\t\t\t");
-        String _interfaceName = this.getInterfaceName(a);
-        _builder.append(_interfaceName, "\t\t\t");
+      EList<Interface> _requiredInterfaces_1 = comp.getRequiredInterfaces();
+      for(final Interface i_2 : _requiredInterfaces_1) {
+        _builder.append("\t");
+        String _interfaceName_2 = this.getInterfaceName(i_2);
+        _builder.append(_interfaceName_2, "\t");
         _builder.append(" ");
-        String _firstLower = StringExtensions.toFirstLower(this.getInterfaceName(a));
-        _builder.append(_firstLower, "\t\t\t");
+        String _firstLower = StringExtensions.toFirstLower(this.getInterfaceName(i_2));
+        _builder.append(_firstLower, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.newLine();
     {
-      EList<Interface> _providedInterfaces = comp.getProvidedInterfaces();
-      for(final Interface i : _providedInterfaces) {
+      EList<Interface> _requiredInterfaces_2 = comp.getRequiredInterfaces();
+      for(final Interface i_3 : _requiredInterfaces_2) {
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("public void set");
+        String _interfaceName_3 = this.getInterfaceName(i_3);
+        _builder.append(_interfaceName_3, "\t");
+        _builder.append(" (");
+        String _interfaceName_4 = this.getInterfaceName(i_3);
+        _builder.append(_interfaceName_4, "\t");
+        _builder.append(" ");
+        String _firstLower_1 = StringExtensions.toFirstLower(this.getInterfaceName(i_3));
+        _builder.append(_firstLower_1, "\t");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("Helper.asserNull(this.");
+        String _firstLower_2 = StringExtensions.toFirstLower(this.getInterfaceName(i_3));
+        _builder.append(_firstLower_2, "\t\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("this.");
+        String _firstLower_3 = StringExtensions.toFirstLower(this.getInterfaceName(i_3));
+        _builder.append(_firstLower_3, "\t\t");
+        _builder.append(" = ");
+        String _firstLower_4 = StringExtensions.toFirstLower(this.getInterfaceName(i_3));
+        _builder.append(_firstLower_4, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    {
+      EList<Interface> _providedInterfaces_1 = comp.getProvidedInterfaces();
+      for(final Interface i_4 : _providedInterfaces_1) {
         {
-          EList<Signature> _signatures = i.getSignatures();
+          EList<Signature> _signatures = i_4.getSignatures();
           for(final Signature s : _signatures) {
-            _builder.append("\t\t\t");
-            _builder.append("public void get");
-            String _name_2 = i.getName();
-            _builder.append(_name_2, "\t\t\t");
-            _builder.append(" () {");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t\t");
             _builder.append("\t");
-            _builder.append("return null;");
-            _builder.newLine();
             _builder.append("\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("// Implementing ");
+            String _name_1 = s.getName();
+            _builder.append(_name_1, "\t");
+            _builder.append(" from interface ");
+            String _interfaceName_5 = this.getInterfaceName(i_4);
+            _builder.append(_interfaceName_5, "\t");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("@Override");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public ");
+            String _type = this.getType(s.getReturnType());
+            _builder.append(_type, "\t");
+            _builder.append(" ");
+            String _name_2 = s.getName();
+            _builder.append(_name_2, "\t");
+            _builder.append("() {");
+            _builder.newLineIfNotEmpty();
+            {
+              EList<Interface> _requiredInterfaces_3 = comp.getRequiredInterfaces();
+              for(final Interface r : _requiredInterfaces_3) {
+                _builder.append("\t");
+                _builder.append("\t");
+                _builder.append("Helper.assertNotNull(this.");
+                String _firstLower_5 = StringExtensions.toFirstLower(this.getInterfaceName(r));
+                _builder.append(_firstLower_5, "\t\t");
+                _builder.append(");");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("// TODO: Insert code here");
+            _builder.newLine();
+            _builder.append("\t");
             _builder.append("}");
             _builder.newLine();
           }
         }
       }
     }
-    _builder.append("\t\t");
     _builder.append("}");
     _builder.newLine();
     return _builder.toString();
@@ -317,28 +418,30 @@ public class RepoGenerator implements IGenerator {
   }
 
   @XbaseGenerated
-  public void compile(final EObject comp, final IFileSystemAccess fsa) {
-    if (comp instanceof BasicComponent) {
-      _compile((BasicComponent)comp, fsa);
+  public void compile(final EObject cs, final IFileSystemAccess fsa) {
+    if (cs instanceof ComponentSystem) {
+      _compile((ComponentSystem)cs, fsa);
       return;
-    } else if (comp instanceof Repository) {
-      _compile((Repository)comp, fsa);
-      return;
-    } else if (comp instanceof ComponentSystem) {
-      _compile((ComponentSystem)comp, fsa);
-      return;
-    } else if (comp != null) {
-      _compile(comp, fsa);
+    } else if (cs != null) {
+      _compile(cs, fsa);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(comp, fsa).toString());
+        Arrays.<Object>asList(cs, fsa).toString());
     }
   }
 
   @XbaseGenerated
-  public void compile(final Interface i, final Repository repo, final IFileSystemAccess fsa) {
-    _compile(i, repo, fsa);
-    return;
+  public void compile(final NamedElement comp, final Repository repo, final IFileSystemAccess fsa) {
+    if (comp instanceof BasicComponent) {
+      _compile((BasicComponent)comp, repo, fsa);
+      return;
+    } else if (comp instanceof Interface) {
+      _compile((Interface)comp, repo, fsa);
+      return;
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(comp, repo, fsa).toString());
+    }
   }
 }

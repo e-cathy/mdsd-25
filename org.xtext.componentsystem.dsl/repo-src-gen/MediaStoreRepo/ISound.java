@@ -1,6 +1,5 @@
-package repository;
+package MediaStoreRepo;
 
-public interface ISound {
-    
+public interface ISound {     
     void watermark();
 }
