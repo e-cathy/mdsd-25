@@ -218,8 +218,8 @@ public class RepoGenerator implements IGenerator {
       }
     }
     _builder.append("import ");
-    String _name = repo.getName();
-    _builder.append(_name);
+    String _package_3 = this.getPackage(repo);
+    _builder.append(_package_3);
     _builder.append(".Helper;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -273,7 +273,7 @@ public class RepoGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t");
-        _builder.append("Helper.asserNull(this.");
+        _builder.append("Helper.assertNull(this.");
         String _firstLower_2 = StringExtensions.toFirstLower(this.getInterfaceName(i_3));
         _builder.append(_firstLower_2, "\t\t");
         _builder.append(");");
@@ -304,8 +304,8 @@ public class RepoGenerator implements IGenerator {
             _builder.newLine();
             _builder.append("\t");
             _builder.append("// Implementing ");
-            String _name_1 = s.getName();
-            _builder.append(_name_1, "\t");
+            String _name = s.getName();
+            _builder.append(_name, "\t");
             _builder.append(" from interface ");
             String _interfaceName_5 = this.getInterfaceName(i_4);
             _builder.append(_interfaceName_5, "\t");
@@ -318,8 +318,8 @@ public class RepoGenerator implements IGenerator {
             String _type = this.getType(s.getReturnType());
             _builder.append(_type, "\t");
             _builder.append(" ");
-            String _name_2 = s.getName();
-            _builder.append(_name_2, "\t");
+            String _name_1 = s.getName();
+            _builder.append(_name_1, "\t");
             _builder.append("() {");
             _builder.newLineIfNotEmpty();
             {

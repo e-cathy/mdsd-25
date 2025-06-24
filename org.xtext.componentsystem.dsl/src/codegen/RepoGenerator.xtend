@@ -96,7 +96,7 @@ class RepoGenerator implements IGenerator {
 		«FOR i: comp.requiredInterfaces»
 			import «getPackage(repo)».«getInterfaceName(i)»;
 		«ENDFOR»
-		import «repo.name».Helper;
+		import «getPackage(repo)».Helper;
 			
 		public class «getComponentName(comp)»«IF !comp.providedInterfaces.empty» implements «ListExtensions.map(comp.providedInterfaces)[i | getInterfaceName(i)].join(", ")»«ENDIF»{
 			«FOR i: comp.requiredInterfaces»
@@ -105,7 +105,7 @@ class RepoGenerator implements IGenerator {
 			«FOR i: comp.requiredInterfaces»
 			
 			public void set«getInterfaceName(i)» («getInterfaceName(i)» «getInterfaceName(i).toFirstLower») {
-				Helper.asserNull(this.«getInterfaceName(i).toFirstLower»);
+				Helper.assertNull(this.«getInterfaceName(i).toFirstLower»);
 				this.«getInterfaceName(i).toFirstLower» = «getInterfaceName(i).toFirstLower»;
 			}
 			«ENDFOR»
