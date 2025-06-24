@@ -162,14 +162,22 @@ public class RepoGenerator implements IGenerator {
     _builder.append(_name);
     _builder.append("(");
     final Function1<Parameter, String> _function = (Parameter p) -> {
-      String _type_1 = this.getType(p.getType());
-      String _plus = (_type_1 + " ");
-      String _name_1 = p.getName();
-      return (_plus + _name_1);
+      return this.compile(p);
     };
     String _join = IterableExtensions.join(ListExtensions.<Parameter, String>map(signature.getParameters(), _function), ", ");
     _builder.append(_join);
     _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
+  }
+
+  public String compile(final Parameter param) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _type = this.getType(param.getType());
+    _builder.append(_type);
+    _builder.append(" ");
+    String _name = param.getName();
+    _builder.append(_name);
     _builder.newLineIfNotEmpty();
     return _builder.toString();
   }

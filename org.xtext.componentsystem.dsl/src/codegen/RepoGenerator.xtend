@@ -10,6 +10,7 @@ import MDSDComponentMetamodel.SystemIndependant.BasicComponent
 import MDSDComponentMetamodel.ComponentSystem
 import MDSDComponentMetamodel.SystemIndependant.SimpleTypeEnum
 import MDSDComponentMetamodel.SystemIndependant.Signature
+import MDSDComponentMetamodel.SystemIndependant.Parameter
 import MDSDComponentMetamodel.SystemIndependant.Type
 
 class RepoGenerator implements IGenerator {
@@ -77,10 +78,14 @@ class RepoGenerator implements IGenerator {
             «ENDFOR»
         }
     '''
-    
-    def String compile(Signature signature) '''
-	«getType(signature.returnType)» «signature.name»(«ListExtensions.map(signature.parameters)[p | getType(p.type) + " " + p.name].join(", ")»);
+	
+	def String compile(Signature signature) '''
+	«getType(signature.returnType)» «signature.name»(«ListExtensions.map(signature.parameters)[p | p.compile].join(", ")»);
 	'''
+    
+    def String compile(Parameter param) '''
+    «getType(param.type)» «param.name»
+    '''
     
     def String compile(BasicComponent comp, Repository repo) '''
 		package «getPackage(comp)»;
