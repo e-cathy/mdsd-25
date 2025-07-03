@@ -10,7 +10,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MDSDComponentMetamodel::SystemIndependant::Repository" referenceName="repositories" variableName="newRepo">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Component" referenceName="components" variableName="newComp">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name"/>
                 </subModelOperations>
               </firstModelOperations>
