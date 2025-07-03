@@ -5,19 +5,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:MDSDComponentMetamodel="http://www.example.org/MDSDComponentMetamodel"
     xsi:schemaLocation="http://www.example.org/MDSDComponentMetamodel MDSDComponentMetamodel.ecore">
-  <repository>
+  <repositories>
     <components
         name="component1"
-        providedInterfaces="//@repository.0/@interfaces.0"
-        requiredInterfaces="//@repository.0/@interfaces.1"/>
+        providedInterfaces="//@repositories.0/@interfaces.0"
+        requiredInterfaces="//@repositories.0/@interfaces.1"/>
     <components
         name="component2"
-        providedInterfaces="//@repository.0/@interfaces.2"
-        requiredInterfaces="//@repository.0/@interfaces.3"/>
+        providedInterfaces="//@repositories.0/@interfaces.2"
+        requiredInterfaces="//@repositories.0/@interfaces.3"/>
     <components
         name="component3"
-        providedInterfaces="//@repository.0/@interfaces.4"
-        requiredInterfaces="//@repository.0/@interfaces.5"/>
+        providedInterfaces="//@repositories.0/@interfaces.4"
+        requiredInterfaces="//@repositories.0/@interfaces.5"/>
     <interfaces
         name="provideInterface1"/>
     <interfaces
@@ -30,78 +30,78 @@
         name="provideInterface3"/>
     <interfaces
         name="requireInterface3"/>
-  </repository>
-  <system interfaces="//@repository.0/@interfaces.0">
+  </repositories>
+  <systems interfaces="//@repositories.0/@interfaces.0">
     <assembly>
       <assemblyContexts
           name="context1"
-          component="//@repository.0/@components.0"
-          allocationContext="//@system.0/@allocation/@allocationContexts.0">
+          component="//@repositories.0/@components.0"
+          allocationContext="//@systems.0/@allocation/@allocationContexts.0">
         <providedRoles
             name="provideRole1"
-            interface="//@repository.0/@interfaces.0"/>
+            interface="//@repositories.0/@interfaces.0"/>
         <requiredRoles
             name="requireRole1"
-            interface="//@repository.0/@interfaces.1"/>
+            interface="//@repositories.0/@interfaces.1"/>
       </assemblyContexts>
       <assemblyContexts
           name="context4"
-          component="//@system.0/@assembly/@compositeComponents.0"
-          allocationContext="//@system.0/@allocation/@allocationContexts.1"/>
+          component="//@systems.0/@assembly/@compositeComponents.0"
+          allocationContext="//@systems.0/@allocation/@allocationContexts.1"/>
       <compositeComponents
           name="composite component"
-          providedInterfaces="//@repository.0/@interfaces.4"
-          requiredInterfaces="//@repository.0/@interfaces.3">
+          providedInterfaces="//@repositories.0/@interfaces.4"
+          requiredInterfaces="//@repositories.0/@interfaces.3">
         <assemblyContexts
             name="context2"
-            component="//@repository.0/@components.1">
+            component="//@repositories.0/@components.1">
           <providedRoles
               name="provideRole2"
-              interface="//@repository.0/@interfaces.2"/>
+              interface="//@repositories.0/@interfaces.2"/>
           <requiredRoles
               name="requireRole2"
-              interface="//@repository.0/@interfaces.3"/>
+              interface="//@repositories.0/@interfaces.3"/>
         </assemblyContexts>
         <assemblyContexts
             name="context3"
-            component="//@repository.0/@components.2">
+            component="//@repositories.0/@components.2">
           <providedRoles
               name="provideRole3"
-              interface="//@repository.0/@interfaces.4"/>
+              interface="//@repositories.0/@interfaces.4"/>
           <requiredRoles
               name="requireRole3"
-              interface="//@repository.0/@interfaces.5"/>
+              interface="//@repositories.0/@interfaces.5"/>
         </assemblyContexts>
         <delegationConnectors
             name="connectorForProvideRoleOfCompositeComponent"
-            role="//@system.0/@assembly/@compositeComponents.0/@assemblyContexts.1/@providedRoles.0"
-            delegatedInterface="//@repository.0/@interfaces.4"/>
+            role="//@systems.0/@assembly/@compositeComponents.0/@assemblyContexts.1/@providedRoles.0"
+            delegatedInterface="//@repositories.0/@interfaces.4"/>
       </compositeComponents>
       <delegationConnectors
           name="connectorForProvideRole"
-          role="//@system.0/@assembly/@assemblyContexts.0/@providedRoles.0"
-          delegatedInterface="//@repository.0/@interfaces.0"/>
+          role="//@systems.0/@assembly/@assemblyContexts.0/@providedRoles.0"
+          delegatedInterface="//@repositories.0/@interfaces.0"/>
     </assembly>
     <allocation>
       <allocationContexts
           name="context1"
-          container="//@system.0/@environment/@containers.0"
-          assemblyContext="//@system.0/@assembly/@assemblyContexts.0"/>
+          container="//@systems.0/@environment/@containers.0"
+          assemblyContext="//@systems.0/@assembly/@assemblyContexts.0"/>
       <allocationContexts
           name="context4"
-          container="//@system.0/@environment/@containers.1"
-          assemblyContext="//@system.0/@assembly/@assemblyContexts.1"/>
+          container="//@systems.0/@environment/@containers.1"
+          assemblyContext="//@systems.0/@assembly/@assemblyContexts.1"/>
     </allocation>
     <environment>
       <links
           name="link"
-          containers="//@system.0/@environment/@containers.0 //@system.0/@environment/@containers.1"/>
+          containers="//@systems.0/@environment/@containers.0 //@systems.0/@environment/@containers.1"/>
       <containers
           name="linkedContainer1"
-          links="//@system.0/@environment/@links.0"/>
+          links="//@systems.0/@environment/@links.0"/>
       <containers
           name="linkedContainer2"
-          links="//@system.0/@environment/@links.0"/>
+          links="//@systems.0/@environment/@links.0"/>
     </environment>
-  </system>
+  </systems>
 </MDSDComponentMetamodel:ComponentSystem>
