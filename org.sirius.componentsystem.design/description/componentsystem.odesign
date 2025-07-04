@@ -10,14 +10,14 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="InterfaceNode" label="Interface" domainClass="SystemIndependant::Interface">
-          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW">
+        <nodeMappings name="InterfaceNode" label="Interface" semanticCandidatesExpression="aql:self.interfaces" domainClass="SystemIndependant::Interface">
+          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW" width="10" height="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
           </style>
         </nodeMappings>
-        <toolSections name="BasicComponentToolSection" label="Create/Delete BasicComponent">
+        <toolSections name="BasicComponentToolSection" label="BasicComponent">
           <ownedTools xsi:type="tool:NodeCreationDescription" name="createBasicComponent" label="Create BasicComponent" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -30,13 +30,15 @@
             </initialOperation>
           </ownedTools>
         </toolSections>
-        <toolSections name="InterfaceToolSection">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createInterface">
+        <toolSections name="InterfaceToolSection" label="Interface">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createInterface" label="Create Interface" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='InterfaceNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Interface" referenceName="interfaces"/>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Interface" referenceName="interfaces">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MyInterface'"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
