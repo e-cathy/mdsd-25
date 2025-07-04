@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="componentsystem" version="12.0.0.2017041100">
-  <ownedViewpoints name="MyViewpoint">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ComponentDiagram" domainClass="SystemIndependant::Repository" enablePopupBars="true">
+  <ownedViewpoints name="RepositoryViewpoint">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="RepositoryDiagram" domainClass="SystemIndependant::Repository" enablePopupBars="true">
       <defaultLayer name="Default">
         <nodeMappings name="BasicComponentNode" label="BasicComponent" semanticCandidatesExpression="aql:self.components" domainClass="SystemIndependant::BasicComponent">
           <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW">
@@ -11,7 +11,7 @@
           </style>
         </nodeMappings>
         <toolSections name="BasicComponentToolSection" label="Create/Delete BasicComponent">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createBasicComponent" label="Create BasicComponent" nodeMappings="//@ownedViewpoints[name='MyViewpoint']/@ownedRepresentations[name='ComponentDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createBasicComponent" label="Create BasicComponent" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
