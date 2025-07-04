@@ -10,6 +10,8 @@
     <semanticResources>../xtend-gen/codegen/.JavaGenerator.java._trace</semanticResources>
     <semanticResources>../xtend-gen/codegen/.Test.java._trace</semanticResources>
     <semanticResources>../instances/testing/Components.mdsdcomponentmetamodel</semanticResources>
+    <semanticResources>platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign</semanticResources>
+    <semanticResources>environment:/viewpoint</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_QmoIcCTTEfCexKEGshhAVQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Review']"/>
     </ownedViews>
