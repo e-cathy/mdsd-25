@@ -10,7 +10,14 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
           </style>
         </nodeMappings>
-        <toolSections name="BasicComponentToolSection" label="BasicComponent">
+        <nodeMappings name="InterfaceNode" label="Interface" domainClass="SystemIndependant::Interface">
+          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
+          </style>
+        </nodeMappings>
+        <toolSections name="BasicComponentToolSection" label="Create/Delete BasicComponent">
           <ownedTools xsi:type="tool:NodeCreationDescription" name="createBasicComponent" label="Create BasicComponent" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -19,6 +26,17 @@
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::BasicComponent" referenceName="components" variableName="newComp">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MyComponent'"/>
                 </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="InterfaceToolSection">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createInterface">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Interface" referenceName="interfaces"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
