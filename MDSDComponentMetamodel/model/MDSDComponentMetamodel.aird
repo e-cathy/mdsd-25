@@ -32,7 +32,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_qFXXIFjdEfCxCZkFeOPy1g">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ytttAFjdEfCxCZkFeOPy1g" name="SiriusRepositoryDiagram" repPath="#_ytse4FjdEfCxCZkFeOPy1g" changeId="1751637007173">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ytttAFjdEfCxCZkFeOPy1g" name="SiriusRepositoryDiagram" repPath="#_ytse4FjdEfCxCZkFeOPy1g" changeId="1751637492804">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']"/>
         <target xmi:type="SystemIndependant:Repository" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0"/>
       </ownedRepresentationDescriptors>
@@ -2083,7 +2083,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt7vcljdEfCxCZkFeOPy1g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_yt3eAVjdEfCxCZkFeOPy1g" fontName="Segoe UI" fontHeight="12"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt3eAljdEfCxCZkFeOPy1g" width="30" height="30"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt3eAljdEfCxCZkFeOPy1g" width="150" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_yt4sIFjdEfCxCZkFeOPy1g" type="2001" element="_yt1BwVjdEfCxCZkFeOPy1g">
           <children xmi:type="notation:Node" xmi:id="_yt4sI1jdEfCxCZkFeOPy1g" type="5002">
@@ -2094,7 +2094,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt8WgljdEfCxCZkFeOPy1g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_yt4sIVjdEfCxCZkFeOPy1g" fontName="Segoe UI" fontHeight="12"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt4sIljdEfCxCZkFeOPy1g" x="90" width="30" height="30"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt4sIljdEfCxCZkFeOPy1g" x="160" width="150" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_yt5TMFjdEfCxCZkFeOPy1g" type="2001" element="_yt1o0VjdEfCxCZkFeOPy1g">
           <children xmi:type="notation:Node" xmi:id="_yt56QFjdEfCxCZkFeOPy1g" type="5002">
@@ -2105,7 +2105,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt8WhVjdEfCxCZkFeOPy1g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_yt5TMVjdEfCxCZkFeOPy1g" fontName="Segoe UI" fontHeight="12"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt5TMljdEfCxCZkFeOPy1g" x="180" width="30" height="30"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt5TMljdEfCxCZkFeOPy1g" x="320" width="150" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_yt56QljdEfCxCZkFeOPy1g" type="2001" element="_yt2P4VjdEfCxCZkFeOPy1g">
           <children xmi:type="notation:Node" xmi:id="_yt6hUFjdEfCxCZkFeOPy1g" type="5002">
@@ -2116,7 +2116,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt89kljdEfCxCZkFeOPy1g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_yt56Q1jdEfCxCZkFeOPy1g" fontName="Segoe UI" fontHeight="12"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt56RFjdEfCxCZkFeOPy1g" x="270" width="30" height="30"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt56RFjdEfCxCZkFeOPy1g" x="480" width="150" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_yt6hUljdEfCxCZkFeOPy1g" type="2001" element="_yt228FjdEfCxCZkFeOPy1g">
           <children xmi:type="notation:Node" xmi:id="_yt7IYFjdEfCxCZkFeOPy1g" type="5002">
@@ -2127,7 +2127,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt89lVjdEfCxCZkFeOPy1g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_yt6hU1jdEfCxCZkFeOPy1g" fontName="Segoe UI" fontHeight="12"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt6hVFjdEfCxCZkFeOPy1g" x="360" width="30" height="30"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yt6hVFjdEfCxCZkFeOPy1g" x="640" width="150" height="100"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_ytuUEljdEfCxCZkFeOPy1g"/>
       </data>
@@ -2135,42 +2135,42 @@
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_yt2281jdEfCxCZkFeOPy1g" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_yt229FjdEfCxCZkFeOPy1g"/>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_ytzzoFjdEfCxCZkFeOPy1g" name="WebGUI" width="3" height="3" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_ytzzoFjdEfCxCZkFeOPy1g" name="WebGUI" width="15" height="10" resizeKind="NSEW">
       <target xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.0"/>
       <semanticElements xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.0"/>
-      <ownedStyle xmi:type="diagram:Square" uid="_yt0asFjdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node">
+      <ownedStyle xmi:type="diagram:Square" uid="_yt0asFjdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node" width="15" height="10" color="194,239,255">
         <description xmi:type="style:SquareDescription" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt1BwVjdEfCxCZkFeOPy1g" name="MediaManager" width="3" height="3" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt1BwVjdEfCxCZkFeOPy1g" name="MediaManager" width="15" height="10" resizeKind="NSEW">
       <target xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.1"/>
       <semanticElements xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.1"/>
-      <ownedStyle xmi:type="diagram:Square" uid="_yt1BwljdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node">
+      <ownedStyle xmi:type="diagram:Square" uid="_yt1BwljdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node" width="15" height="10" color="194,239,255">
         <description xmi:type="style:SquareDescription" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt1o0VjdEfCxCZkFeOPy1g" name="DBCache" width="3" height="3" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt1o0VjdEfCxCZkFeOPy1g" name="DBCache" width="15" height="10" resizeKind="NSEW">
       <target xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.2"/>
       <semanticElements xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.2"/>
-      <ownedStyle xmi:type="diagram:Square" uid="_yt1o0ljdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node">
+      <ownedStyle xmi:type="diagram:Square" uid="_yt1o0ljdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node" width="15" height="10" color="194,239,255">
         <description xmi:type="style:SquareDescription" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt2P4VjdEfCxCZkFeOPy1g" name="DigitalWatermarking" width="3" height="3" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt2P4VjdEfCxCZkFeOPy1g" name="DigitalWatermarking" width="15" height="10" resizeKind="NSEW">
       <target xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.3"/>
       <semanticElements xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.3"/>
-      <ownedStyle xmi:type="diagram:Square" uid="_yt2P4ljdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node">
+      <ownedStyle xmi:type="diagram:Square" uid="_yt2P4ljdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node" width="15" height="10" color="194,239,255">
         <description xmi:type="style:SquareDescription" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt228FjdEfCxCZkFeOPy1g" name="PoolingAudioDB" width="3" height="3" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_yt228FjdEfCxCZkFeOPy1g" name="PoolingAudioDB" width="15" height="10" resizeKind="NSEW">
       <target xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.4"/>
       <semanticElements xmi:type="SystemIndependant:BasicComponent" href="../instances/testing/Components.mdsdcomponentmetamodel#//@repositories.0/@components.4"/>
-      <ownedStyle xmi:type="diagram:Square" uid="_yt228VjdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node">
+      <ownedStyle xmi:type="diagram:Square" uid="_yt228VjdEfCxCZkFeOPy1g" labelSize="12" labelPosition="node" width="15" height="10" color="194,239,255">
         <description xmi:type="style:SquareDescription" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/org.sirius.componentsystem.design/description/componentsystem.odesign#//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']"/>
