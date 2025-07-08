@@ -55,7 +55,18 @@
           </ownedTools>
         </toolSections>
         <toolSections name="InterfaceToolSection" label="Interface">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createInterface" label="Create Interface">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSignature" label="Create Signature" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']/@subNodeMappings[name='SignatureNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Signature" referenceName="singatures">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MySignature'"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createInterfase" label="Create Interface" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
