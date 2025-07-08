@@ -60,7 +60,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Signature" referenceName="singatures">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Signature" referenceName="signatures" variableName="sig">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MySignature'"/>
                 </subModelOperations>
               </firstModelOperations>
