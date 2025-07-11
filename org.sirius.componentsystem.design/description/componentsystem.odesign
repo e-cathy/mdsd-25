@@ -107,18 +107,6 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createRequiredRoleReference" label="Connect Required Role" edgeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@edgeMappings[name='requiresEdge']">
-            <sourceVariable name="source"/>
-            <targetVariable name="target"/>
-            <sourceViewVariable name="sourceView"/>
-            <targetViewVariable name="targetView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::RequiredRole" referenceName="requiredRole" variableName="req"/>
-                <subModelOperations xsi:type="tool:CreateEdgeView" mapping="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@edgeMappings[name='requiresEdge']" containerViewExpression="RepositoryDiagram" sourceExpression="BasicComponent" targetExpression="InterfaceContainer"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
