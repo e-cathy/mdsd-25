@@ -34,26 +34,23 @@
           </style>
         </edgeMappings>
         <containerMappings name="InterfaceContainerNode" label="InterfaceContainer" semanticCandidatesExpression="feature:interfaces" domainClass="SystemIndependant::Interface" childrenPresentation="VerticalStack">
-          <subContainerMappings name="SignatureContainer" semanticCandidatesExpression="feature:signatures" domainClass="SystemIndependant::Signature" childrenPresentation="List">
-            <subNodeMappings name="SignatureParameterNode" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter">
-              <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:self.name" labelPosition="node" resizeKind="NSEW">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-              </style>
-            </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.name">
+          <subContainerMappings name="SignatureContainer" semanticCandidatesExpression="feature:signatures" domainClass="SystemIndependant::Signature" childrenPresentation="VerticalStack">
+            <subNodeMappings name="ReturnTypeNode" label="ReturnType" semanticCandidatesExpression="feature:returnType" domainClass="SystemIndependant::Type"/>
+            <subContainerMappings name="SignatureParameterContainer" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter" childrenPresentation="List">
+              <subNodeMappings name="TypeNode" label="Type" semanticCandidatesExpression="feature:eAllContents" domainClass="SystemIndependant::Type"/>
+            </subContainerMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" labelSize="12" showIcon="false" labelExpression="aql:((if self.returnType &lt;> null then self.returnType.name else 'void' endif) + ' ' + self.name + '(' + self.parameters->collect(p | (if (p.type &lt;> null) then p.type.name else 'void' endif)+ ' ' + p.name)->sep(', ') + ')')" labelAlignment="LEFT" backgroundStyle="Liquid">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
             </style>
           </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.name">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:self.name">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
           </style>
         </containerMappings>
         <containerMappings name="ComplexTypeNode" label="ComplexType" semanticCandidatesExpression="feature:types" domainClass="SystemIndependant::ComplexType" childrenPresentation="List">
