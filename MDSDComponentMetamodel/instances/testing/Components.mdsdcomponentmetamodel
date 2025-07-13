@@ -21,19 +21,19 @@
       <providedServices name="s" correspondingSignature="//@repositories.0/@interfaces.3/@signatures.1"/>
     </components>
     <interfaces name="HTTP">
-      <signatures name="HTTPDownload()"/>
-      <signatures name="HTTPUpload()"/>
+      <signatures name="HTTPDownload"/>
+      <signatures name="HTTPUpload"/>
     </interfaces>
     <interfaces name="MediaStore">
-      <signatures name="download()"/>
-      <signatures name="upload()"/>
+      <signatures name="download"/>
+      <signatures name="upload"/>
     </interfaces>
     <interfaces name="Sound">
-      <signatures name="watermark()"/>
+      <signatures name="watermark"/>
     </interfaces>
     <interfaces name="AudioDB">
-      <signatures name="queryDB()"/>
-      <signatures name="addFile()"/>
+      <signatures name="queryDB"/>
+      <signatures name="addFile"/>
     </interfaces>
   </repositories>
   <systems interfaces="//@repositories.0/@interfaces.0">
