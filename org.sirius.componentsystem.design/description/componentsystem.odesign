@@ -36,7 +36,7 @@
         <containerMappings name="InterfaceContainerNode" label="InterfaceContainer" semanticCandidatesExpression="feature:interfaces" domainClass="SystemIndependant::Interface" childrenPresentation="VerticalStack">
           <subContainerMappings name="SignatureContainer" semanticCandidatesExpression="feature:signatures" domainClass="SystemIndependant::Signature" childrenPresentation="VerticalStack">
             <subNodeMappings name="ReturnTypeNode" label="ReturnType" semanticCandidatesExpression="feature:returnType" domainClass="SystemIndependant::Type"/>
-            <subContainerMappings name="SignatureParameterContainer" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter" childrenPresentation="List">
+            <subContainerMappings name="SignatureParameterContainer" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter">
               <subNodeMappings name="TypeNode" label="Type" semanticCandidatesExpression="feature:eAllContents" domainClass="SystemIndependant::Type"/>
             </subContainerMappings>
             <style xsi:type="style:FlatContainerStyleDescription" labelSize="12" showIcon="false" labelExpression="aql:((if self.returnType &lt;> null then self.returnType.name else 'void' endif) + ' ' + self.name + '(' + self.parameters->collect(p | (if (p.type &lt;> null) then p.type.name else 'void' endif)+ ' ' + p.name)->sep(', ') + ')')" labelAlignment="LEFT" backgroundStyle="Liquid">
