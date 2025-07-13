@@ -36,7 +36,7 @@
         <containerMappings name="InterfaceContainerNode" label="InterfaceContainer" semanticCandidatesExpression="feature:interfaces" domainClass="SystemIndependant::Interface" childrenPresentation="VerticalStack">
           <subContainerMappings name="SignatureContainer" semanticCandidatesExpression="feature:signatures" domainClass="SystemIndependant::Signature" childrenPresentation="VerticalStack">
             <subNodeMappings name="ReturnTypeNode" label="ReturnType" semanticCandidatesExpression="feature:returnType" domainClass="SystemIndependant::Type"/>
-            <subContainerMappings name="SignatureParameterContainer" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter">
+            <subContainerMappings name="SignatureParameterContainer" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter" childrenPresentation="List">
               <subNodeMappings name="TypeNode" label="Type" semanticCandidatesExpression="feature:eAllContents" domainClass="SystemIndependant::Type"/>
             </subContainerMappings>
             <style xsi:type="style:FlatContainerStyleDescription" labelSize="12" showIcon="false" labelExpression="aql:((if self.returnType &lt;> null then self.returnType.name else 'void' endif) + ' ' + self.name + '(' + self.parameters->collect(p | (if (p.type &lt;> null) then p.type.name else 'void' endif)+ ' ' + p.name)->sep(', ') + ')')" labelAlignment="LEFT" backgroundStyle="Liquid">
@@ -69,31 +69,20 @@
           </style>
         </containerMappings>
         <toolSections name="BasicComponentToolSection" label="BasicComponent">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createBasicComponent" label="Create BasicComponent" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createBasicComponent" label="New BasicComponent" forceRefresh="true" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::BasicComponent" referenceName="components" variableName="newComp">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MyComponent'"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MyComponent'+container.components->size()"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
         </toolSections>
         <toolSections name="InterfaceToolSection" label="Interface">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSignature" label="Create Signature">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Signature" referenceName="signatures" variableName="sig">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MySignature'"/>
-                </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createInterfase" label="Create Interface" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createInterfase" label="New Interface" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -104,14 +93,25 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createRequiredRole" edgeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@edgeMappings[name='requiresEdge']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSignature" label="New Signature">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Signature" referenceName="signatures" variableName="sig">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MySignature'"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createRequiredRole" label="New required edge" edgeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@edgeMappings[name='requiresEdge']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool:CreateEdgeView" mapping="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@edgeMappings[name='requiresEdge']" containerViewExpression="[aql:containerView]" sourceExpression="[var:source]" targetExpression="[var:target"/>
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="requiredInterfaces" valueExpression="aql:self.requiredInterfaces->add(Sequence{var:target})"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
