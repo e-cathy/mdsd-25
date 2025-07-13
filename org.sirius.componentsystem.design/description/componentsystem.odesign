@@ -111,7 +111,7 @@
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:SetValue" featureName="requiredInterfaces" valueExpression="aql:self.requiredInterfaces->add(Sequence{var:target})"/>
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="requiredInterfaces" valueExpression="var:target"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
