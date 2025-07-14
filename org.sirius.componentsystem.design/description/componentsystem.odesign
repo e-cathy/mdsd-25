@@ -105,6 +105,18 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createSignatureParameter" label="Add Parameter" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']/@subContainerMappings[name='SignatureContainer']/@subContainerMappings[name='SignatureParameterContainer']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Parameter" referenceName="parameters">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="myParameter"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:null"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
         </toolSections>
         <toolSections name="EdgesToolSection" label="Edges">
           <ownedTools xsi:type="tool:EdgeCreationDescription" name="addRequiredInterface" label="Add required interface" edgeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@edgeMappings[name='requiresEdge']">
