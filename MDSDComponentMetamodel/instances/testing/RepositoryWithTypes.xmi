@@ -1,23 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SystemIndependant:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SystemIndependant="http://www.example.org/SystemIndependant" xsi:schemaLocation="http://www.example.org/SystemIndependant ../../model/MDSDComponentMetamodel.ecore#//SystemIndependant">
-  <components name="MyComponent1" providedInterfaces="//@interfaces.1" requiredInterfaces="//@interfaces.0 //@interfaces.1"/>
-  <interfaces name="IPerson">
-    <signatures name="getName" returnType="//@types.0"/>
-    <signatures name="setName">
-      <parameters name="name" type="//@types.0"/>
+<SystemIndependant:Repository
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:SystemIndependant="http://www.example.org/SystemIndependant"
+    xsi:schemaLocation="http://www.example.org/SystemIndependant http://www.example.org/MDSDComponentMetamodel#//SystemIndependant">
+  <components
+      name="Student"
+      providedInterfaces="//@interfaces.0 //@interfaces.1"
+      requiredInterfaces="//@interfaces.2"/>
+  <components
+      name="Database"
+      providedInterfaces="//@interfaces.2"/>
+  <interfaces
+      name="IPerson">
+    <signatures
+        name="getName"
+        returnType="//@types.0"/>
+    <signatures
+        name="setName">
+      <parameters
+          name="name"
+          type="//@types.0"/>
     </signatures>
-    <signatures name="isFriendsWith" returnType="//@types.1">
-      <parameters name="p" type="//@types.2"/>
+    <signatures
+        name="isFriendsWith"
+        returnType="//@types.1">
+      <parameters
+          name="p"
+          type="//@types.2"/>
     </signatures>
-    <signatures name="setParents">
-      <parameters name="mother" type="//@types.2"/>
-      <parameters name="father" type="//@types.2"/>
+    <signatures
+        name="setParents">
+      <parameters
+          name="mother"
+          type="//@types.2"/>
+      <parameters
+          name="father"
+          type="//@types.2"/>
     </signatures>
   </interfaces>
-  <interfaces name="MyInterface"/>
-  <types xsi:type="SystemIndependant:SimpleType" name="String" type="String"/>
-  <types xsi:type="SystemIndependant:SimpleType" name="boolean"/>
-  <types xsi:type="SystemIndependant:ComplexType" name="Person">
-    <attributes name="name" type="//@types.0"/>
+  <interfaces
+      name="IStudies">
+    <signatures
+        name="getGrade"
+        returnType="//@types.3"/>
+  </interfaces>
+  <interfaces
+      name="IDatabase">
+    <signatures
+        name="savePerson">
+      <parameters
+          name="p"
+          type="//@types.2"/>
+    </signatures>
+    <signatures
+        name="getPerson"
+        returnType="//@types.2">
+      <parameters
+          name="name"
+          type="//@types.0"/>
+    </signatures>
+  </interfaces>
+  <types xsi:type="SystemIndependant:SimpleType"
+      name="String"
+      type="String"/>
+  <types xsi:type="SystemIndependant:SimpleType"
+      name="boolean"/>
+  <types xsi:type="SystemIndependant:ComplexType"
+      name="Person">
+    <attributes
+        name="name"
+        type="//@types.0"/>
+    <attributes
+        name="age"
+        type="//@types.4"/>
   </types>
+  <types xsi:type="SystemIndependant:SimpleType"
+      name="float"
+      type="Float"/>
+  <types xsi:type="SystemIndependant:SimpleType"
+      name="int"
+      type="Int"/>
 </SystemIndependant:Repository>
