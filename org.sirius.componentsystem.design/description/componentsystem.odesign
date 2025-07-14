@@ -82,7 +82,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="InterfaceToolSection" label="Interface">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createInterfase" label="New Interface" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createInterface" label="New Interface" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -93,13 +93,14 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSignature" label="New Signature">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createSignature" label="Add Signature" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']/@subContainerMappings[name='SignatureContainer']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Signature" referenceName="signatures" variableName="sig">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'MySignature'"/>
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Signature" referenceName="signatures">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="mySignature"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="returnType" valueExpression="aql:null"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
