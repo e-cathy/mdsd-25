@@ -35,13 +35,6 @@
         </edgeMappings>
         <containerMappings name="InterfaceContainerNode" label="InterfaceContainer" semanticCandidatesExpression="feature:interfaces" domainClass="SystemIndependant::Interface" childrenPresentation="VerticalStack">
           <subContainerMappings name="SignatureContainer" semanticCandidatesExpression="feature:signatures" domainClass="SystemIndependant::Signature" childrenPresentation="List">
-            <subNodeMappings name="ReturnTypeNode" label="ReturnType" semanticCandidatesExpression="feature:returnType" domainClass="SystemIndependant::Type">
-              <style xsi:type="style:SquareDescription" labelSize="12" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-              </style>
-            </subNodeMappings>
             <subNodeMappings name="SignatureParameterNode" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter">
               <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:'    ' + if self.type &lt;> null then self.type.name else 'void' endif + ' ' + self.name" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -164,6 +157,41 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
                 <subModelOperations xsi:type="tool_1:Unset" featureName="providedInterfaces" elementExpression="aql:elementView.targetNode.oclAsType(diagram::AbstractDNode).target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="TypesToolSection" label="Types">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSimpleType" label="New simple type" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='SimpleTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::SimpleType" referenceName="types">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="mySimpleType"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createComplexType" label="New complex type" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='ComplexTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::ComplexType" referenceName="types">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="MyComplexType"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createTypeParameter" label="Add attribute" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='ComplexTypeNode']/@subNodeMappings[name='TypeParameterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Parameter" referenceName="attributes">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="myAttribute"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
