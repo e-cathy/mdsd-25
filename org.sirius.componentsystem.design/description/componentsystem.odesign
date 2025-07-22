@@ -4,22 +4,24 @@
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="RepositoryDiagram" domainClass="SystemIndependant::Repository">
       <defaultLayer name="Default">
         <nodeMappings name="BasicComponentNode" label="BasicComponent" semanticCandidatesExpression="aql:self.components" domainClass="SystemIndependant::BasicComponent">
-          <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW" width="15" height="10">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="12" labelPosition="node" resizeKind="NSEW" width="15" height="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='yellow']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="SimpleTypeNode" label="SimpleType" semanticCandidatesExpression="aql:self.types" domainClass="SystemIndependant::SimpleType">
-          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW" width="10" height="5">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW" width="10" height="5">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </nodeMappings>
         <edgeMappings name="requiresEdge" label="requires" deletionDescription="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='deleteRequiredInterface']" sourceMapping="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']" targetMapping="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']" targetFinderExpression="feature:requiredInterfaces">
           <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="requires">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
@@ -27,7 +29,7 @@
         </edgeMappings>
         <edgeMappings name="providesEdge" label="provides" deletionDescription="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='deleteProvidedInterface']" sourceMapping="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='BasicComponentNode']" targetMapping="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='InterfaceContainerNode']" targetFinderExpression="feature:providedInterfaces">
           <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="provides">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
@@ -35,40 +37,43 @@
         </edgeMappings>
         <containerMappings name="InterfaceContainerNode" label="InterfaceContainer" semanticCandidatesExpression="feature:interfaces" domainClass="SystemIndependant::Interface" childrenPresentation="VerticalStack">
           <subContainerMappings name="SignatureContainer" semanticCandidatesExpression="feature:signatures" domainClass="SystemIndependant::Signature" childrenPresentation="List">
-            <subNodeMappings name="ReturnTypeNode" label="ReturnType" semanticCandidatesExpression="feature:returnType" domainClass="SystemIndependant::Type"/>
             <subNodeMappings name="SignatureParameterNode" label="SignatureParameter" semanticCandidatesExpression="feature:parameters" domainClass="SystemIndependant::Parameter">
-              <style xsi:type="style:SquareDescription" labelSize="10" showIcon="false" labelExpression="aql:'    ' + if self.type &lt;> null then self.type.name else 'void' endif + ' ' + self.name" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:'    ' + if self.type &lt;> null then self.type.name else 'void' endif + ' ' + self.name" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelFormat>italic</labelFormat>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
               </style>
             </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" labelSize="12" showIcon="false" labelExpression="aql:((if self.returnType &lt;> null then self.returnType.name else 'void' endif) + ' ' + self.name + '(' + self.parameters->collect(p | (if (p.type &lt;> null) then p.type.name else 'void' endif)+ ' ' + p.name)->sep(', ') + ')')" labelAlignment="LEFT" backgroundStyle="Liquid">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:((if self.returnType &lt;> null then self.returnType.name else 'void' endif) + ' ' + self.name + '(' + self.parameters->collect(p | (if (p.type &lt;> null) then p.type.name else 'void' endif)+ ' ' + p.name)->sep(', ') + ')')" labelAlignment="LEFT" backgroundStyle="GradientTopToBottom">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
             </style>
           </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:self.name">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" backgroundStyle="GradientTopToBottom">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
           </style>
         </containerMappings>
         <containerMappings name="ComplexTypeNode" label="ComplexType" semanticCandidatesExpression="feature:types" domainClass="SystemIndependant::ComplexType" childrenPresentation="List">
           <subNodeMappings name="TypeParameterNode" label="TypeParameter" semanticCandidatesExpression="feature:attributes" domainClass="SystemIndependant::Parameter">
-            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:(self.name + ': ' + self.type.name)" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:(self.name + ': ' + self.type.name)" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             </style>
           </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" backgroundStyle="Liquid">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </containerMappings>
@@ -162,6 +167,41 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
                 <subModelOperations xsi:type="tool_1:Unset" featureName="providedInterfaces" elementExpression="aql:elementView.targetNode.oclAsType(diagram::AbstractDNode).target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="TypesToolSection" label="Types">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSimpleType" label="New simple type" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@nodeMappings[name='SimpleTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::SimpleType" referenceName="types">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="mySimpleType"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createComplexType" label="New complex type" containerMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='ComplexTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::ComplexType" referenceName="types">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="MyComplexType"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createTypeParameter" label="Add attribute" nodeMappings="//@ownedViewpoints[name='RepositoryViewpoint']/@ownedRepresentations[name='RepositoryDiagram']/@defaultLayer/@containerMappings[name='ComplexTypeNode']/@subNodeMappings[name='TypeParameterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SystemIndependant::Parameter" referenceName="attributes">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="myAttribute"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
