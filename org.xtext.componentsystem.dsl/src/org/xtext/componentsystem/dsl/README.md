@@ -7,10 +7,7 @@ This project defines a domain-specific language (DSL) for a component system fro
 - **Dsl.xtext**  
   The main Xtext grammar file that defines the syntax and structure of the DSL.
 
-- **MDSDComponentMetamodel**  
-  The Eclipse project containing the generated EMF metamodel and DSL editor.
-
-- **instances/testing/Components.csdsl**  
+- **MDSDComponentMetamodel/instances/testing/Components.csdsl**  
   The example instance model from the exercise sheet created using the DSL.
 
 ## How to Use the DSL
