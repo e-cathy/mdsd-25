@@ -61,76 +61,76 @@ ComponentSystem {
 	}
 	systems { 
 		System { 
-			interfaces ( HTTP ) 
+			interfaces ( "Repo.HTTP" ) 
 			assembly Assembly { 
 				assemblyContexts { 
 					AssemblyContext PoolingAudioDB { 
-						component PoolingAudioDB 
+						component "Repo.PoolingAudioDB" 
 						providedRoles { 
-							Role "R AudioDB PA" from AudioDB
+							Role "R AudioDB PA" from "Repo.AudioDB"
 						}
 					} , 
 					AssemblyContext WebGUI { 
-						component WebGUI 
+						component "Repo.WebGUI" 
 						providedRoles { 
-							Role "R HTTP WebGUI" from HTTP
+							Role "R HTTP WebGUI" from "Repo.HTTP"
 						} 
 						requiredRoles { 
-							Role "R MediaStore WebGUI" from MediaStore
+							Role "R MediaStore WebGUI" from "Repo.MediaStore"
 						}
 					} , 
 					AssemblyContext ^CompositeComponent { 
 						component ^CompositeComponent 
 						providedRoles { 
-							Role "R MediaStore CompComp" from MediaStore
+							Role "R MediaStore CompComp" from "Repo.MediaStore"
 						} 
 						requiredRoles { 
-							Role "R AudioDB CompComp" from AudioDB
+							Role "R AudioDB CompComp" from "Repo.AudioDB"
 						}
 					}
 				} compositeComponents { 
 					CompositeComponent ^CompositeComponent { 
-						providedInterfaces ( MediaStore ) 
-						requiredInterfaces ( AudioDB ) 
+						providedInterfaces ( "Repo.MediaStore" ) 
+						requiredInterfaces ( "Repo.AudioDB" ) 
 						assemblyContexts { 
 							AssemblyContext MediaManager { 
-								component MediaManager 
+								component "Repo.MediaManager" 
 								providedRoles { 
-									Role "R MediaStore MedMan" from MediaStore
+									Role "R MediaStore MedMan" from "Repo.MediaStore"
 								} 
 								requiredRoles { 
-									Role "R Sound MedMan" from Sound , 
-									Role "R AudioDB MedMan" from AudioDB
+									Role "R Sound MedMan" from "Repo.Sound" , 
+									Role "R AudioDB MedMan" from "Repo.AudioDB"
 								}
 							} , 
 							AssemblyContext DigitalWatermarking { 
-								component DigitalWatermarking 
+								component "Repo.DigitalWatermarking" 
 								providedRoles { 
-									Role "R Sound Water" from Sound
+									Role "R Sound Water" from "Repo.Sound"
 								}
 							} , 
 							AssemblyContext DBCache { 
-								component DBCache 
+								component "Repo.DBCache" 
 								providedRoles { 
-									Role "R AudioDB DBCache-p" from AudioDB
+									Role "R AudioDB DBCache-p" from "Repo.AudioDB"
 								} 
 								requiredRoles { 
-									Role "R Audio DBCache-r" from AudioDB
+									Role "R Audio DBCache-r" from "Repo.AudioDB"
 								}
 							}
 						} assemblyConnectors { 
 							c3 : "MediaManager.R AudioDB MedMan" -(o- "DBCache.R AudioDB DBCache-p" , 
 							c4 : "MediaManager.R Sound MedMan" -(o- "DigitalWatermarking.R Sound Water"
 						} delegationConnectors { 
-							d2 : "MediaManager.R MediaStore MedMan" -> MediaStore , 
-							d3 : "DBCache.R Audio DBCache-r" -> AudioDB
+							d2 : "MediaManager.R MediaStore MedMan" -> "Repo.MediaStore" , 
+							d3 : "DBCache.R Audio DBCache-r" -> "Repo.AudioDB"
 						}
 					}
 				} assemblyConnectors { 
 					c1 : "WebGUI.R MediaStore WebGUI" -(o- "CompositeComponent.R MediaStore CompComp" , 
 					c2 : "CompositeComponent.R AudioDB CompComp" -(o- "PoolingAudioDB.R AudioDB PA"
 				} delegationConnectors { 
-					d1 : "WebGUI.R HTTP WebGUI" -> HTTP
+					d1 : "WebGUI.R HTTP WebGUI" -> "Repo.HTTP"
 				}
 			} allocation Allocation { 
 				allocationContexts { 

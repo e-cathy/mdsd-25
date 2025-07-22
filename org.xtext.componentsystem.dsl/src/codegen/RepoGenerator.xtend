@@ -17,20 +17,24 @@ class RepoGenerator implements IGenerator {
     
     final String JAVA_SUFFIX = ".java";
     
+    // Main method
     override void doGenerate(Resource resource, IFileSystemAccess fsa) {
     	for (EObject o : resource.contents) {
             o.compile(fsa)
         }
     }
 	
+	// Fallback method (should not be called)
 	def dispatch void compile(EObject object, IFileSystemAccess access) {}
     
+    // Compiles all repositories of a component system
     def dispatch void compile(ComponentSystem cs, IFileSystemAccess fsa) {
 		for (Repository repo : cs.getRepositories()) {
 			repo.compile(fsa)
 		}
 	}
     
+    // Generates the file of the Helper class with its content and compiles all interfaces and basic components of a repository
     def dispatch void compile(Repository repo, IFileSystemAccess fsa) {
     	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  "Helper" + JAVA_SUFFIX, repo.compileContent) 
     	for (Interface i : repo.getInterfaces()) {
@@ -41,15 +45,17 @@ class RepoGenerator implements IGenerator {
     	}
     }
     
+    // Generates the file with its content for an Interface
     def dispatch void compile(Interface i, Repository repo, IFileSystemAccess fsa) {
     	fsa.generateFile(getPackage(repo).replace(".", "/") + "/" +  getInterfaceName(i) + JAVA_SUFFIX, i.compileContent(repo))  
     }
     
+    // Generates the file with its content for a Basic Component
     def dispatch void compile(BasicComponent comp, Repository repo, IFileSystemAccess fsa) {
     	 fsa.generateFile(getPackage(comp).replace(".", "/") + "/" +  getComponentName(comp) + JAVA_SUFFIX, comp.compileContent(repo))  
     }
     
-    // Return helper class
+    // Compiles the Helper class
     def String compileContent(Repository repo) '''
     	package «getPackage(repo)»
     	
@@ -69,6 +75,7 @@ class RepoGenerator implements IGenerator {
     	}
     '''
     
+    // Compiles an interface
     def String compileContent(Interface interf, Repository repo) '''
         package «getPackage(repo)»;
         
@@ -79,14 +86,17 @@ class RepoGenerator implements IGenerator {
         }
     '''
 	
+	// Compiles a Signature
 	def String compileContent(Signature signature) '''
 	«getType(signature.returnType)» «signature.name»(«ListExtensions.map(signature.parameters)[p | p.compileContent].join(", ")»);
 	'''
     
+    // Compiles a Parameter
     def String compileContent(Parameter param) '''
     «getType(param.type)» «param.name»
     '''
     
+    // Compiles a Basic Component
     def String compileContent(BasicComponent comp, Repository repo) '''
 		package «getPackage(comp)»;
 			
@@ -125,6 +135,7 @@ class RepoGenerator implements IGenerator {
 		}
     '''
     
+    // Gets the name of the package for an object
     def String getPackage(EObject object) {
         if(object instanceof Repository) {
             return object.name;
@@ -135,14 +146,17 @@ class RepoGenerator implements IGenerator {
     }
     
     
+    // Gets the file name of an interface
     def String getInterfaceName(Interface interf) {
         return "I" + interf.name;
     }
     
+    // Gets the file name of a component
     def String getComponentName(BasicComponent comp) {
         return comp.name + "Impl";
     }
     
+    // Converts the SimpleType to its java equivalent
     def String getType(Type type) {
     	if (type === null) {
     		return "void";
