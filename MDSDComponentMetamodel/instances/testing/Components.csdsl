@@ -1,6 +1,6 @@
 ComponentSystem {
 	repositories {
-		Repository {	
+		Repository Repo {	
 			components {
 				BasicComponent WebGUI { 
 					providedInterfaces ( HTTP )

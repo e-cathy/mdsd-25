@@ -25,6 +25,7 @@ Component returns SystemIndependant::Component:
 Repository returns SystemIndependant::Repository:
 	{SystemIndependant::Repository}
 	'Repository'
+	name=EString
 	'{'
 		('components' '{' components+=BasicComponent ( "," components+=BasicComponent)* '}' )?
 		('interfaces' '{' interfaces+=Interface ( "," interfaces+=Interface)* '}' )?
