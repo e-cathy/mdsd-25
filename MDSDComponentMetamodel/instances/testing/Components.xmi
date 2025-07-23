@@ -3,7 +3,8 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:MDSDComponentMetamodel="http://www.example.org/MDSDComponentMetamodel">
-  <repositories>
+  <repositories
+      name="repository">
     <components
         name="WebGUI"
         providedInterfaces="//@repositories.0/@interfaces.0"

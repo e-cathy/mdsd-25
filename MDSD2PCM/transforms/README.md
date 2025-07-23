@@ -15,9 +15,10 @@ This project contains a **QVTo transformation** that maps a component system mod
 1. Make sure the source model (e.g. `Components.xmi` instance) is available in the workspace.
 2. Launch the transformation:
    - Right-click on `Transformation.qvto`
-   - Select `Run As > QVT Operational Transformation`
-   - Create a new transformation configuration if not yet existing
+   - Select `Run As > Run Configurations...`
+   - Create a new transformation configuration by clicking `QVT Operational Transformation` if not yet existing
    - Specify input and output paths
+   - Click `Run`
 3. The output will be written to e.g. `ComponentSystem2PCM.pcm`.
 
 ## How to View the Result
