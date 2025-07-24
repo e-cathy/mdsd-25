@@ -18,8 +18,9 @@ This project provides a graphical editor for models based on the MDSDComponentMe
 
 ## Features
 
-- Visual representation of `Repository`, `BasicComponent`, `Interface`, and other model elements.
-- Palette tools for creating and modifying elements (e.g., `Create BasicComponent`).
+- Visual representation of the model elements in a Repository.
+- Palette tools for creating and modifying elements and references (e.g., `Create BasicComponent`).
+- Filter to hide type edges, as they overcrowd the diagram. Find the filter in the top menu of the diagram.
 
 ## How to view
 
@@ -33,5 +34,5 @@ To resolve this issue, do the following steps:
 1. Delete the underlying model instance (e.g. `Components.xmi`)
 2. Perform a `git reset --hard`.
 3. Add the restored model instance to the model list of the `.aird` file. 
-4. Try to open the diagram again.
+4. Try to open the diagram again or create a new model.
 
