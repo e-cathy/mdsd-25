@@ -66,6 +66,4 @@ These classes are essential to ensure the generator can be run via the MWE2 work
 ## Notes & Requirements
 
 - The `.csdsl` extension is registered by the DSL and associated with the custom editor.
-- Make sure the required Xtext and EMF plugins are installed in your Eclipse environment.
 - The input model must be a valid `.xmi` instance conforming to the `ComponentSystem` metamodel.
-- Xtend and EMF tooling must be available in your Eclipse workspace.

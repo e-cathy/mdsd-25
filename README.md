@@ -3,6 +3,16 @@
 This project was created by Ekaterina Ehringhaus, Annika Kienle and Simon von Rönn in the context of the **Model-Driven Software Development (MDSD) Practical Course** at **Karlsruhe Institute of Technology (KIT)**. It is intended for educational purposes only.
 
 ---
+## Eclipse Setup
+We used Eclipse Modeling IDE Version 2025-06 configured with the following Plugins:
+
+1. EMF
+2. Xtext
+3. Xtend
+4. QVTo
+5. Palladio
+6. Sirius
+
 ---
 
 # MDSD Component System – Project Structure Overview

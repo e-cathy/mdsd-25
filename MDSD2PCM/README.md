@@ -29,12 +29,6 @@ To view the generated `.pcm` file:
 2. Right-click on `ComponentSystem2PCM.pcm`.
 3. Choose **Open With > PCM Model Editor**.
 
-## Requirements
-
-Eclipse Modeling Tools with:
-- QVTo plugin
-- EMF and Ecore tools
-- Palladio tools installed
 
 ## Notes
 
