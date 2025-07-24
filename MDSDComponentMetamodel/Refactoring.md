@@ -9,7 +9,7 @@ type of void is modeled as returnType = null.
 2. **ComplexType has EJavaClass**
 In order to not remodel predefined concepts, we use EJavaClass to represent a complex type.
 
-3 **Introduce packages**
+3. **Introduce packages**
 Add packages for system-dependent and system-independent view points to add structure to the metamodel. 
 We have decided against sub-packages because they reduced clarity and usability of the model.
 
