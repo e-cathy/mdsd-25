@@ -6,8 +6,9 @@ Initial design decisions and refactoring steps to increase the metamodel quality
 To be able to use the same abstract class Type for parameters and return type of signatures, a return 
 type of void is modeled as returnType = null. 
 
-2. **ComplexType has EJavaClass**  
-In order to not remodel predefined concepts, we use EJavaClass to represent a complex type.
+2. ~~**ComplexType has EJavaClass**~~  
+~~In order to not remodel predefined concepts, we use EJavaClass to represent a complex type.~~  
+*This was reverted when we defined the DSL as the parsing of java classes does not work out-of-the-box.*
 
 3. **Introduce packages**  
 Add packages for system-dependent and system-independent view points to add structure to the metamodel. 

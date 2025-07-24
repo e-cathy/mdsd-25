@@ -27,10 +27,16 @@ To view the generated `.pcm` file:
 
 1. Open Eclipse with Palladio installed.
 2. Right-click on `ComponentSystem2PCM.pcm`.
-3. Choose **Open With > PCM Model Editor**.
+3. Choose `Open With > PCM Model Editor`.
 
 
 ## Notes
 
 - The input model must conform to the `MDSDComponentMetamodel`.
 - The output model conforms to PCM metamodel.
+
+
+## Known Problem
+In the PCM metamodel, linking resource types need to specify a latency and throughput as a PCMRandomVariable. 
+However, trying to create an instance of such a variable leads to an exception `Could not initialize class org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl`. 
+To prevent the transformation from failing, the creation of these Variables is omitted, which leads to `The required feature ... must be set` errors when validating the resulting PCM instance. 
