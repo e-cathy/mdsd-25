@@ -239,8 +239,8 @@ mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompCom
 	compositeRepository.components__Repository += result;
 }
 
-mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector {
-	result.entityName := self.name;
+mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector 
+inherits componentSystem::NamedElement::Named2Named {
 	result.providedRole_AssemblyConnector := self.providedRole.interface.map Interface2ProvidedRole(self.providedRole.providedAssemblyContext.component.map CompInAssembly2RepoComp());
 	result.requiredRole_AssemblyConnector := self.requiredRole.interface.map Interface2RequiredRole(self.requiredRole.requiredAssemblyContext.component.map CompInAssembly2RepoComp());
 	result.providingAssemblyContext_AssemblyConnector := self.providedRole.providedAssemblyContext.map AssemblyCont2AssemblyCont();
