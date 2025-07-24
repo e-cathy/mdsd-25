@@ -24,6 +24,10 @@ To view them:
 
 Inside the editor you can inspect the defined constraints.
 
+**Note:**
+It was not possible to write comments in the `.ecore` file.
+Therefore, we included the comments in a separate file: `MDSDComponentMetamodel/model/OCLComments.md`
+
 ## Metamodel Instance
 
 - A generated instance of the metamodel (from the exercise sheet) can be found at: `MDSDComponentMetamodel/instances/testing/Components.xmi`
