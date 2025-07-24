@@ -3,6 +3,8 @@ modeltype componentSystem uses "http://www.example.org/MDSDComponentMetamodel";
 
 transformation ComponentSystem2PCM(in source: componentSystem, out target: pcm);
 
+// New repository only present in the PCM instance. As composite components in the componentSystem are not part of a repository,
+// they are assigned to this repository by the transformation.
 property compositeRepository : pcm::repository::Repository;
 
 main() {
@@ -28,11 +30,11 @@ abstract mapping componentSystem::NamedElement :: Named2Named() : pcm::core::ent
 
 -- REPOSITORY --
 
-mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::repository::Repository {
+mapping componentSystem::SystemIndependant::Repository :: Repo2Repo() : pcm::repository::Repository 
+inherits componentSystem::NamedElement::Named2Named {
 	result.components__Repository := self.components->BasicComp2BasicComp(result);
 	result.interfaces__Repository := self.interfaces->Interface2OpInterface();
 	result.dataTypes__Repository := self.types->Type2DataType();
-	result.entityName := "repository";
 }
 
 mapping componentSystem::SystemIndependant::BasicComponent :: BasicComp2BasicComp(
@@ -46,10 +48,12 @@ repo : pcm::repository::Repository
 	result.serviceEffectSpecifications__BasicComponent := signatures.map Signature2Seff(result);
 }
 
+// Called for components referenced in an assembly context (of the system assembly or a composite component) as concrete type is not known
 mapping componentSystem::SystemIndependant::Component :: CompInAssembly2RepoComp() : pcm::repository::RepositoryComponent disjuncts 
 componentSystem::SystemIndependant::BasicComponent :: BasicCompInAssembly2BasicComp,
 componentSystem::SystemDependant::CompositeComponent :: CompComp2CompComp;
 
+// As the repository is mapped before the system, basic components that appear in an assembly context have already been mapped in the repository before
 mapping componentSystem::SystemIndependant::BasicComponent :: BasicCompInAssembly2BasicComp() : pcm::repository::BasicComponent 
 inherits componentSystem::NamedElement::Named2Named {
 	init {
@@ -68,16 +72,21 @@ inherits componentSystem::NamedElement::Named2Named {
 	result.returnType__OperationSignature := self.returnType.map Type2DataType();
 }
 
+// In PCM, components do not have provided interfaces, but provided roles that reference an interface. We have to make sure to 
+// only create one role for each entity providing that interface, even if it is mapped multiple times.
 mapping componentSystem::SystemIndependant::Interface :: Interface2ProvidedRole(
     entity : pcm::core::entity::InterfaceProvidingEntity
 ) : pcm::repository::OperationProvidedRole {
     init {
-    // Try to get already existing instance of role
-    var existingRole : pcm::repository::OperationProvidedRole :=
-        self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
-        if (existingRole <> null) and (existingRole.providingEntity_ProvidedRole = entity) then {
+    	// Get already existing instances of roles providing the interface
+    	var existingRoles : Sequence(pcm::repository::OperationProvidedRole) :=
+        	self.resolveIn(componentSystem::SystemIndependant::Interface::Interface2ProvidedRole);
+        
+        // Check if there is already a role for the given entity
+        var matchingRole := existingRoles -> any(r | r.providingEntity_ProvidedRole = entity);
+        if (matchingRole <> null) then {
             // Return role if existing to not create duplicated instances
-            result := existingRole;
+            result := matchingRole;
         } else {
             // First instantiation of this role
             result := object pcm::repository::OperationProvidedRole {
@@ -89,16 +98,21 @@ mapping componentSystem::SystemIndependant::Interface :: Interface2ProvidedRole(
     }
 }
 
+// In PCM, components do not have required interfaces, but required roles that reference an interface. We have to make sure to 
+// only create one role for each entity requiring that interface, even if it is mapped multiple times.
 mapping componentSystem::SystemIndependant::Interface :: Interface2RequiredRole(
 entity : pcm::core::entity::InterfaceRequiringEntity
 ) : pcm::repository::OperationRequiredRole {
     init {
-    // Try to get already existing instance of role
-    var existingRole : pcm::repository::OperationRequiredRole :=
-        self.resolveoneIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
-        if (existingRole <> null) and (existingRole.requiringEntity_RequiredRole = entity) then {
+    	// Get already existing instances of roles requiring the interface
+    	var existingRoles : Sequence(pcm::repository::OperationRequiredRole) :=
+        	self.resolveIn(componentSystem::SystemIndependant::Interface::Interface2RequiredRole);
+        
+        // Check if there is already a role for the given entity
+        var matchingRole := existingRoles -> any(r | r.requiringEntity_RequiredRole = entity);
+        if (matchingRole <> null) then {
             // Return role if existing to not create duplicated instances
-            result := existingRole;
+            result := matchingRole;
         } else {
             // First instantiation of this role
             result := object pcm::repository::OperationRequiredRole {
@@ -128,7 +142,8 @@ inherits componentSystem::NamedElement::Named2Named {
 	result.innerDeclaration_CompositeDataType := self.attributes->Param2InnerDeclaration();
 }
 
-mapping componentSystem::SystemIndependant::Parameter :: Param2InnerDeclaration() : pcm::repository::InnerDeclaration {
+mapping componentSystem::SystemIndependant::Parameter :: Param2InnerDeclaration() : pcm::repository::InnerDeclaration 
+inherits componentSystem::NamedElement::Named2Named {
 	result.datatype_InnerDeclaration := self.type.map Type2DataType();
 }
 
@@ -152,6 +167,7 @@ st : componentSystem::SystemIndependant::SimpleTypeEnum
 	endif
 }
 
+// Each SEFF needs a start and a stop action to be valid
 mapping  pcm::repository::Signature :: Signature2Seff(
 comp: pcm::repository::BasicComponent
 ) : pcm::seff::ResourceDemandingSEFF{
@@ -185,18 +201,15 @@ abstract mapping componentSystem::SystemDependant::Assembly :: Assembly2CompStru
 sys: pcm::system::System
 ) : pcm::core::composition::ComposedStructure {
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
-	if sys = null then {
-		log ("sys is null")
-	} endif;
-	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(sys);
+	var delegation_connectors := self.delegationConnectors -> map DelegationConn2DelegationConn(sys);
 	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 }
 
-mapping componentSystem::SystemDependant::Assembly :: Assembly2Sys(
-sys: pcm::system::System
-) : pcm::system::System 
-inherits componentSystem::SystemDependant::Assembly::Assembly2CompStructure{
+// In PCM, there is no explicit assembly, but the system itself is already a ComposedStructure. So the properties of the assembly 
+// have to be added to the PCM system object.
+mapping componentSystem::SystemDependant::Assembly :: Assembly2Sys(sys: pcm::system::System) : pcm::system::System 
+inherits componentSystem::SystemDependant::Assembly::Assembly2CompStructure {
 	init {
 		result := sys;
 	}
@@ -214,10 +227,11 @@ mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompCom
 	
 	result.assemblyContexts__ComposedStructure := self.assemblyContexts->AssemblyCont2AssemblyCont();
 	
-	var delegation_connectors := self.delegationConnectors -> map DelegationConn2Conn(result);
+	var delegation_connectors := self.delegationConnectors -> map DelegationConn2DelegationConn(result);
 	var assembly_connectors := self.assemblyConnectors->AssemblyConn2AssemblyConn();
 	result.connectors__ComposedStructure := delegation_connectors -> union(assembly_connectors);
 	
+	// The provided and required roles of a composite component are exactly the ones delegated by a delegation connector.
 	result.providedRoles_InterfaceProvidingEntity := self.delegationConnectors -> role -> select(r | r.providedAssemblyContext <> null) -> interface -> map Interface2ProvidedRole(result);
 	result.requiredRoles_InterfaceRequiringEntity := self.delegationConnectors -> role -> select(r | r.requiredAssemblyContext <> null) -> interface -> map Interface2RequiredRole(result);
 	
@@ -225,20 +239,21 @@ mapping componentSystem::SystemDependant::CompositeComponent :: CompComp2CompCom
 	compositeRepository.components__Repository += result;
 }
 
-mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector {
-	result.entityName := self.name;
+mapping componentSystem::SystemDependant::AssemblyConnector :: AssemblyConn2AssemblyConn() : pcm::core::composition::AssemblyConnector 
+inherits componentSystem::NamedElement::Named2Named {
 	result.providedRole_AssemblyConnector := self.providedRole.interface.map Interface2ProvidedRole(self.providedRole.providedAssemblyContext.component.map CompInAssembly2RepoComp());
 	result.requiredRole_AssemblyConnector := self.requiredRole.interface.map Interface2RequiredRole(self.requiredRole.requiredAssemblyContext.component.map CompInAssembly2RepoComp());
 	result.providingAssemblyContext_AssemblyConnector := self.providedRole.providedAssemblyContext.map AssemblyCont2AssemblyCont();
 	result.requiringAssemblyContext_AssemblyConnector := self.requiredRole.requiredAssemblyContext.map AssemblyCont2AssemblyCont();
 }
 
-mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2Conn(
+mapping componentSystem::SystemDependant::DelegationConnector :: DelegationConn2DelegationConn(
 outerEntity : pcm::core::entity::InterfaceProvidingRequiringEntity
 ) : pcm::core::composition::DelegationConnector {
     init {
+    	// PCM divides between provided delegation connectors and required delegation connectors, so we have to detect the kind of delegation.
         if self.role.providedAssemblyContext <> null then {
-            -- Provided-Delegation
+            // Provided-Delegation
             var innerProv := self.role.interface.map Interface2ProvidedRole(self.role.providedAssemblyContext.component.map CompInAssembly2RepoComp()); 
             var outerProv := self.delegatedInterface.map Interface2ProvidedRole(outerEntity);
             
