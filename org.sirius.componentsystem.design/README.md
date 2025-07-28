@@ -26,6 +26,9 @@ This project provides a graphical editor for models based on the MDSDComponentMe
 
 1. Open the `.aird` file in the MDSDComponentMetamodel project.
 2. Click on `RepositoryViewpoint > RepositoryDiagram > SiriusRepositoryDiagram`.
+3. Activate the `Hide type edges` filter to hide the return type, parameter type and attribute type edges.
+    - You can still set types by adding new type edges.
+    - To set a type to void, you have to turn off the filter and delete the corresponding edge.
 
 ## Notes
 
@@ -34,5 +37,5 @@ To resolve this issue, do the following steps:
 1. Delete the underlying model instance (e.g. `Components.xmi`)
 2. Perform a `git reset --hard`.
 3. Add the restored model instance to the model list of the `.aird` file. 
-4. Try to open the diagram again or create a new model.
+4. Try to open the diagram again or create a new diagram for the model.
 

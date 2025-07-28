@@ -6,19 +6,21 @@ Code Generation is implemented in Xtend and executed via an MWE2 workflow.
 ## Files and Structure
 
 - **Dsl.xtext**  
-  The main Xtext grammar file that defines the syntax and structure of the DSL.
+  The main Xtext grammar file that defines the syntax and structure of the DSL.  
+  Location: `src/org.xtext.componentsystem.dsl/Dsl.xtext`
 
 - **MDSDComponentMetamodel/instances/testing/Components.csdsl**  
-  The example instance model from the exercise sheet created using the DSL.
+  The example instance model from the exercise sheet created using the DSL.  
 
 - **RepoGenerator.xtend**  
-  This file contains the core logic of the generator. It processes the model elements (Repositories, Interfaces, Components, etc.) and generates Java files such as interface definitions and implementation classes.
+  This file contains the core logic of the generator. It processes the model elements (Repositories, Interfaces, Components, etc.) and generates Java files such as interface definitions and implementation classes.  
+  Location: `src/codegen/RepoGenerator.xtend`
 
 ## How to Use the DSL
 
 If not already generated:
 
-- Right-click on the `GenerateDsl.mwe2` file
+- Right-click on the `src/org.xtext.componentsystem.dsl/GenerateDsl.mwe2` file
 - Select `Run As > MWE2 Workflow`
 
 This will generate the language infrastructure including the editor and parser.
@@ -32,25 +34,26 @@ This will generate the language infrastructure including the editor and parser.
    - Navigate to `instances/testing/Components.csdsl`
    - Right-click the file and choose `Open With > Dsl Editor`
 
-## How to Generate
+## How to Generate Code
 
-1. Right-click on `RepoGenerator.mwe2`
+1. Right-click on `src/codegen/RepoGenerator.mwe2`
 2. Select `Run As > MWE2 Workflow`
 
 After a successful run, the generated files will be located in the `/repo-src-gen` directory.
 
 
-
 ## Structure of the Generated Files
 
-For each repository, the generator creates:
-- A **Helper class**
-- One **Java interface** per defined interface
-- One **implementation class** (`Impl`) per `BasicComponent`, containing method skeletons
+For each repository, the generator creates in the `repo-src-gen` directory:
+- A main package named after the repository containing:
+    - A **Helper class**
+    - One **Java interface** per defined interface
+- A package for each component containing:
+    - One **implementation class** (`Impl`) per `BasicComponent`, containing method skeletons
 
 ## Supporting Classes
 
-There are three additional infrastructure classes that are required to make the generator work, but they are not responsible for the actual content generation:
+There are three additional infrastructure classes in `src/codegen` that are required to make the generator work, but they are not responsible for the actual content generation:
 
 - **RepositoryGeneratorModule.java**  
   Binds the expected file extension (`.xmi`) and registers the `RepoGenerator` as the active `IGenerator` implementation.
