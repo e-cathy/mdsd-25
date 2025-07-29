@@ -3,7 +3,9 @@
 This project was created by Ekaterina Ehringhaus, Annika Kienle and Simon von Rönn in the context of the **Model-Driven Software Development (MDSD) Practical Course** at **Karlsruhe Institute of Technology (KIT)**. It is intended for educational purposes only.
 
 ---
+
 ## Eclipse Setup
+
 We used Eclipse Modeling IDE Version 2025-06 configured with the following Plugins:
 
 1. EMF
@@ -56,5 +58,11 @@ This file provides an overview of where to find the relevant artifacts for each 
 ## 5. Graphical Editor (Sirius)
 
 - **Project:** `org.sirius.componentsystem.design`
-- **Location:**  `description/`
+- **Location:** `description/`
 - **Sample instance:** `MDSDComponentMetamodel/model/MDSDComponentMetamodel.aird > RepositoryViewpoint > RepositoryDiagram > SiriusRepositoryDiagram`
+
+---
+
+## 6. Final Presentation
+
+The slides can be found in `MDSD_Abschlusspräsentation.pdf`
