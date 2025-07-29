@@ -11,6 +11,7 @@ Code Generation is implemented in Xtend and executed via an MWE2 workflow.
 
 - **MDSDComponentMetamodel/instances/testing/Components.csdsl**  
   The example instance model from the exercise sheet created using the DSL.  
+  An instance of a minimal repository also including types and parameters can be found at `MDSDComponentMetamodel/instances/testing/repositoryWithTypes.csdsl`.
 
 - **RepoGenerator.xtend**  
   This file contains the core logic of the generator. It processes the model elements (Repositories, Interfaces, Components, etc.) and generates Java files such as interface definitions and implementation classes.  

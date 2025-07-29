@@ -1,0 +1,46 @@
+ComponentSystem {
+	repositories {
+		Repository repository {
+			components {
+				BasicComponent component1 {
+					providedInterfaces (i1)
+				},
+				BasicComponent comp2 {
+					requiredInterfaces (i2)
+				}
+				
+			}
+			interfaces {
+				Interface i1 {
+					"String" getName();
+					void setName("String" name);
+					int getAge();
+					void setAge(int age);
+					Person newPerson("String" name, int age, Address address);
+				},
+				Interface i2 {
+					void httpRequest();
+				}
+			}
+			types {
+				SimpleType int {
+					type Int
+				},
+				SimpleType "String" {
+					type String
+				},
+				ComplexType Address {
+					"String" street;
+					int number;
+					int postalCode;
+					"String" city;
+				},
+				ComplexType Person {
+					"String" name;
+					int age;
+					Address address;
+				}
+			}
+		}
+	}
+}
